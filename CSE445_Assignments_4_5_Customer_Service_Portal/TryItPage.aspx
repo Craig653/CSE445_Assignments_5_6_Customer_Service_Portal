@@ -9,6 +9,12 @@
         .auto-style1 {
             color: #FFFFFF;
         }
+        #form1 {
+            font-weight: 700;
+        }
+        .auto-style2 {
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
@@ -17,12 +23,11 @@
             <h1>Try it Page</h1>
         </div>
         <h2><strong>Craig&#39;s Services/Components</strong></h2>
-        <p>
-            <strong>Service 1 Groq AI (2 Functions)</strong></p>
+        <h3><strong>Service 1 Groq AI (2 Functions, Chat and Image Recognizer)</strong></h3>
         <strong>AskGroq (REST)</strong><br />
-        This Service is connected to Groq. A Fast AI Inference using the mixtral-8x7b-32768 model. More details can be found at <a href="https://groq.com/">https://groq.com/</a>
+        <span class="auto-style2">This Service is connected to Groq. A Fast AI Inference using the mixtral-8x7b-32768 model. More details can be found at <a href="https://groq.com/">https://groq.com/</a>
         <br />
-        URL: <a href="http://localhost:63092/Service1.svc">http://localhost:63092/Service1.svc</a> or http://localhost:63092/Service1.svc/AskGroq/{string}<br />
+        URL: <a href="http://localhost:63092/Service1.svc">http://localhost:63092/Service1.svc</a> or http://localhost:63092/Service1.svc/AskGroq/{string}</span><br />
         Method: AskGroq(String)<br />
         Returns String<br />
         <br />
@@ -40,9 +45,9 @@
         <br />
         <br />
         Image Recognizer Groq: (WSDL)<br />
-        </strong>This service is connected to Groq Visualizer. Using the llama-3.2-11b-vision-preview model. More details can be found at <a href="https://console.groq.com/docs/vision">https://console.groq.com/docs/vision</a>
+        </strong><span class="auto-style2">This service is connected to Groq Visualizer. Using the llama-3.2-11b-vision-preview model. More details can be found at <a href="https://console.groq.com/docs/vision">https://console.groq.com/docs/vision</a>
         <br />
-        URL: <a href="http://localhost:56274/Service1.svc">http://localhost:56274/Service1.svc</a><br />
+        URL: <a href="http://localhost:56274/Service1.svc">http://localhost:56274/Service1.svc</a></span><br />
         Method: ImgGroq(String image in base64)<br />
         Returns string<br />
         <br />
@@ -54,6 +59,26 @@
         Groq Response:
         <br />
         <asp:Label ID="lblImageGroq" runat="server" Visible="False"></asp:Label>
+        <br />
+        <h3>Local Component 1 - Captcha Generator</h3>
+        <p class="auto-style2">
+            This Service connects to ASU&#39;s string image generator. This will be used to validate people are not robots upon creating a password</p>
+        <p style="width: 534px">
+            <asp:Image ID="CaptchaImg" runat="server" style="height: 16px" />
+            &nbsp;Image String Length is
+            <asp:TextBox ID="StringLenTxtBx" runat="server">4</asp:TextBox>
+            <asp:Button ID="btnShowImage" runat="server" OnClick="btnShowImage_Click" Text="Show me the Image String" />
+        </p>
+        <p style="width: 534px">
+            Enter the string here
+            <asp:TextBox ID="CaptchaEnterTxtBx" runat="server"></asp:TextBox>
+            &nbsp;<asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" style="height: 26px" Text="Submit" />
+        </p>
+        <p style="width: 534px">
+            <asp:Label ID="VerificationLbl" runat="server"></asp:Label>
+        </p>
+        <p class="auto-style2">
+            &nbsp;</p>
     </form>
 </body>
 </html>

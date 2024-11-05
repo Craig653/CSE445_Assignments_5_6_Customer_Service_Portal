@@ -5,6 +5,7 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Text.Json;
 using System.ServiceModel;
+using System.Web.UI.WebControls;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -12,7 +13,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            CaptchaImg.ImageUrl = "~/ImageProcess.aspx";
         }
 
         //Service 1.1: Ask Groq, ask groq any question. Its an AI chat bot. This will ball the REST API ASK groq. Then return a string reply
@@ -145,6 +146,30 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 }
             }
 
+        }
+
+        //Component 1 Captcha Image
+        protected void btnShowImage_Click(object sender, EventArgs e)
+        {
+            CaptchaService.ServiceClient fromService = new CaptchaService.ServiceClient();
+            string userLength = StringLenTxtBx.Text;
+            Session["userLength"] = userLength;
+            string myStr = fromService.GetVerifierString(userLength);
+            Session["generatedString"] = myStr;
+            btnShowImage.Text = "Show Me Another Image String";
+            CaptchaImg.Visible = true;
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (Session["generatedString"].Equals(CaptchaEnterTxtBx.Text))
+            {
+                VerificationLbl.Text = "Congratulations. The code you entered is correct";
+            }
+            else
+            {
+                VerificationLbl.Text = "I am sorry, the string you entered does not match the image. Please try again!";
+            }
         }
     }
 
