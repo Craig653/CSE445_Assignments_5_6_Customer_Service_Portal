@@ -4,6 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE445_Assignments_4_5_Customer_Service_Portal", "CSE445_Assignments_4_5_Customer_Service_Portal\CSE445_Assignments_4_5_Customer_Service_Portal.csproj", "{D3A348F7-68DB-4107-94BF-08372816F341}"
+	ProjectSection(ProjectDependencies) = postProject
+		{088CD535-B206-4E1C-A7F6-6870770D5A87} = {088CD535-B206-4E1C-A7F6-6870770D5A87}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImgGroqService", "ImgGroq\ImgGroqService.csproj", "{088CD535-B206-4E1C-A7F6-6870770D5A87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskGroqService", "GroqService\AskGroqService.csproj", "{457424FD-2176-47A7-8A82-B212ABE69515}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,14 @@ Global
 		{D3A348F7-68DB-4107-94BF-08372816F341}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3A348F7-68DB-4107-94BF-08372816F341}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3A348F7-68DB-4107-94BF-08372816F341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{088CD535-B206-4E1C-A7F6-6870770D5A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{088CD535-B206-4E1C-A7F6-6870770D5A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{088CD535-B206-4E1C-A7F6-6870770D5A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{088CD535-B206-4E1C-A7F6-6870770D5A87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{457424FD-2176-47A7-8A82-B212ABE69515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{457424FD-2176-47A7-8A82-B212ABE69515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{457424FD-2176-47A7-8A82-B212ABE69515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{457424FD-2176-47A7-8A82-B212ABE69515}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
