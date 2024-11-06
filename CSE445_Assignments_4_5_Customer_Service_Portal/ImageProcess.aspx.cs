@@ -5,7 +5,7 @@ using System.IO;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
-    public partial class imageProcess : System.Web.UI.Page
+    public partial class ImageProcess : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
