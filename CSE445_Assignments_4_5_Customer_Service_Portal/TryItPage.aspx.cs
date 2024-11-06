@@ -156,7 +156,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             Session["userLength"] = userLength;
             string myStr = fromService.GetVerifierString(userLength);
             Session["generatedString"] = myStr;
-            btnShowImage.Text = "Show Me Another Image String";
+            btnShowImage.Text = "Generate new Captcha";
             CaptchaImg.Visible = true;
         }
 
