@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tickets xsi:noNamespaceSchemaLocation="TicketSchema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Ticket Category="Power">
+    <TicketNumber>1</TicketNumber>
+    <RequestingUsername>Sammy345</RequestingUsername>
+    <Text>I have an issue powering on my PC</Text>
+    <Image>string</Image>
+    <Status>InProgress</Status>
+  </Ticket>
+  <Ticket Category="Error">
+    <TicketNumber>2</TicketNumber>
+    <RequestingUsername>Craig653</RequestingUsername>
+    <Text>My PC is throwing and error when opening Outlook</Text>
+    <Image>string</Image>
+    <Status>InProgress</Status>
+  </Ticket>
+  <Ticket Category="Error">
+    <TicketNumber>3</TicketNumber>
+    <RequestingUsername>Chris496</RequestingUsername>
+    <Text>My computer errors out when opening Microsoft Word</Text>
+    <Image>string</Image>
+    <Status>Open</Status>
+  </Ticket>
+  <Ticket Category="Updates">
+    <TicketNumber>4</TicketNumber>
+    <RequestingUsername>Kiera111</RequestingUsername>
+    <Text>My computer won't update</Text>
+    <Image>string</Image>
+    <Status>Closed</Status>
+  </Ticket>
+  <Ticket Category="Updates">
+    <TicketNumber>5</TicketNumber>
+    <RequestingUsername>John890</RequestingUsername>
+    <Text>The computer won't install the requested updates</Text>
+    <Image>string</Image>
+    <Status>InProgress</Status>
+  </Ticket>
+</Tickets>
