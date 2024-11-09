@@ -1,13 +1,21 @@
 ﻿<xsd:schema
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name = "StatusType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Open"/>
+      <xsd:enumeration value="InProgress"/>
+      <xsd:enumeration value="Closed"/>
+    </xsd:restriction>
+  </xsd:simpleType>
   <xsd:complexType name="TicketType">
     <xsd:sequence>
-      <xsd:element name="ID" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="TicketNumber" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="RequestingUsername" type="xsd:string" minOccurs="1" maxOccurs="1"/>
       <xsd:element name="Text" type="xsd:string" minOccurs="1" maxOccurs="1"/>
       <xsd:element name="Image" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Status" type="StatusType" minOccurs="1" maxOccurs="1"/>
     </xsd:sequence>
-    <xsd:attribute name="Category" type="xsd:double" use="required"/>
-    <xsd:attribute name="Status" type="xsd:double" use="required"/>
+    <xsd:attribute name="Category" type="xsd:string" use="required"/>
   </xsd:complexType>
   <xsd:element name="Tickets">
     <xsd:complexType>
