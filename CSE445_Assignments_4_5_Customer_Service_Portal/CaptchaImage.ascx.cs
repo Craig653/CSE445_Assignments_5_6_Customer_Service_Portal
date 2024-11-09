@@ -16,6 +16,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             CaptchaImg.ImageUrl = "~/ImageProcess.aspx";
             CaptchaService.ServiceClient fromService = new CaptchaService.ServiceClient();
             fromService.GetVerifierString("5");
+            CaptchaImg.Visible = true;
         }
 
         //Component 1 Captcha Image

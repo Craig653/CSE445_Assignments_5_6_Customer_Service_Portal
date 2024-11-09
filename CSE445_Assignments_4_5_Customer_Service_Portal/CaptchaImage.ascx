@@ -14,7 +14,7 @@
             Type the Characters above
             <asp:TextBox ID="CaptchaEnterTxtBx" runat="server"></asp:TextBox>
             &nbsp;<asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" style="height: 26px" Text="Submit" />
-        &nbsp;<asp:Button ID="btnShowImage" runat="server" OnClick="btnShowImage_Click" Text="New Captcha" Height="30px" />
+        &nbsp;<asp:Button ID="btnShowImage" runat="server" OnClick="btnShowImage_Click" Text="New Captcha" Height="26px" />
         </p>
         <p style="width: 534px">
             <span class="auto-style2">
