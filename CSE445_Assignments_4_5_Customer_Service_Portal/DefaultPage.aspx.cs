@@ -14,9 +14,16 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         }
 
-        protected void btnLogin_Click(object sender, EventArgs e)
+        protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
-            //Add Link to login page
+            //check login cookies and database
+            Server.Transfer("LoginPage.aspx");
+        }
+
+        protected void btnLoginMember_Click(object sender, EventArgs e)
+        {
+            //check login cookies and database
+            Server.Transfer("LoginPage.aspx");
         }
     }
 }

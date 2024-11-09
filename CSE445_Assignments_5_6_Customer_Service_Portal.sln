@@ -14,10 +14,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskGroqService", "GroqService\AskGroqService.csproj", "{457424FD-2176-47A7-8A82-B212ABE69515}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Data", "App_Data", "{64ED75B8-87D0-4289-BED5-0C831E29B9A9}"
-	ProjectSection(SolutionItems) = preProject
-		TicketSchema.xsd = TicketSchema.xsd
-		TicketsDatabase.xml = TicketsDatabase.xml
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{60F947F7-865A-40C5-A2A3-C14F546A02F3}"
 EndProject

@@ -43,8 +43,8 @@
         <h2>Ticket Tool</h2>
         <p>
             Enter a Ticket Number:&nbsp;
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-&nbsp;<asp:Button ID="lblLoadTicket" runat="server" Text="Load Ticket" />
+            <asp:TextBox ID="txtLoadTicket" runat="server"></asp:TextBox>
+&nbsp;<asp:Button ID="lblLoadTicket" runat="server" OnClick="lblLoadTicket_Click" Text="Load Ticket" />
         </p>
         <p>
             *Logic to check if ticket is available and display its info</p>
