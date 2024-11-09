@@ -11,70 +11,52 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
 
 
-    public partial class WebForm1
+    public partial class CaptchaImage
     {
 
         /// <summary>
-        /// form1 control.
+        /// CaptchaImg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Image CaptchaImg;
 
         /// <summary>
-        /// txtbxGroq control.
+        /// CaptchaEnterTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbxGroq;
+        protected global::System.Web.UI.WebControls.TextBox CaptchaEnterTxtBx;
 
         /// <summary>
-        /// btnGroq control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGroq;
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
 
         /// <summary>
-        /// lblAskGroq control.
+        /// btnShowImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAskGroq;
+        protected global::System.Web.UI.WebControls.Button btnShowImage;
 
         /// <summary>
-        /// FileUpload2 control.
+        /// VerificationLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload2;
-
-        /// <summary>
-        /// btnIMGGroq control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIMGGroq;
-
-        /// <summary>
-        /// lblImageGroq control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblImageGroq;
+        protected global::System.Web.UI.WebControls.Label VerificationLbl;
     }
 }

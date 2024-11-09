@@ -16,7 +16,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             if (Session["generatedString"] == null)
             {
                 if (Session["userLength"] == null)
-                    userLen = "3";
+                    userLen = "5";
                 else
                     userLen = Session["userLength"].ToString();
                 myStr = fromService.GetVerifierString(userLen);

@@ -122,6 +122,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="CaptchaImage.ascx" />
     <Content Include="ImageProcess.aspx">
       <BrowseToURL>~/ImageProcess.aspx</BrowseToURL>
     </Content>
@@ -139,6 +140,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaptchaImage.ascx.cs">
+      <DependentUpon>CaptchaImage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CaptchaImage.ascx.designer.cs">
+      <DependentUpon>CaptchaImage.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\CaptchaService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
