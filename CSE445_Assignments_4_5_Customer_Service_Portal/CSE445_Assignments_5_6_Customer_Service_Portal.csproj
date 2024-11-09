@@ -126,6 +126,7 @@
     <Content Include="ImageProcess.aspx">
       <BrowseToURL>~/ImageProcess.aspx</BrowseToURL>
     </Content>
+    <Content Include="LoginPage.aspx" />
     <Content Include="StaffPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="TryItPage.aspx" />
@@ -163,6 +164,13 @@
     </Compile>
     <Compile Include="ImageProcess.aspx.designer.cs">
       <DependentUpon>ImageProcess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginPage.aspx.cs">
+      <DependentUpon>LoginPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginPage.aspx.designer.cs">
+      <DependentUpon>LoginPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaffPage.aspx.cs">
