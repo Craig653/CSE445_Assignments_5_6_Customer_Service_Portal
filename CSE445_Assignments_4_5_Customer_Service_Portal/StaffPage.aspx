@@ -87,7 +87,20 @@
           <hr />
           <h2>
             <strong>Ticket Database Viewer <p> * Display all tickets here</p>
-              <p> &nbsp;</p>
+              <p> 
+                  <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" ShowLines="True" Width="648px">
+                      <DataBindings>
+                          <asp:TreeNodeBinding DataMember="TicketNumber" SelectAction="None" TextField="#Name" ToolTipField="#InnerText" ValueField="#InnerText" />
+                          <asp:TreeNodeBinding DataMember="Image" SelectAction="None" TextField="#Name" />
+                          <asp:TreeNodeBinding DataMember="RequestingUsername" SelectAction="None" TextField="#Name" ToolTipField="#InnerText" />
+                          <asp:TreeNodeBinding DataMember="Tickets" SelectAction="None" TextField="#Name" />
+                          <asp:TreeNodeBinding DataMember="Ticket" SelectAction="None" TextField="#Name" />
+                          <asp:TreeNodeBinding DataMember="Text" SelectAction="None" TextField="#Name" ToolTipField="#InnerText" />
+                          <asp:TreeNodeBinding DataMember="Status" SelectAction="None" TextField="#Name" ToolTipField="#InnerText" />
+                      </DataBindings>
+                  </asp:TreeView>
+                  <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/App_Data/TicketsDatabase.xml"></asp:XmlDataSource>
+        </p>
     </form>
   </body>
 </html>

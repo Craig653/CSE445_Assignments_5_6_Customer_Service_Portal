@@ -25,12 +25,14 @@
                 <asp:Button ID="lblLogout" runat="server" Text="Logout" />
                 </span></h1>
         </div>
-        <h2>Create a Ticket</h2>
+        <h2>Create a Ticket
+            <asp:Label ID="lblSubmitStatus" runat="server"></asp:Label>
+        </h2>
         <p>
             <strong>Issue:</strong></p>
         <p class="auto-style4">
 &nbsp;
-            <asp:TextBox ID="TextBox2" runat="server" Height="119px" Width="339px"></asp:TextBox>
+            <asp:TextBox ID="txtIssueBox" runat="server" Height="119px" Width="339px"></asp:TextBox>
         </p>
         <p>
             Upload an image of the problem (&lt;25kb):&nbsp;&nbsp;
@@ -39,7 +41,7 @@
 &nbsp;<asp:FileUpload ID="FileUpload2" runat="server" />
         </p>
         <p>
-            &nbsp;<asp:Button ID="btnSubmitTicket" runat="server" Text="Submit Ticket" />
+            &nbsp;<asp:Button ID="btnSubmitTicket" runat="server" Text="Submit Ticket" OnClick="btnSubmitTicket_Click" />
         </p>
     </form>
     <hr />

@@ -249,6 +249,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
             lblStatusUpdate.Text = "Status set to InProgress";
         }
+
+        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }

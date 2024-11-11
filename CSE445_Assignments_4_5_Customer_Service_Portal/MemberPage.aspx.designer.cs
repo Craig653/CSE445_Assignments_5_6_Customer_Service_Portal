@@ -33,13 +33,22 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected global::System.Web.UI.WebControls.Button lblLogout;
 
         /// <summary>
-        /// TextBox2 control.
+        /// lblSubmitStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.Label lblSubmitStatus;
+
+        /// <summary>
+        /// txtIssueBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIssueBox;
 
         /// <summary>
         /// FileUpload2 control.
