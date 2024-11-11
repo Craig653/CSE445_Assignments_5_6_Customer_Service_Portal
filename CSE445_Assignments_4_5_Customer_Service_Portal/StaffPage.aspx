@@ -47,24 +47,25 @@
 &nbsp;<asp:Button ID="lblLoadTicket" runat="server" OnClick="lblLoadTicket_Click" Text="Load Ticket" />
         </p>
         <p>
-            *Logic to check if ticket is available and display its info</p>
+            <asp:Label ID="lblTicketToolStatus" runat="server"></asp:Label>
+        </p>
         <p>
-            Ticket Number:
+            <strong>Ticket Number:</strong>
             <asp:Label ID="lblTicketNumber" runat="server"></asp:Label>
         </p>
         <p>
-            Requester:
+            <strong>Requester:</strong>
             <asp:Label ID="lblRequester" runat="server"></asp:Label>
         </p>
         <p>
-            Ticket Description:&nbsp;
+            <strong>Ticket Description:&nbsp;</strong>
             <asp:Label ID="lblDescription" runat="server"></asp:Label>
         </p>
         <p>
-            Status: <asp:Label ID="lblCurrentStatus" runat="server"></asp:Label>
+            <strong>Status:</strong> <asp:Label ID="lblCurrentStatus" runat="server"></asp:Label>
         </p>
         <p>
-            Image:</p>
+            <strong>Image:</strong></p>
         <p>
             <asp:Image ID="imgTicketImg" runat="server" />
         </p>
@@ -74,9 +75,9 @@
         <p>
             <strong>AI Tools </strong>(powered by Groq.com)</p>
         <p>
-&nbsp;<asp:Button ID="btnAnzDesc" runat="server" Enabled="False" Text="Analyze Description" />
+&nbsp;<asp:Button ID="btnAnzDesc" runat="server" Enabled="False" Text="Analyze Description" OnClick="btnAnzDesc_Click" />
 &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnAnzImg" runat="server" Enabled="False" Text="Analyze Image" />
+            <asp:Button ID="btnAnzImg" runat="server" Enabled="False" Text="Analyze Image" OnClick="btnAnzImg_Click" />
         </p>
         <p>
             <asp:Label ID="lblAIResp" runat="server"></asp:Label>
@@ -84,7 +85,7 @@
         <p>
             &nbsp;</p>
         <p>
-            <strong>Set Status>
+            <strong>Set Status
         <p>
 &nbsp;<asp:Bu&nbsp;<asp:Button ID="btnSetOpen" runat="server" Enabled="False" Text="Open" Width="80px" />
 &nbsp;&nbsp;&nbsp;
@@ -94,7 +95,7 @@
         </p>
     </form>
     <hr />
-    <h2><strong>Ticket Database Viewer>
+    <h2><strong>Ticket Database Viewer
     <p>
         * Display all tickets here</p>
 </body>

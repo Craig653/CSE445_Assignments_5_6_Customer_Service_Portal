@@ -108,13 +108,6 @@
     <None Include="Connected Services\CaptchaService\Service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ImgGroq\Service1.disco" />
-    <None Include="Connected Services\ImgGroq\configuration91.svcinfo" />
-    <None Include="Connected Services\ImgGroq\configuration.svcinfo" />
-    <None Include="Connected Services\ImgGroq\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Connected Services\CaptchaService\Service.disco" />
     <None Include="Connected Services\CaptchaService\configuration91.svcinfo" />
     <None Include="Connected Services\CaptchaService\configuration.svcinfo" />
@@ -123,6 +116,13 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="CaptchaImage.ascx" />
+    <None Include="Connected Services\ImgGroq\Service1.disco" />
+    <None Include="Connected Services\ImgGroq\configuration91.svcinfo" />
+    <None Include="Connected Services\ImgGroq\configuration.svcinfo" />
+    <None Include="Connected Services\ImgGroq\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ImageProcess.aspx">
       <BrowseToURL>~/ImageProcess.aspx</BrowseToURL>
     </Content>
@@ -132,13 +132,6 @@
     <Content Include="TryItPage.aspx" />
     <Content Include="DefaultPage.aspx" />
     <Content Include="MemberPage.aspx" />
-    <None Include="Connected Services\ImgGroq\Service1.wsdl" />
-    <None Include="Connected Services\ImgGroq\Service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ImgGroq\Service11.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaptchaImage.ascx.cs">
@@ -203,6 +196,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\ImgGroq\Service1.wsdl" />
+    <None Include="Connected Services\ImgGroq\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ImgGroq\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
