@@ -20,6 +20,24 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            XmlDocument doc = new XmlDocument();
+            string path = Server.MapPath("~/App_Data/TicketsDatabase.xml");
+            doc.Load(path);
+
+            //Open Tickets
+            string xpath = "/Tickets/Ticket/Status[text()=\"Open\"]";
+            var myNode = doc.SelectNodes(xpath);
+            lblOpenTickets.Text = myNode.Count.ToString();
+
+            //Closed Tickets
+            xpath = "/Tickets/Ticket/Status[text()=\"Closed\"]";
+            myNode = doc.SelectNodes(xpath);
+            lblClosedTickets.Text = myNode.Count.ToString();
+
+            //InProgress Tickets
+            xpath = "/Tickets/Ticket/Status[text()=\"InProgress\"]";
+            myNode = doc.SelectNodes(xpath);
+            lbProgressTickets.Text = myNode.Count.ToString();
 
         }
 
@@ -33,8 +51,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             imgTicketImg.ImageUrl = "";
             lblTicketToolStatus.Text = "";
             lblAIResp.Text = "";
+            lblStatusUpdate.Text = "";
             btnAnzImg.Enabled = false;
             btnAnzDesc.Enabled = false;
+            btnSetOpen.Enabled = false;
+            btnSetClosed.Enabled = false;
+            btnSetInProgress.Enabled = false;
 
             if (txtLoadTicket.Text != "")
             {
@@ -53,6 +75,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     lblTicketToolStatus.Text = "A Ticket has been found in the database";
                     btnAnzImg.Enabled = true;
                     btnAnzDesc.Enabled = true;
+                    btnSetOpen.Enabled = true;
+                    btnSetClosed.Enabled = true;
+                    btnSetInProgress.Enabled = true;
                 }
                 else
                 {
@@ -179,6 +204,50 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
             lblAIResp.Text = myParsedConent.choices[0].message.content;
             lblAIResp.Visible = true;
+        }
+
+        protected void btnSetOpen_Click(object sender, EventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            string path = Server.MapPath("~/App_Data/TicketsDatabase.xml");
+            doc.Load(path);
+            string xpath = "/Tickets/Ticket/TicketNumber[text()=" + txtLoadTicket.Text + "]";
+            var myNode = doc.SelectSingleNode(xpath);
+
+            myNode.ParentNode.ChildNodes[4].InnerText = "Open";
+            lblCurrentStatus.Text = "Open";
+            doc.Save(path);
+            lblStatusUpdate.Text = "Status set to Open";
+        }
+
+        protected void btnSetClosed_Click(object sender, EventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            string path = Server.MapPath("~/App_Data/TicketsDatabase.xml");
+            doc.Load(path);
+            string xpath = "/Tickets/Ticket/TicketNumber[text()=" + txtLoadTicket.Text + "]";
+            var myNode = doc.SelectSingleNode(xpath);
+
+            myNode.ParentNode.ChildNodes[4].InnerText = "Closed";
+            lblCurrentStatus.Text = "Closed";
+            doc.Save(path);
+
+            lblStatusUpdate.Text = "Status set to Closed";
+        }
+
+        protected void btnSetInProgress_Click(object sender, EventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            string path = Server.MapPath("~/App_Data/TicketsDatabase.xml");
+            doc.Load(path);
+            string xpath = "/Tickets/Ticket/TicketNumber[text()=" + txtLoadTicket.Text + "]";
+            var myNode = doc.SelectSingleNode(xpath);
+
+            myNode.ParentNode.ChildNodes[4].InnerText = "InProgress";
+            lblCurrentStatus.Text = "InProgress";
+            doc.Save(path);
+
+            lblStatusUpdate.Text = "Status set to InProgress";
         }
     }
     
