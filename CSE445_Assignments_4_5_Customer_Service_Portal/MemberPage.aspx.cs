@@ -123,5 +123,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblSubmitStatus.Text = "Missing Required information to submit a ticket";
             }
         }
+
+        protected void lblLogout_Click(object sender, EventArgs e)
+        {
+            //Todo Add logic to logout here
+            Server.Transfer("DefaultPage.aspx");
+        }
     }
 }

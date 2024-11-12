@@ -14,12 +14,16 @@
 <body>
     <form id="form1" runat="server">
         <div style="background-color: #000099">
-            <h1 style="height: 42px"><span class="auto-style1">Default Page&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h1 style="height: 42px; width: 1744px;"><span class="auto-style1">Default Page&nbsp;&nbsp;&nbsp;
                
                 <asp:Button ID="btnMemberLogin" runat="server" Text="Member Login" Height="33px" style="text-align: justify" Width="108px" OnClick="btnLoginMember_Click" />
                 &nbsp;
                
+                <asp:Button ID="btnLoginAgent" runat="server" Text="Agent Login" Height="32px" style="text-align: justify" Width="108px" OnClick="btnLoginAgent_Click" />
+                &nbsp;
+               
                 <asp:Button ID="btnLoginStaff" runat="server" Text="Staff Login" Height="32px" style="text-align: justify" Width="108px" OnClick="btnLoginStaff_Click" />
+
                 </span>
                 <br />
             </h1>
@@ -30,16 +34,23 @@
         <ol>
             <li>
                 <p>
-                    <strong>Account Creation &amp; Ticket Submission:</strong></p>
+                    Member Pag<strong>e:</strong></p>
                 <ul>
-                    <li>Users can create accounts and submit tickets that include a problem description and images.</li>
+                    <li>Users submit tickets that include a problem description and images of the issue</li>
+                    <li>Users can see their ticket status</li>
+                </ul>
+            </li>
+            <li>Agent Page:<ul>
+                <li>Agents can view tickets in the database via a ticket tool</li>
+                <li>Agents an change the status&#39;s of tickets</li>
+                <li>A Dashboard will show all ticket types</li>
                 </ul>
             </li>
             <li>
                 <p>
                     <strong>Staff Page:</strong></p>
                 <ul>
-                    <li>Staff can view tickets, change their statuses (e.g., &quot;Open,&quot; &quot;In Progress,&quot; &quot;Closed&quot;), and track common issues to improve service.</li>
+                    <li>Can delete usernames and passwords</li>
                 </ul>
             </li>
         </ol>
