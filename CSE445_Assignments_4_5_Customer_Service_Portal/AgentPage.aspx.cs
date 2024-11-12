@@ -287,6 +287,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             //Todo add logic to logout here
             Server.Transfer("DefaultPage.aspx");
         }
+
+        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }
