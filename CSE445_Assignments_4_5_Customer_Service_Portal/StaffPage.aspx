@@ -86,21 +86,24 @@
           </p>
           <hr />
           <h2>
-            <strong>Ticket Database Viewer <p> * Display all tickets here</p>
-              <p> 
-                  <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" ShowLines="True" Width="648px">
-                      <DataBindings>
-                          <asp:TreeNodeBinding DataMember="TicketNumber" SelectAction="None" TextField="#Name" ToolTipField="#InnerText" ValueField="#InnerText" />
-                          <asp:TreeNodeBinding DataMember="Image" SelectAction="None" TextField="#Name" />
-                          <asp:TreeNodeBinding DataMember="RequestingUsername" SelectAction="None" TextField="#Name" ToolTipField="#InnerText" />
-                          <asp:TreeNodeBinding DataMember="Tickets" SelectAction="None" TextField="#Name" />
-                          <asp:TreeNodeBinding DataMember="Ticket" SelectAction="None" TextField="#Name" />
-                          <asp:TreeNodeBinding DataMember="Text" SelectAction="None" TextField="#Name" ToolTipField="#InnerText" />
-                          <asp:TreeNodeBinding DataMember="Status" SelectAction="None" TextField="#Name" ToolTipField="#InnerText" />
-                      </DataBindings>
-                  </asp:TreeView>
-                  <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/App_Data/TicketsDatabase.xml"></asp:XmlDataSource>
+            <strong>Ticket Database Viewer <p> 
+            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" ImageSet="Simple" NodeIndent="10" Width="367px">
+                <DataBindings>
+                    <asp:TreeNodeBinding DataMember="TicketNumber" Depth="1" FormatString="TicketNumber: {0}" SelectAction="Expand" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="RequestingUsername" Depth="1" FormatString="Requester: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="Text" FormatString="Description: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="Image" Depth="1" SelectAction="None" TextField="#Name" ToolTipField="#Value" />
+                    <asp:TreeNodeBinding DataMember="Status" Depth="1" FormatString="Status: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                </DataBindings>
+                <HoverNodeStyle Font-Underline="True" ForeColor="#DD5555" />
+                <NodeStyle Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" HorizontalPadding="0px" NodeSpacing="0px" VerticalPadding="0px" />
+                <ParentNodeStyle Font-Bold="False" />
+                <SelectedNodeStyle Font-Underline="True" ForeColor="#DD5555" HorizontalPadding="0px" VerticalPadding="0px" />
+            </asp:TreeView>
+            <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/App_Data/TicketsDatabase.xml" XPath="/Tickets/Ticket"></asp:XmlDataSource>
         </p>
+              <p> 
+                  &nbsp;</p>
     </form>
   </body>
 </html>

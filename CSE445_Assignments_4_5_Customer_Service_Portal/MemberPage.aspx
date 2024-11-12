@@ -43,9 +43,26 @@
         <p>
             &nbsp;<asp:Button ID="btnSubmitTicket" runat="server" Text="Submit Ticket" OnClick="btnSubmitTicket_Click" />
         </p>
-    </form>
     <hr />
     <h2>Your Tickets  <p>
-        *Display XML Tree that is sorted by the cookie logged in username here</p>
-</body>
+        *Display XML Tree that is sorted by the cookie logged in username here, will need to modify to show just usernames</p>
+        <p>
+            <strong>
+            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" ImageSet="Simple" NodeIndent="10" Width="367px">
+                <DataBindings>
+                    <asp:TreeNodeBinding DataMember="TicketNumber" Depth="1" FormatString="TicketNumber: {0}" SelectAction="Expand" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="RequestingUsername" Depth="1" FormatString="Requester: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="Text" FormatString="Description: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="Image" Depth="1" SelectAction="None" TextField="#Name" ToolTipField="#Value" />
+                    <asp:TreeNodeBinding DataMember="Status" Depth="1" FormatString="Status: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                </DataBindings>
+                <HoverNodeStyle Font-Underline="True" ForeColor="#DD5555" />
+                <NodeStyle Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" HorizontalPadding="0px" NodeSpacing="0px" VerticalPadding="0px" />
+                <ParentNodeStyle Font-Bold="False" />
+                <SelectedNodeStyle Font-Underline="True" ForeColor="#DD5555" HorizontalPadding="0px" VerticalPadding="0px" />
+            </asp:TreeView>
+            <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/App_Data/TicketsDatabase.xml" XPath="/Tickets/Ticket"></asp:XmlDataSource>
+        </p>
+    </form>
+    </body>
 </html>
