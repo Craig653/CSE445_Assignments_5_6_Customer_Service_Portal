@@ -18,6 +18,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         }
 
+        protected string getCookieElement()
+        {
+            string cookie = "Craig653";
+
+            return cookie;
+        }
         protected void btnSubmitTicket_Click(object sender, EventArgs e)
         {
             if(txtIssueBox.Text.Length > 0 && FileUpload2.HasFile)

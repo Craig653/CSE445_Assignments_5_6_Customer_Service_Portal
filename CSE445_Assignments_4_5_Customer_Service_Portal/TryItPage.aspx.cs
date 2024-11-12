@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text.Json;
 using System.ServiceModel;
 using System.Web.UI.WebControls;
+using System.Web;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -148,6 +149,41 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         }
 
+        protected void btnCookieCreator_Click(object sender, EventArgs e)
+        {
+            string value = txtbxCookieCreator.Text;
+
+
+            HttpCookie mycookies = Request.Cookies[value];
+
+            if((mycookies == null) || mycookies[value] == "")
+            {
+                HttpCookie newCookies = new HttpCookie(value);
+                lblCookieCreatorStatus.Text = "Cookie Created!";
+                newCookies[value] = value;
+                newCookies.Expires = DateTime.Now.AddMonths(6);
+                Response.Cookies.Add(newCookies);
+            }
+            else
+            {
+                lblCookieCreatorStatus.Text = "Can't create Cookie, " + value + " is already created!";
+            }
+        }
+
+        protected void btnLookup_Click(object sender, EventArgs e)
+        {
+            string value = txtboxCookieLookup.Text;
+            HttpCookie mycookies = Request.Cookies[value];
+
+            if ((mycookies == null) || mycookies[value] == "")
+            {
+                lblCookieRetStatus.Text = "Cookie Doesn't Exist!";
+            }
+            else
+            {
+                lblCookieRetStatus.Text = "Found Cookie: " + value + "";
+            }
+        }
     }
 
 

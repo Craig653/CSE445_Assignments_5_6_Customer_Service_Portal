@@ -16,6 +16,9 @@
         .auto-style2 {
             font-weight: normal;
         }
+        .auto-style3 {
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
@@ -73,8 +76,30 @@
         <cse:Captcha runat ="server"/>
         <h3>
             <strong>Local Component 2 - Cookies</strong></h3>
-        <p class="auto-style2">
-            Craig to implement some sort of cookie logic here</p>
+        <p>
+            Cookie Creator</p>
+        <p class="auto-style3">
+            Username:
+            <asp:TextBox ID="txtbxCookieCreator" runat="server"></asp:TextBox>
+&nbsp;<asp:Button ID="btnCookieCreator" runat="server" OnClick="btnCookieCreator_Click" Text="Create" />
+        </p>
+        <p class="auto-style3">
+            Status: <asp:Label ID="lblCookieCreatorStatus" runat="server"></asp:Label>
+        </p>
+        <p>
+            Cookie Retriever</p>
+        <p class="auto-style3">
+            Cookie Lookup (Enter Username):
+            <asp:TextBox ID="txtboxCookieLookup" runat="server"></asp:TextBox>
+&nbsp;<asp:Button ID="btnLookup" runat="server" OnClick="btnLookup_Click" Text="Lookup" />
+        </p>
+        <p class="auto-style3">
+            Status: <asp:Label ID="lblCookieRetStatus" runat="server"></asp:Label>
+        </p>
+        <p>
+            Tree Viewer (Filtered by Cookie Username)</p>
+        <p>
+            &nbsp;</p>
     </form>
 
     <hr />
