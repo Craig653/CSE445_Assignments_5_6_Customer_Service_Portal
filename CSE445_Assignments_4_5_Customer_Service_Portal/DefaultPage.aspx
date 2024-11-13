@@ -24,8 +24,11 @@
                
                 <asp:Button ID="btnLoginStaff" runat="server" Text="Staff Login" Height="32px" style="text-align: justify" Width="108px" OnClick="btnLoginStaff_Click" />
 
-                </span>
-                <br />
+                &nbsp;
+               
+                <asp:Button ID="btnTryItPage" runat="server" Text="Try It Page" Height="32px" style="text-align: justify" Width="108px" OnClick="btnTryIt_Click" />
+
+                &nbsp;</span><br />
             </h1>
         </div>
         <h2 style="width: 493px"><strong>Customer Service App Overview </strong></h2>

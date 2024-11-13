@@ -24,7 +24,9 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1" style="background-color: #000099">
-            <h1>Try it Page</h1>
+            <h1>Try it Page&nbsp;&nbsp;
+                <asp:Button ID="btnDefaultPage" runat="server" OnClick="btnDefaultPage_Click" Text="Default Page" />
+            </h1>
         </div>
         <h2><strong>Craig&#39;s Services/Components</strong></h2>
         <h3><strong>Service 1 Groq AI (2 Functions, Chat and Image Recognizer)</strong></h3>
@@ -89,15 +91,34 @@
         <p>
             Cookie Retriever</p>
         <p class="auto-style3">
-            Cookie Lookup (Enter Username):
-            <asp:TextBox ID="txtboxCookieLookup" runat="server"></asp:TextBox>
+            Username Cookie Lookup
 &nbsp;<asp:Button ID="btnLookup" runat="server" OnClick="btnLookup_Click" Text="Lookup" />
         </p>
         <p class="auto-style3">
-            Status: <asp:Label ID="lblCookieRetStatus" runat="server"></asp:Label>
+            Username Cookie: <asp:Label ID="lblCookieRetStatus" runat="server"></asp:Label>
         </p>
         <p>
-            Tree Viewer (Filtered by Cookie Username)</p>
+            Tree Viewer (<asp:Label ID="lblFilterBy" runat="server"></asp:Label>
+            )&nbsp;
+            <asp:Button ID="lblResetCookie" runat="server" OnClick="lblResetCookie_Click" Text="Delete Cookie" />
+        </p>
+        <p>
+            <strong>
+            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" ImageSet="Simple" NodeIndent="10" Width="367px">
+                <DataBindings>
+                    <asp:TreeNodeBinding DataMember="TicketNumber" Depth="1" FormatString="TicketNumber: {0}" SelectAction="Expand" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="RequestingUsername" Depth="1" FormatString="Requester: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="Text" FormatString="Description: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="Image" Depth="1" SelectAction="None" TextField="#Name" ToolTipField="#Value" />
+                    <asp:TreeNodeBinding DataMember="Status" Depth="1" FormatString="Status: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                </DataBindings>
+                <HoverNodeStyle Font-Underline="True" ForeColor="#DD5555" />
+                <NodeStyle Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" HorizontalPadding="0px" NodeSpacing="0px" VerticalPadding="0px" />
+                <ParentNodeStyle Font-Bold="False" />
+                <SelectedNodeStyle Font-Underline="True" ForeColor="#DD5555" HorizontalPadding="0px" VerticalPadding="0px" />
+            </asp:TreeView>
+            <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/App_Data/TicketsDatabase.xml" XPath="/Tickets/Ticket"></asp:XmlDataSource>
+            </strong></p>
         <p>
             &nbsp;</p>
     </form>

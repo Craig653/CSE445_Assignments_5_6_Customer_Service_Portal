@@ -34,5 +34,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             //Server.Transfer("LoginPage.aspx");
             Server.Transfer("AgentPage.aspx");
         }
+
+        protected void btnTryIt_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("TryItPage.aspx");
+        }
     }
 }

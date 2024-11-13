@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.ServiceModel;
 using System.Web.UI.WebControls;
 using System.Web;
+using System.ServiceModel.Security;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -14,7 +15,25 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string username = "";
+            string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"\"]]";
+            HttpCookie userCookie = Request.Cookies["Username"];
+            if ((userCookie != null))
+            {
+                username = userCookie.Value.ToString();
+                username = username.Split('=')[1];
+                xpath = "//Tickets/Ticket[RequestingUsername[text()=\"" + username + "\"]]";
+                lblFilterBy.Text = "Filtered by " + username;
+            }
+            else
+            {
+                xpath = "//Tickets/Ticket";
+                lblFilterBy.Text = "No Filter";
+            }
+
             
+
+            XmlDataSource1.XPath = xpath;
         }
 
         //Service 1.1: Ask Groq, ask groq any question. Its an AI chat bot. This will ball the REST API ASK groq. Then return a string reply
@@ -154,35 +173,65 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string value = txtbxCookieCreator.Text;
 
 
-            HttpCookie mycookies = Request.Cookies[value];
+            HttpCookie mycookies = Request.Cookies["Username"];
 
-            if((mycookies == null) || mycookies[value] == "")
+            if((mycookies == null) || mycookies["Username"] == "")
             {
-                HttpCookie newCookies = new HttpCookie(value);
+                HttpCookie newCookies = new HttpCookie("Username");
                 lblCookieCreatorStatus.Text = "Cookie Created!";
-                newCookies[value] = value;
+                newCookies["Username"] = value;
                 newCookies.Expires = DateTime.Now.AddMonths(6);
                 Response.Cookies.Add(newCookies);
+                lblCookieCreatorStatus.Text = "Updated Username Cookie to: " + value;
+                lblCookieRetStatus.Text = "";
+                lblFilterBy.Text = "Filtered by " + value;
             }
             else
             {
-                lblCookieCreatorStatus.Text = "Can't create Cookie, " + value + " is already created!";
+                mycookies["Username"] = value;
+                lblCookieCreatorStatus.Text = "Updated Username Cookie to: " + value;
+                Response.Cookies.Add(mycookies);
+                lblCookieRetStatus.Text = "";
+                lblFilterBy.Text = "Filtered by " + value;
             }
+
+            this.Page_Load(null, null);
         }
 
         protected void btnLookup_Click(object sender, EventArgs e)
         {
-            string value = txtboxCookieLookup.Text;
-            HttpCookie mycookies = Request.Cookies[value];
+            HttpCookie mycookies = Request.Cookies["Username"];
 
-            if ((mycookies == null) || mycookies[value] == "")
+            if ((mycookies == null) || mycookies["Username"] == "")
             {
                 lblCookieRetStatus.Text = "Cookie Doesn't Exist!";
             }
             else
             {
-                lblCookieRetStatus.Text = "Found Cookie: " + value + "";
+                lblCookieRetStatus.Text = Request.Cookies["Username"].Value;
             }
+            this.Page_Load(null, null);
+        }
+
+        protected void lblResetCookie_Click(object sender, EventArgs e)
+        {
+            HttpCookie mycookies = Request.Cookies["Username"];
+
+            if ((mycookies != null))
+            {
+                HttpCookie delCookie = new HttpCookie("Username");
+                delCookie.Expires = DateTime.Now.AddMonths(-10);
+                delCookie.Value = null;
+                Response.Cookies.Add(delCookie);
+                HttpContext.Current.Request.Cookies.Clear();
+                lblFilterBy.Text = "No Filter";
+            }
+            this.Page_Load(null, null);
+        }
+
+        protected void btnDefaultPage_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("DefaultPage.aspx");
         }
     }
 

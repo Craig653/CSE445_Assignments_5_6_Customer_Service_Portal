@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text.Json;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Xml;
 
@@ -15,7 +16,17 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string username = "";
+            HttpCookie userCookie = Request.Cookies["Username"];
+            if ((userCookie != null))
+            {
+                username = userCookie.Value.ToString();
+                username = username.Split('=')[1];
+            }
 
+            string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"" + username+ "\"]]";
+
+            XmlDataSource1.XPath = xpath;
         }
 
         protected string getCookieElement()
