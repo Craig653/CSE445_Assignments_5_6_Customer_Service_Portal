@@ -99,6 +99,15 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     }
                 }
 
+                string username = "";
+                HttpCookie userCookie = Request.Cookies["Username"];
+                if ((userCookie != null))
+                {
+                    username = userCookie.Value.ToString();
+                    username = username.Split('=')[1];
+                }
+
+
                 //load current database
                 XmlDocument doc = new XmlDocument();
                 string path = Server.MapPath("~/App_Data/TicketsDatabase.xml");
@@ -115,7 +124,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 XmlElement TicketNumber = doc.CreateElement("TicketNumber");
                 TicketNumber.InnerText = NextTicket.ToString();
                 XmlElement Requester = doc.CreateElement("RequestingUsername");
-                Requester.InnerText = "TEST" + NextTicket.ToString();   //TODO fix this with coookies to figure otu who is requesting
+                Requester.InnerText = username;
                 XmlElement Text = doc.CreateElement("Text");
                 Text.InnerText = txtIssueBox.Text;
                 XmlElement Image = doc.CreateElement("Image");
