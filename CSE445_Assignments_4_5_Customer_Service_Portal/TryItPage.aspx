@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="TryItPage.aspx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.WebForm1" %>
+﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="TryItPage.aspx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.WebForm1" Async="true" %>
 <%@ Register TagPrefix ="cse" TagName= "Captcha" Src="~/CaptchaImage.ascx" %>
 
 <!DOCTYPE html>
@@ -33,6 +33,7 @@
         <strong>AskGroq (REST)</strong><br />
         <span class="auto-style2">This Service is connected to Groq. A Fast AI Inference using the mixtral-8x7b-32768 model. More details can be found at <a href="https://groq.com/">https://groq.com/</a>
         <br />
+        This it the generic chat connection, it will be used to analyze the description. See the Agent page for implementation and try it to tickets database.<br />
         URL: <a href="http://localhost:63092/Service1.svc">http://localhost:63092/Service1.svc</a> or http://localhost:63092/Service1.svc/AskGroq/{string}</span><br />
         <span class="auto-style2">Method: AskGroq(String)<br />
         Returns String<br />
@@ -56,6 +57,7 @@
         Image Recognizer Groq: (WSDL)<br />
         </strong><span class="auto-style2">This service is connected to Groq Visualizer. Using the llama-3.2-11b-vision-preview model. More details can be found at <a href="https://console.groq.com/docs/vision">https://console.groq.com/docs/vision</a>
         <br />
+        This it the generic chat connection, it will be used to analyze the description. See the Agent page for implementation and try it to tickets database.<br />
         URL: <a href="http://localhost:56274/Service1.svc">http://localhost:56274/Service1.svc</a></span><br />
         <span class="auto-style2">Method: ImgGroq(String image in base64)<br />
         Returns string<br />
@@ -91,15 +93,34 @@
         <p>
             Cookie Retriever</p>
         <p class="auto-style3">
-            Cookie Lookup (Enter Username):
-            <asp:TextBox ID="txtboxCookieLookup" runat="server"></asp:TextBox>
+            Username Cookie Lookup
 &nbsp;<asp:Button ID="btnLookup" runat="server" OnClick="btnLookup_Click" Text="Lookup" />
         </p>
         <p class="auto-style3">
-            Status: <asp:Label ID="lblCookieRetStatus" runat="server"></asp:Label>
+            Username Cookie: <asp:Label ID="lblCookieRetStatus" runat="server"></asp:Label>
         </p>
         <p>
-            Tree Viewer (Filtered by Cookie Username)</p>
+            Tree Viewer (<asp:Label ID="lblFilterBy" runat="server"></asp:Label>
+            )&nbsp;
+            <asp:Button ID="lblResetCookie" runat="server" OnClick="lblResetCookie_Click" Text="Delete Cookie" />
+        </p>
+        <p>
+            <strong>
+            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" ImageSet="Simple" NodeIndent="10" Width="367px">
+                <DataBindings>
+                    <asp:TreeNodeBinding DataMember="TicketNumber" Depth="1" FormatString="TicketNumber: {0}" SelectAction="Expand" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="RequestingUsername" Depth="1" FormatString="Requester: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="Text" FormatString="Description: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="Image" Depth="1" SelectAction="None" TextField="#Name" ToolTipField="#Value" />
+                    <asp:TreeNodeBinding DataMember="Status" Depth="1" FormatString="Status: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                </DataBindings>
+                <HoverNodeStyle Font-Underline="True" ForeColor="#DD5555" />
+                <NodeStyle Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" HorizontalPadding="0px" NodeSpacing="0px" VerticalPadding="0px" />
+                <ParentNodeStyle Font-Bold="False" />
+                <SelectedNodeStyle Font-Underline="True" ForeColor="#DD5555" HorizontalPadding="0px" VerticalPadding="0px" />
+            </asp:TreeView>
+            <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/App_Data/TicketsDatabase.xml" XPath="/Tickets/Ticket"></asp:XmlDataSource>
+            </strong></p>
         <p>
             &nbsp;</p>
         <hr />
@@ -114,11 +135,14 @@
             <br />
             Get Most Common Ticket Category Service<br />
         </span>
-        <span class="auto-style2">Ticket Category:</span>
-        <asp:Button ID="btnGetMostCommonCategory" runat="server" Text="Get Most Common Ticket Category (REST)" OnClick="btnGetMostCommonCategory_Click" /><br /><br />
-        <span class="auto-style2"><strong>Ticket Service Response:</strong></span><br />
-        <asp:Label ID="lblResultCategory" runat="server" Text=""></asp:Label><br /><br />
-         <h3>Local Component 1 - Global.asax Event Handlers</h3>
+        <p>
+            Get Most Common Ticket Category (REST):
+        </p>
+        <asp:Button ID="btnGetMostCommonCategory" runat="server" Text="Get Most Common Ticket Category (REST)" OnClick="btnGetMostCommonCategory_Click" />
+        <br /><br />
+        <asp:Label ID="lblResultCategory" runat="server" Text=""></asp:Label>
+        <br /><br />
+        <h3>Local Component 1 - Global.asax Event Handlers</h3>
         <strong>Application Start Time:</strong> <asp:Label ID="lblAppStartTime" runat="server"></asp:Label><br />
         <strong>Application End Time (Last Run):</strong> <asp:Label ID="lblAppEndTime" runat="server"></asp:Label><br />
         <strong>Session Start Time:</strong> <asp:Label ID="lblSessionStartTime" runat="server"></asp:Label><br /><br />
