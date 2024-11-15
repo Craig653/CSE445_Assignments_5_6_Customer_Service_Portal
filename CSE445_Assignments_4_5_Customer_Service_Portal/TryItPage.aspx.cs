@@ -14,9 +14,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        // Local Componment - Global.asax event handlers 
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Craig's Tree view filtering used in conjuction with the username cookie
             string username = "";
             string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"\"]]";
             HttpCookie userCookie = Request.Cookies["Username"];
@@ -33,10 +34,14 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblFilterBy.Text = "No Filter";
             }
 
-            
+            //For tree view reloading
+            TreeView1.DataSourceID = "";
+            TreeView1.DataSourceID = "XmlDataSource1";
 
             XmlDataSource1.XPath = xpath;
-        
+
+
+            // Local Componment - Global.asax event handlers 
             if (!IsPostBack)
             {
                 // Display Application Start Time
@@ -72,7 +77,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         }
 
 
-        //Service 1.1: Ask Groq, ask groq any question. Its an AI chat bot. This will ball the REST API ASK groq. Then return a string reply
+        //Craig's Service 1.1: Ask Groq, ask groq any question. Its an AI chat bot. This will ball the REST API ASK groq. Then return a string reply
         //Start AskGroq service to use this
         protected void btnGroq_Click(object sender, EventArgs e)
         {
@@ -131,7 +136,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         }
 
-        //Service 3 IMG Groq, takes an image upload and uses groq to describe it in 25 words or less, along with some error catching
+        //Craig's Service 1.2 IMG Groq, takes an image upload and uses groq to describe it in 25 words or less, along with some error catching
         //Start ImgGroqService to use this
         protected void btnIMGGroq_Click(object sender, EventArgs e)
         {
@@ -204,6 +209,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         }
 
+
+        //Craig's Component 
+        //Get the cookie named username
+        //Create new cookie if needed else get the value
         protected void btnCookieCreator_Click(object sender, EventArgs e)
         {
             string value = txtbxCookieCreator.Text;
@@ -234,6 +243,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             this.Page_Load(null, null);
         }
 
+        //Look up cookie username
         protected void btnLookup_Click(object sender, EventArgs e)
         {
             HttpCookie mycookies = Request.Cookies["Username"];
@@ -249,6 +259,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             this.Page_Load(null, null);
         }
 
+        //Delete the username cookie
         protected void lblResetCookie_Click(object sender, EventArgs e)
         {
             HttpCookie mycookies = Request.Cookies["Username"];
@@ -262,6 +273,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 HttpContext.Current.Request.Cookies.Clear();
                 lblFilterBy.Text = "No Filter";
             }
+            //reload page to referesh tree
             this.Page_Load(null, null);
         }
 

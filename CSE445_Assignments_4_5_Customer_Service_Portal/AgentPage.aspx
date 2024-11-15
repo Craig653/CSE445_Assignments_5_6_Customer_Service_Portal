@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgentPage.aspx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.StaffPage" %>
+﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="AgentPage.aspx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.StaffPage" %>
 
 <!DOCTYPE html>
 
@@ -90,7 +90,7 @@
           <hr />
           <h2>
             <strong>Ticket Database Viewer <p> 
-            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" ImageSet="Simple" NodeIndent="10" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" Width="367px">
+            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" ImageSet="Simple" NodeIndent="10" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" Width="367px" >
                 <DataBindings>
                     <asp:TreeNodeBinding DataMember="TicketNumber" Depth="1" FormatString="TicketNumber: {0}" SelectAction="Expand" TextField="#InnerText" ValueField="#InnerText" />
                     <asp:TreeNodeBinding DataMember="RequestingUsername" Depth="1" FormatString="Requester: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />

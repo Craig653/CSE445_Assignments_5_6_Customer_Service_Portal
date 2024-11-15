@@ -39,15 +39,15 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             myNode = doc.SelectNodes(xpath);
             lbProgressTickets.Text = myNode.Count.ToString();
 
-            TreeView myTree = new TreeView();
-            TreeNode treeNode = new TreeNode();
+
+            TreeView1.DataSourceID = "";
+            TreeView1.DataSourceID = "XmlDataSource1";
+
+            xpath = "/Tickets/Ticket";
+            XmlDataSource1.XPath = xpath;
             
-            BuildTree(treeNode, doc.DocumentElement);
-            myTree.Nodes.Add(treeNode);
-
         }
-
-        protected void lblLoadTicket_Click(object sender, EventArgs e)
+    protected void lblLoadTicket_Click(object sender, EventArgs e)
         {
 
             lblTicketNumber.Text = "";
@@ -224,6 +224,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             lblCurrentStatus.Text = "Open";
             doc.Save(path);
             lblStatusUpdate.Text = "Status set to Open";
+            this.Page_Load(null, null);
         }
 
         protected void btnSetClosed_Click(object sender, EventArgs e)
@@ -239,6 +240,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             doc.Save(path);
 
             lblStatusUpdate.Text = "Status set to Closed";
+            this.Page_Load(null, null);
         }
 
         protected void btnSetInProgress_Click(object sender, EventArgs e)
@@ -254,32 +256,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             doc.Save(path);
 
             lblStatusUpdate.Text = "Status set to InProgress";
-        }
-
-        protected void BuildTree(TreeNode treeNode, XmlNode node)
-        {
-
-            foreach (XmlNode child in node.ChildNodes)
-            {
-                TreeNode tn = new TreeNode();
-
-                if(child.Attributes != null)
-                {
-                    foreach (XmlAttribute attribute in child.Attributes)
-                    {
-                        tn.ChildNodes.Add(new TreeNode(attribute.Name + ": " + attribute.Value));
-                    }
-                }
-
-                if(child is XmlText text)
-                {
-                    tn.ChildNodes.Add(new TreeNode(text.Name + ": " + text.Value));
-                }
-
-                treeNode.ChildNodes.Add(tn);
-                BuildTree(tn, child);
-
-            }
+            this.Page_Load(null, null);
         }
 
         protected void lblLogout_Click(object sender, EventArgs e)
