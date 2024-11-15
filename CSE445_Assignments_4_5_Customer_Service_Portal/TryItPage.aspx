@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="TryItPage.aspx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.WebForm1" %>
+﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="TryItPage.aspx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.WebForm1" Async="true" %>
 <%@ Register TagPrefix ="cse" TagName= "Captcha" Src="~/CaptchaImage.ascx" %>
 
 <!DOCTYPE html>
@@ -112,11 +112,14 @@
             <br />
             Get Most Common Ticket Category Service<br />
         </span>
-        <span class="auto-style2">Ticket Category:</span>
-        <asp:Button ID="btnGetMostCommonCategory" runat="server" Text="Get Most Common Ticket Category (REST)" OnClick="btnGetMostCommonCategory_Click" /><br /><br />
-        <span class="auto-style2"><strong>Ticket Service Response:</strong></span><br />
-        <asp:Label ID="lblResultCategory" runat="server" Text=""></asp:Label><br /><br />
-         <h3>Local Component 1 - Global.asax Event Handlers</h3>
+        <p>
+            Get Most Common Ticket Category (REST):
+        </p>
+        <asp:Button ID="btnGetMostCommonCategory" runat="server" Text="Get Most Common Ticket Category (REST)" OnClick="btnGetMostCommonCategory_Click" />
+        <br /><br />
+        <asp:Label ID="lblResultCategory" runat="server" Text=""></asp:Label>
+        <br /><br />
+        <h3>Local Component 1 - Global.asax Event Handlers</h3>
         <strong>Application Start Time:</strong> <asp:Label ID="lblAppStartTime" runat="server"></asp:Label><br />
         <strong>Application End Time (Last Run):</strong> <asp:Label ID="lblAppEndTime" runat="server"></asp:Label><br />
         <strong>Session Start Time:</strong> <asp:Label ID="lblSessionStartTime" runat="server"></asp:Label><br /><br />

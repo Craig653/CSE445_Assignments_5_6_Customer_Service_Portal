@@ -8,6 +8,7 @@ using System.ServiceModel;
 using System.Web.UI.WebControls;
 using System.Web;
 using System.Drawing.Printing;
+using System.Net.Http;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -217,32 +218,35 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblCookieRetStatus.Text = "Found Cookie: " + value + "";
             }
         }
-        protected void btnGetMostCommonCategory_Click(object sender, EventArgs e)
+        protected async void btnGetMostCommonCategory_Click(object sender, EventArgs e)
         {
-            try
+            string serviceUrl = "https://localhost:44343/DefaultPage.aspx";
+            using (HttpClient client = new HttpClient())
             {
-                // URL to the RESTful API endpoint
-                string serviceUrl = "http://localhost:44343/api/tickets/mostcommoncategory";
-
-                using (WebClient client = new WebClient())
+                try
                 {
-                    // Make sure the request expects JSON data
-                    client.Headers.Add("Content-Type", "application/json");
-                    string response = client.DownloadString(serviceUrl);
-                    lblResultCategory.Text = $"Most Common Ticket Category (REST): {response}";
+                    // Sending a GET request to the service URL
+                    HttpResponseMessage response = await client.GetAsync(serviceUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Read and display the response
+                        string result = await response.Content.ReadAsStringAsync();
+                        lblResultCategory.Text = $"Most Common Ticket Category (REST): {result}";
+                    }
+                    else
+                    {
+                        lblResultCategory.Text = $"Error: {response.ReasonPhrase}";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lblResultCategory.Text = $"Error: {ex.Message}";
                 }
             }
-            catch (Exception ex)
-            {
-                lblResultCategory.Text = $"Error: {ex.Message}";
-            }
         }
-
-
-
-
-
     }
+
+
 
 
     //Classes for JSON file object deseralization, starts at Root
