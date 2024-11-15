@@ -7,14 +7,47 @@ using System.Text.Json;
 using System.ServiceModel;
 using System.Web.UI.WebControls;
 using System.Web;
+using System.Drawing.Printing;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        // Local Componment - Global.asax event handlers 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+            {
+                // Display Application Start Time
+                if (Application["AppStartTime"] != null)
+                {
+                    lblAppStartTime.Text = $"Application Start Time: {Application["AppStartTime"]}";
+                }
+                else
+                {
+                    lblAppStartTime.Text = "Not Available";
+                }
+
+                // Display Application End Time (from the previous shutdown)
+                if (Application["AppEndTime"] != null)
+                {
+                    lblAppEndTime.Text = $"Application End Time (Last Run): {Application["AppEndTime"]}";
+                }
+                else
+                {
+                    lblAppEndTime.Text = " Not Available";
+                }
+
+                // Display Session Start Time
+                if (Session["SessionStartTime"] != null)
+                {
+                    lblSessionStartTime.Text = $"Session Start Time: {Session["SessionStartTime"]}";
+                }
+                else
+                {
+                    lblSessionStartTime.Text = " Available";
+                }
+            }
         }
 
         //Service 1.1: Ask Groq, ask groq any question. Its an AI chat bot. This will ball the REST API ASK groq. Then return a string reply
@@ -184,6 +217,31 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblCookieRetStatus.Text = "Found Cookie: " + value + "";
             }
         }
+        protected void btnGetMostCommonCategory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // URL to the RESTful API endpoint
+                string serviceUrl = "http://localhost:44343/api/tickets/mostcommoncategory";
+
+                using (WebClient client = new WebClient())
+                {
+                    // Make sure the request expects JSON data
+                    client.Headers.Add("Content-Type", "application/json");
+                    string response = client.DownloadString(serviceUrl);
+                    lblResultCategory.Text = $"Most Common Ticket Category (REST): {response}";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblResultCategory.Text = $"Error: {ex.Message}";
+            }
+        }
+
+
+
+
+
     }
 
 

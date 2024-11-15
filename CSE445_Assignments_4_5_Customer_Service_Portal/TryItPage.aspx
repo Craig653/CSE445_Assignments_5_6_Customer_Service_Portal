@@ -100,12 +100,29 @@
             Tree Viewer (Filtered by Cookie Username)</p>
         <p>
             &nbsp;</p>
-    </form>
+        <hr />
+        <h2><strong>Kiera's Services/Components</strong></h2>
+        <h3><strong>Service 1 - Get Most Common Ticket Category (RESTful Service)</strong></h3>
+        <strong>Get Most Common Ticket Category (REST)</strong><br />
+        <span class="auto-style2">
+            This service retrieves the most common category of ticket issues from the ticket database.<br />
+            URL: <a href="http://localhost:44343/api/tickets/mostcommoncategory">http://localhost:44343/api/tickets/mostcommoncategory</a><br />
+            Method: HTTP GET<br />
+            Returns: String<br />
+            <br />
+            Get Most Common Ticket Category Service<br />
+        </span>
+        <span class="auto-style2">Ticket Category:</span>
+        <asp:Button ID="btnGetMostCommonCategory" runat="server" Text="Get Most Common Ticket Category (REST)" OnClick="btnGetMostCommonCategory_Click" /><br /><br />
+        <span class="auto-style2"><strong>Ticket Service Response:</strong></span><br />
+        <asp:Label ID="lblResultCategory" runat="server" Text=""></asp:Label><br /><br />
+         <h3>Local Component 1 - Global.asax Event Handlers</h3>
+        <strong>Application Start Time:</strong> <asp:Label ID="lblAppStartTime" runat="server"></asp:Label><br />
+        <strong>Application End Time (Last Run):</strong> <asp:Label ID="lblAppEndTime" runat="server"></asp:Label><br />
+        <strong>Session Start Time:</strong> <asp:Label ID="lblSessionStartTime" runat="server"></asp:Label><br /><br />
+        <hr />
+        <h2><strong>Chris's Services/Components</strong></h2>
 
-    <hr />
-    <h2><strong>Kiera&#39;s Services/Components</strong></h2>
-    <hr />
-    <h2><strong>Chris&#39;s Services/Components</strong></h2>
-    <hr />
+    </form>
 </body>
 </html>
