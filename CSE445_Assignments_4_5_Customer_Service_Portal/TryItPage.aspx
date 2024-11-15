@@ -24,7 +24,9 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1" style="background-color: #000099">
-            <h1>Try it Page</h1>
+            <h1>Try it Page&nbsp;
+                <asp:Button ID="btnDefaultPage" runat="server" OnClick="btnDefaultPage_Click" Text="Default Page" />
+            </h1>
         </div>
         <h2><strong>Craig&#39;s Services/Components</strong></h2>
         <h3><strong>Service 1 Groq AI (2 Functions, Chat and Image Recognizer)</strong></h3>
