@@ -13,11 +13,10 @@ namespace CommonSearch
     public class TicketServiceController : ApiController
     {
         // URL to the raw XML data file on GitHub
-        private readonly string xmlUrl = "https://raw.githubusercontent.com/Craig653/CSE445_Assignments_5_6_Customer_Service_Portal/master/CSE445_Assignments_4_5_Customer_Service_Portal/App_Data/TicketsDatabase.xml";
-
+        private readonly string xmlUrl = "~/App_Data/TicketsDatabase.xml";
         // GET api/tickets/mostcommoncategory
         [HttpGet]
-        [Route("DefaultPage.aspx")]
+        [Route("TicketsDatabase.xml")]
         public async Task<IHttpActionResult> GetMostCommonTicketCategory()
         {
             try
