@@ -36,7 +36,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             
 
             XmlDataSource1.XPath = xpath;
-        }
+        
             if (!IsPostBack)
             {
                 // Display Application Start Time
@@ -70,6 +70,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 }
             }
         }
+
 
         //Service 1.1: Ask Groq, ask groq any question. Its an AI chat bot. This will ball the REST API ASK groq. Then return a string reply
         //Start AskGroq service to use this

@@ -159,15 +159,6 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected global::System.Web.UI.WebControls.TreeView TreeView1;
 
         /// <summary>
-        /// XmlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCookieRetStatus;
-
-        /// <summary>
         /// btnGetMostCommonCategory control.
         /// </summary>
         /// <remarks>
