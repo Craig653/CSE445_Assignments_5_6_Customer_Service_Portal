@@ -155,7 +155,7 @@
         <strong>Application End Time (Last Run):</strong> <asp:Label ID="lblAppEndTime" runat="server"></asp:Label><br />
         <strong>Session Start Time:</strong> <asp:Label ID="lblSessionStartTime" runat="server"></asp:Label><br /><br />
         <hr />
-        <h3>Local Component 2 - Automatic Login System</h3>
+        <h3>Local Component 2 - Automatic Login System (Cookies)</h3>
         <p>
             This component allows users to create an account and automatically log in if their credentials are saved in a cookie. If no credentials are stored, the user is prompted to enter their username and password. This feature streamlines the login process, ensuring easy and seamless access.
         </p>
@@ -172,8 +172,6 @@
             <asp:Button ID="btnLogout" runat="server" Text="Log Out" OnClick="btnLogout_Click" />
         </asp:Panel>
         </div>
-
-
         <h2><strong>Chris's Services/Components</strong></h2>
         <p>
             Service 1 - Designate Most Common Ticket Category. This WSDL service reads the full XML Tickets Database, reads the &quot;Text&quot; element of this XML file, which is the summary of issue described by the customer, and updates the &quot;Category&quot; attribute with the most common, non-stopword in the the summary.</p>

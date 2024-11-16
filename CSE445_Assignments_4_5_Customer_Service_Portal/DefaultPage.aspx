@@ -60,7 +60,7 @@
             </li>
             <li>
                 <p>
-                    <strong>Staff Page:</strong></p>
+                    Staff Page:</p>
                 <ul>
                     <li>Can delete usernames and passwords (To be added in Assignment6)</li>
                 </ul>
@@ -138,10 +138,7 @@
             color: #000000;
             padding: 5px;
         }
-            .auto-style2 {
-                height: 28px;
-            }
-        </style>
+            </style>
         <div class="table_component" role="region" tabindex="0">
         <table>
             <thead>
