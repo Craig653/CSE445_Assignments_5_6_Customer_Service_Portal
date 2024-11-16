@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text.Json;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Xml;
 
@@ -16,6 +17,17 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            //Craig's Get username cookie on Load
+            string username = "";
+            HttpCookie userCookie = Request.Cookies["Username"];
+            if ((userCookie != null))
+            {
+                username = userCookie.Value.ToString();
+                username = username.Split('=')[1];
+            }
+            string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"" + username + "\"]]";
+
+            XmlDataSource1.XPath = xpath;
         }
 
         protected string getCookieElement()
@@ -88,6 +100,21 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     }
                 }
 
+                string username = "";
+                HttpCookie userCookie = Request.Cookies["Username"];
+                if ((userCookie != null))
+                {
+                    username = userCookie.Value.ToString();
+                    username = username.Split('=')[1];
+                }
+                else
+                {
+                    lblNoCookie.Text = "Error don't have cookies Enabled, I don't know your username. Default Username is CUSTOMER, or you can set a cookie in the try it page under cookie setter.\n Assignment 6 will set cookies upon login.";
+                    username = "CUSTOMER";
+                    return;
+                }
+
+
                 //load current database
                 XmlDocument doc = new XmlDocument();
                 string path = Server.MapPath("~/App_Data/TicketsDatabase.xml");
@@ -104,7 +131,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 XmlElement TicketNumber = doc.CreateElement("TicketNumber");
                 TicketNumber.InnerText = NextTicket.ToString();
                 XmlElement Requester = doc.CreateElement("RequestingUsername");
-                Requester.InnerText = "TEST" + NextTicket.ToString();   //TODO fix this with coookies to figure otu who is requesting
+                Requester.InnerText = username;
                 XmlElement Text = doc.CreateElement("Text");
                 Text.InnerText = txtIssueBox.Text;
                 XmlElement Image = doc.CreateElement("Image");

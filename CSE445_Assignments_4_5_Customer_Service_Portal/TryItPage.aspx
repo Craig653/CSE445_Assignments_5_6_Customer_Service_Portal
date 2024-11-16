@@ -76,7 +76,7 @@
         <br />
         <h3>Local Component 1 - Captcha Generator</h3>
         <p class="auto-style2">
-            This Service connects to ASU&#39;s string image generator. This will be used to validate people are not robots upon creating a password</p>
+            This Service connects to ASU&#39;s string image generator. This will be used to validate people are not robots upon creating a password.</p>
         <cse:Captcha runat ="server"/>
         <h3>
             <strong>Local Component 2 - Cookies</strong></h3>
@@ -112,11 +112,12 @@
             <strong>
             <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" ImageSet="Simple" NodeIndent="10" Width="367px">
                 <DataBindings>
-                    <asp:TreeNodeBinding DataMember="TicketNumber" Depth="1" FormatString="TicketNumber: {0}" SelectAction="Expand" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="TicketNumber" Depth="1" FormatString="TicketNumber: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
                     <asp:TreeNodeBinding DataMember="RequestingUsername" Depth="1" FormatString="Requester: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
                     <asp:TreeNodeBinding DataMember="Text" FormatString="Description: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
                     <asp:TreeNodeBinding DataMember="Image" Depth="1" SelectAction="None" TextField="#Name" ToolTipField="#Value" />
                     <asp:TreeNodeBinding DataMember="Status" Depth="1" FormatString="Status: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="Ticket" SelectAction="None" TextField="#Name" />
                 </DataBindings>
                 <HoverNodeStyle Font-Underline="True" ForeColor="#DD5555" />
                 <NodeStyle Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" HorizontalPadding="0px" NodeSpacing="0px" VerticalPadding="0px" />
