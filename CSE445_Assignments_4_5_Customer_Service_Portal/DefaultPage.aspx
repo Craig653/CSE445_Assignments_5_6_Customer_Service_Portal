@@ -174,7 +174,10 @@
                             <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Cookies for table filtering</span></p>
                         <br />
                         <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
-                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Located on the TryIt page. Full implementation can be viewed on the Member page.</span></p>
+                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Located on the TryIt page. </span>
+                        </p>
+                        <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Full implementation can be viewed on the Member page.</span></p>
                         </b>
                         <br class="Apple-interchange-newline" />
                     </td>
@@ -201,7 +204,10 @@
                             <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">AI Service for Summaries</span></p>
                         <br />
                         <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
-                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Located on the Try it page for generic use or the Agent page for XML database implementation</span></p>
+                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Located on the Try it page </span>
+                        </p>
+                        <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Generic use or the Agent page for XML database implementation</span></p>
                         <br />
                         <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
                             <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">AskGroq (Rest)</span></p>
