@@ -33,7 +33,7 @@
         <strong>AskGroq (REST)</strong><br />
         <span class="auto-style2">This Service is connected to Groq. A Fast AI Inference using the mixtral-8x7b-32768 model. More details can be found at <a href="https://groq.com/">https://groq.com/</a>
         <br />
-        This it the generic chat connection, it will be used to analyze the description. See the Agent page for implementation and try it to tickets database.<br />
+        This it the <strong>generic chat connection</strong>, it will be used to analyze the description. See the <strong>Agent page</strong> for implementation and try it to tickets database.<br />
         URL: <a href="http://localhost:63092/Service1.svc">http://localhost:63092/Service1.svc</a> or http://localhost:63092/Service1.svc/AskGroq/{string}</span><br />
         <span class="auto-style2">Method: AskGroq(String)<br />
         Returns String<br />
@@ -57,12 +57,12 @@
         Image Recognizer Groq: (WSDL)<br />
         </strong><span class="auto-style2">This service is connected to Groq Visualizer. Using the llama-3.2-11b-vision-preview model. More details can be found at <a href="https://console.groq.com/docs/vision">https://console.groq.com/docs/vision</a>
         <br />
-        This it the generic chat connection, it will be used to analyze the description. See the Agent page for implementation and try it to tickets database.<br />
+        This it the <strong>generic chat connection</strong>, it will be used to analyze the description. See the <strong>Agent page</strong> for implementation and try it to tickets database.<br />
         URL: <a href="http://localhost:56274/Service1.svc">http://localhost:56274/Service1.svc</a></span><br />
         <span class="auto-style2">Method: ImgGroq(String image in base64)<br />
         Returns string<br />
         <br />
-        Image Recognizer (.JPEG only) (&lt;25kb images)<br />
+        Image Recognizer (.JPEG only) (&lt;25kb images) (see example folder included in project for sample images)<br />
         </span>
         <asp:FileUpload ID="FileUpload2" runat="server" />
         <br />
@@ -76,10 +76,14 @@
         <br />
         <h3>Local Component 1 - Captcha Generator</h3>
         <p class="auto-style2">
-            This Service connects to ASU&#39;s string image generator. This will be used to validate people are not robots upon creating a password</p>
+            This Service connects to ASU&#39;s string image generator. This will be used to validate people are not robots upon creating a password.</p>
         <cse:Captcha runat ="server"/>
         <h3>
             <strong>Local Component 2 - Cookies</strong></h3>
+        <p>
+            <span class="auto-style3">This component will create a username cookie and will filter the tickets Tree view based on the username. </p>
+        <p>
+            See the member page for the full implementation. (Be sure to save a cookie with a username first)</span></p>
         <p>
             Cookie Creator</p>
         <p class="auto-style3">
@@ -108,11 +112,12 @@
             <strong>
             <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" ImageSet="Simple" NodeIndent="10" Width="367px">
                 <DataBindings>
-                    <asp:TreeNodeBinding DataMember="TicketNumber" Depth="1" FormatString="TicketNumber: {0}" SelectAction="Expand" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="TicketNumber" Depth="1" FormatString="TicketNumber: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
                     <asp:TreeNodeBinding DataMember="RequestingUsername" Depth="1" FormatString="Requester: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
                     <asp:TreeNodeBinding DataMember="Text" FormatString="Description: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
                     <asp:TreeNodeBinding DataMember="Image" Depth="1" SelectAction="None" TextField="#Name" ToolTipField="#Value" />
                     <asp:TreeNodeBinding DataMember="Status" Depth="1" FormatString="Status: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
+                    <asp:TreeNodeBinding DataMember="Ticket" SelectAction="None" TextField="#Name" />
                 </DataBindings>
                 <HoverNodeStyle Font-Underline="True" ForeColor="#DD5555" />
                 <NodeStyle Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" HorizontalPadding="0px" NodeSpacing="0px" VerticalPadding="0px" />
