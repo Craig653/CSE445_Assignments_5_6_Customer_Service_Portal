@@ -175,6 +175,14 @@
 
 
         <h2><strong>Chris's Services/Components</strong></h2>
+        <p>
+            Service 1 - Designate Most Common Ticket Category. This WSDL service reads the full XML Tickets Database, reads the &quot;Text&quot; element of this XML file, which is the summary of issue described by the customer, and updates the &quot;Category&quot; attribute with the most common, non-stopword in the the summary.</p>
+        <asp:Label ID="custoUsrNmeLbl" runat="server" Text="Customer Username:"></asp:Label>
+        <asp:TextBox ID="custoUsrNmeTxtBox" runat="server"></asp:TextBox>
+        <p>
+            <asp:Label ID="custoPasswdLbl" runat="server" Text="Customer Password:"></asp:Label>
+            <asp:TextBox ID="custoPasswdTxtBox" runat="server"></asp:TextBox>
+        </p>
     </form>
 </body>
 </html>
