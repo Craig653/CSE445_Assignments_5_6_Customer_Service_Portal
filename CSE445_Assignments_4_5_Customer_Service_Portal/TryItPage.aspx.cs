@@ -282,39 +282,31 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         {
             Server.Transfer("DefaultPage.aspx");
         }
-        protected async void btnGetMostCommonCategory_Click(object sender, EventArgs e)
+        protected void btnGetMostCommonCategory_Click(object sender, EventArgs e)
         {
-            string serviceUrl = "https://localhost:44343/DefaultPage.aspx";
-            using (HttpClient client = new HttpClient())
+            try
             {
-                try
-                {
-                    // Sending a GET request to the service URL
-                    HttpResponseMessage response = await client.GetAsync(serviceUrl);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // Read and display the response
-                        string result = await response.Content.ReadAsStringAsync();
-                        lblResultCategory.Text = $"Most Common Ticket Category (REST): {result}";
-                    }
-                    else
-                    {
-                        lblResultCategory.Text = $"Error: {response.ReasonPhrase}";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    lblResultCategory.Text = $"Error: {ex.Message}";
-                }
+                // Create an instance of the WCF service client
+                ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+
+                // Call the WCF service method to get the most common ticket category
+                string mostCommonCategory = client.GetMostCommonCategory();
+
+                // Display the result
+                lblMostCommonCategoryResult.Text = $"Most Common Ticket Category: {mostCommonCategory}";
+
+                // Close the client connection
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+                // Display an error message if something goes wrong
+                lblMostCommonCategoryResult.Text = $"Error: {ex.Message}";
             }
         }
     }
 
-        protected void btnDefaultPage_Click(object sender, EventArgs e)
-        {
-            Server.Transfer("DefaultPage.aspx");
-        }
-    }
+ 
 
 
     //Classes for JSON file object deseralization, starts at Root

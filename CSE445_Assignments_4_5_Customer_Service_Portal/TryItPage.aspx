@@ -127,21 +127,21 @@
         <h2><strong>Kiera's Services/Components</strong></h2>
         <h3><strong>Service 1 - Get Most Common Ticket Category (RESTful Service)</strong></h3>
         <strong>Get Most Common Ticket Category (REST)</strong><br />
+        <strong>Ticket Processing Service - Get Most Common Category (WCF)</strong><br />
         <span class="auto-style2">
-            This service retrieves the most common category of ticket issues from the ticket database.<br />
-            URL: <a href="http://localhost:44343/api/tickets/mostcommoncategory">http://localhost:44343/api/tickets/mostcommoncategory</a><br />
-            Method: HTTP GET<br />
+            This service reads the ticket XML database and finds the most common category of tickets.<br />
+            URL: <a href="http://localhost:44360/Service1.svc">http://localhost:44360/Service1.svc</a><br />
+            Method: WCF Method Call<br />
             Returns: String<br />
             <br />
-            Get Most Common Ticket Category Service<br />
+            Get Most Common Ticket Category
         </span>
         <p>
-            Get Most Common Ticket Category (REST):
+            <asp:Button ID="btnGetMostCommonCategory" runat="server" Text="Get Most Common Ticket Category" OnClick="btnGetMostCommonCategory_Click" />
         </p>
-        <asp:Button ID="btnGetMostCommonCategory" runat="server" Text="Get Most Common Ticket Category (REST)" OnClick="btnGetMostCommonCategory_Click" />
-        <br /><br />
-        <asp:Label ID="lblResultCategory" runat="server" Text=""></asp:Label>
-        <br /><br />
+        <p>
+            <asp:Label ID="lblMostCommonCategoryResult" runat="server" Text=""></asp:Label>
+        </p>
         <h3>Local Component 1 - Global.asax Event Handlers</h3>
         <strong>Application Start Time:</strong> <asp:Label ID="lblAppStartTime" runat="server"></asp:Label><br />
         <strong>Application End Time (Last Run):</strong> <asp:Label ID="lblAppEndTime" runat="server"></asp:Label><br />

@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE445_Assignments_5_6_Cust
 	ProjectSection(ProjectDependencies) = postProject
 		{088CD535-B206-4E1C-A7F6-6870770D5A87} = {088CD535-B206-4E1C-A7F6-6870770D5A87}
 		{457424FD-2176-47A7-8A82-B212ABE69515} = {457424FD-2176-47A7-8A82-B212ABE69515}
+		{9F0974DC-C1F7-4999-8D76-A77B33980B51} = {9F0974DC-C1F7-4999-8D76-A77B33980B51}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImgGroqService", "ImgGroq\ImgGroqService.csproj", "{088CD535-B206-4E1C-A7F6-6870770D5A87}"
@@ -20,6 +21,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serv1Serv14Compare", "Serv1Serv14Compare\Serv1Serv14Compare.csproj", "{0DEF110D-CEC1-410B-BC56-4C2D17FBA090}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonSearch", "CommonSearch\CommonSearch.csproj", "{1644C40B-1ED4-4DF2-A0F2-0239B2E8ABA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonCategorySearch", "CommonCategorySearch\CommonCategorySearch.csproj", "{9F0974DC-C1F7-4999-8D76-A77B33980B51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +50,10 @@ Global
 		{1644C40B-1ED4-4DF2-A0F2-0239B2E8ABA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1644C40B-1ED4-4DF2-A0F2-0239B2E8ABA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1644C40B-1ED4-4DF2-A0F2-0239B2E8ABA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F0974DC-C1F7-4999-8D76-A77B33980B51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F0974DC-C1F7-4999-8D76-A77B33980B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F0974DC-C1F7-4999-8D76-A77B33980B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F0974DC-C1F7-4999-8D76-A77B33980B51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
