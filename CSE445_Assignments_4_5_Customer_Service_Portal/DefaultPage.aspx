@@ -34,7 +34,15 @@
         </div>
         <h2 style="width: 493px"><strong>Customer Service App Overview </strong></h2>
         <p>
-            <strong>Main Features:</strong></p>
+            <strong>Summary</strong></p>
+        <p>
+            This web application was designed to facititate customers having issues. Customers will be able to log into the member page and submit a ticket and a picture explaining their problem.</p>
+        <p>
+            Agents will then be able to log in and see how many open tickets, closed tickets, inprogress tickets there are. They will also be able to work with AI to analyze the issue and images. Along with updating the ticket status and seeing a tree view of all tickets</p>
+        <p>
+            Staff or Admin will be able to log into the Staff page and delete or create accounts (comming in assignment 6)</p>
+        <p>
+            <strong>Main Pages</strong></p>
         <ol>
             <li>
                 <p>
@@ -46,7 +54,7 @@
             </li>
             <li>Agent Page:<ul>
                 <li>Agents can view tickets in the database via a ticket tool</li>
-                <li>Agents an change the status&#39;s of tickets</li>
+                <li>Agents an change the status&#39;s of tickets </li>
                 <li>A Dashboard will show all ticket types</li>
                 </ul>
             </li>
@@ -54,7 +62,11 @@
                 <p>
                     <strong>Staff Page:</strong></p>
                 <ul>
-                    <li>Can delete usernames and passwords</li>
+                    <li>Can delete usernames and passwords (To be added in Assignment6)</li>
+                </ul>
+            </li>
+            <li>Try it page<ul>
+                <li>A centeral&nbsp; place to try all the features and services. (See table below for all items</li>
                 </ul>
             </li>
         </ol>
@@ -74,10 +86,12 @@
                     <strong>Craig</strong>:</p>
                 <ul>
                     <li><strong>User Control Captcha</strong>: Ensures security and prevents bot submissions during registration.</li>
+                    <li><strong>Groq AI :&nbsp; </strong>Agents can use AI to analyze the submited tickets</li>
                 </ul>
             </li>
             <ul>
-                <li><strong>Cookies</strong>: Also handles user session data or preferences (likely in conjunction with Kiera).</li>
+                <li><strong>Cookies</strong>: Uses cookies to filter the Tree view of the tickets. That way on the member page you only see the logged in users tickets</li>
+                <li><strong>TreeView: </strong>Can be seen on the member page and the Agent page. It shows the current tickets in the database</li>
             </ul>
             <li>
                 <p>

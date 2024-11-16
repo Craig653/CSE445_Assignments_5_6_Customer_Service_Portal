@@ -244,7 +244,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             this.Page_Load(null, null);
         }
 
-        //Look up cookie username
+        //Craig's Look up cookie username
         protected void btnLookup_Click(object sender, EventArgs e)
         {
             HttpCookie mycookies = Request.Cookies["Username"];
@@ -260,7 +260,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             this.Page_Load(null, null);
         }
 
-        //Delete the username cookie
+        //Craig's Delete the username cookie
         protected void lblResetCookie_Click(object sender, EventArgs e)
         {
             HttpCookie mycookies = Request.Cookies["Username"];
@@ -312,7 +312,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
 
 
-    //Classes for JSON file object deseralization, starts at Root
+    //Craig's Classes for JSON file object deseralization, starts at Root
     public class Choice
     {
         public int index { get; set; }

@@ -13,6 +13,7 @@ using System.ServiceModel;
 using System.Text.Json;
 using System.Net;
 using System.Runtime.Serialization;
+using System.Security.Claims;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -20,6 +21,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //Craig's Xml Ticket loading
             XmlDocument doc = new XmlDocument();
             string path = Server.MapPath("~/App_Data/TicketsDatabase.xml");
             doc.Load(path);
@@ -39,14 +42,16 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             myNode = doc.SelectNodes(xpath);
             lbProgressTickets.Text = myNode.Count.ToString();
 
-            TreeView myTree = new TreeView();
-            TreeNode treeNode = new TreeNode();
-            
-            BuildTree(treeNode, doc.DocumentElement);
-            myTree.Nodes.Add(treeNode);
 
+            //Craig's Code to force a Tree Reload
+            TreeView1.DataSourceID = "";
+            TreeView1.DataSourceID = "XmlDataSource1";
+
+            xpath = "/Tickets/Ticket";
+            XmlDataSource1.XPath = xpath;
         }
 
+        //Craig's Ticket Loading
         protected void lblLoadTicket_Click(object sender, EventArgs e)
         {
 
@@ -92,6 +97,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+
+
+        //Crai'gs Analyze the Ticket Description using GROQ AI
+       
         protected void btnAnzDesc_Click(object sender, EventArgs e)
         {
             XmlDocument doc = new XmlDocument();
@@ -151,6 +160,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         }
 
+
+        //Craig's analyze image through Groq AI
         protected void btnAnzImg_Click(object sender, EventArgs e)
         {
 
@@ -212,6 +223,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             lblAIResp.Visible = true;
         }
 
+
+        //Craig's Status changing code
         protected void btnSetOpen_Click(object sender, EventArgs e)
         {
             XmlDocument doc = new XmlDocument();
@@ -224,8 +237,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             lblCurrentStatus.Text = "Open";
             doc.Save(path);
             lblStatusUpdate.Text = "Status set to Open";
+            this.Page_Load(null, null);
         }
 
+
+        //Craig's Status changing code
         protected void btnSetClosed_Click(object sender, EventArgs e)
         {
             XmlDocument doc = new XmlDocument();
@@ -239,8 +255,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             doc.Save(path);
 
             lblStatusUpdate.Text = "Status set to Closed";
+            this.Page_Load(null, null);
         }
 
+
+        //Craig's Status changing code
         protected void btnSetInProgress_Click(object sender, EventArgs e)
         {
             XmlDocument doc = new XmlDocument();
@@ -254,44 +273,14 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             doc.Save(path);
 
             lblStatusUpdate.Text = "Status set to InProgress";
+            this.Page_Load(null, null);
         }
-
-        protected void BuildTree(TreeNode treeNode, XmlNode node)
-        {
-
-            foreach (XmlNode child in node.ChildNodes)
-            {
-                TreeNode tn = new TreeNode();
-
-                if(child.Attributes != null)
-                {
-                    foreach (XmlAttribute attribute in child.Attributes)
-                    {
-                        tn.ChildNodes.Add(new TreeNode(attribute.Name + ": " + attribute.Value));
-                    }
-                }
-
-                if(child is XmlText text)
-                {
-                    tn.ChildNodes.Add(new TreeNode(text.Name + ": " + text.Value));
-                }
-
-                treeNode.ChildNodes.Add(tn);
-                BuildTree(tn, child);
-
-            }
-        }
-
         protected void lblLogout_Click(object sender, EventArgs e)
         {
             //Todo add logic to logout here
             Server.Transfer("DefaultPage.aspx");
         }
 
-        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
-        {
-
-        }
     }
     
 }
