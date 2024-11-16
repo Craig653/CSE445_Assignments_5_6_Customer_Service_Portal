@@ -30,12 +30,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             XmlDataSource1.XPath = xpath;
         }
 
-        protected string getCookieElement()
-        {
-            string cookie = "Craig653";
 
-            return cookie;
-        }
+
+        //Craig's Submit TICKET Code
         protected void btnSubmitTicket_Click(object sender, EventArgs e)
         {
             if(txtIssueBox.Text.Length > 0 && FileUpload2.HasFile)
@@ -100,6 +97,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     }
                 }
 
+
+                //Craig's get cookie for creating xml
                 string username = "";
                 HttpCookie userCookie = Request.Cookies["Username"];
                 if ((userCookie != null))
