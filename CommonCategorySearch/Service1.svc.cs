@@ -18,13 +18,7 @@ namespace CommonCategorySearch
             {
                 // Load the XML document from the App_Data folder
                 string filePath = HostingEnvironment.MapPath("~/App_Data/TicketsDatabase.xml");
-
-                // Check if the file exists
-                if (string.IsNullOrEmpty(filePath) || !File.Exists(filePath))
-                {
-                    return "Error: The tickets database file could not be found.";
-                }
-
+              
                 // Load the XML document using XDocument
                 XDocument xmlDoc = XDocument.Load(filePath);
 

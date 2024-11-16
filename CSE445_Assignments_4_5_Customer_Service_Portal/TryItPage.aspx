@@ -148,12 +148,33 @@
             <asp:Label ID="lblMostCommonCategoryResult" runat="server" Text=""></asp:Label>
         </p>
         <h3>Local Component 1 - Global.asax Event Handlers</h3>
+        <p>
+            This component displays the application event times, such as the start time of the application, the end time of the last run, and session start times. It helps track application lifecycle events for diagnostics and logging.
+        </p>
         <strong>Application Start Time:</strong> <asp:Label ID="lblAppStartTime" runat="server"></asp:Label><br />
         <strong>Application End Time (Last Run):</strong> <asp:Label ID="lblAppEndTime" runat="server"></asp:Label><br />
         <strong>Session Start Time:</strong> <asp:Label ID="lblSessionStartTime" runat="server"></asp:Label><br /><br />
         <hr />
-        <h2><strong>Chris's Services/Components</strong></h2>
+        <h3>Local Component 2 - Automatic Login System</h3>
+        <p>
+            This component allows users to create an account and automatically log in if their credentials are saved in a cookie. If no credentials are stored, the user is prompted to enter their username and password. This feature streamlines the login process, ensuring easy and seamless access.
+        </p>
+        <div>
+            <asp:Panel ID="pnlLoginForm" runat="server" Visible="true">
+            <strong>Create Account / Log In:</strong><br />
+            Username: <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox><br />
+            Password: <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
+            <asp:Button ID="btnCreateAccount" runat="server" Text="Create Account / Log In" OnClick="btnCreateAccount_Click" />
+        </asp:Panel>
 
+        <asp:Panel ID="pnlLogout" runat="server" Visible="false">
+            <asp:Label ID="lblAutoLoginStatus" runat="server" Text=""></asp:Label><br />
+            <asp:Button ID="btnLogout" runat="server" Text="Log Out" OnClick="btnLogout_Click" />
+        </asp:Panel>
+        </div>
+
+
+        <h2><strong>Chris's Services/Components</strong></h2>
     </form>
 </body>
 </html>

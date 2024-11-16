@@ -18,6 +18,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            CheckForAutomaticLogin();
             //Craig's Tree view filtering used in conjuction with the username cookie
             string username = "";
             string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"\"]]";
@@ -38,11 +40,19 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             //For tree view reloading
             TreeView1.DataSourceID = "";
             TreeView1.DataSourceID = "XmlDataSource1";
-
             XmlDataSource1.XPath = xpath;
 
 
-            // Local Componment - Global.asax event handlers 
+            // Perform automatic login if possible
+            AutoLogin();     
+
+            // Handle TreeView Filtering Based on Cookie
+            LoadTreeViewFilter();
+
+            CheckForAutomaticLogin();
+
+
+            // Kiera's Local Componment 1 - Global.asax event handlers 
             if (!IsPostBack)
             {
                 // Display Application Start Time
@@ -304,7 +314,118 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblMostCommonCategoryResult.Text = $"Error: {ex.Message}";
             }
         }
+
+        protected void LoadTreeViewFilter()
+        {
+            string username = "";
+            string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"\"]]";
+            HttpCookie userCookie = Request.Cookies["Username"];
+            if ((userCookie != null))
+            {
+                username = userCookie.Value.ToString();
+                username = username.Split('=')[1];
+                xpath = "//Tickets/Ticket[RequestingUsername[text()=\"" + username + "\"]]";
+                lblFilterBy.Text = "Filtered by " + username;
+            }
+            else
+            {
+                xpath = "//Tickets/Ticket";
+                lblFilterBy.Text = "No Filter";
+            }
+
+            // For TreeView reloading
+            TreeView1.DataSourceID = "";
+            TreeView1.DataSourceID = "XmlDataSource1";
+            XmlDataSource1.XPath = xpath;
+        }
+
+        private void AutoLogin()
+        {
+            HttpCookie loginCookie = Request.Cookies["AutoLogin"];
+            if (loginCookie != null && !string.IsNullOrEmpty(loginCookie["Username"]))
+            {
+                // If user has already logged in, automatically log them in
+                lblAutoLoginStatus.Text = $"Welcome back, {loginCookie["Username"]}!";
+                pnlLoginForm.Visible = false;
+                pnlLogout.Visible = true;
+            }
+            else
+            {
+                // If no login cookie, show the create account form
+                pnlLoginForm.Visible = true;
+                pnlLogout.Visible = false;
+            }
+        }
+
+        private void CheckForAutomaticLogin()
+        {
+            // Check if user cookies are present for automatic login
+            if (Request.Cookies["UserCredentials"] != null)
+                {
+                    string username = Request.Cookies["UserCredentials"]["Username"];
+                    string password = Request.Cookies["UserCredentials"]["Password"];
+
+                    if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                    {
+                        // Automatically populate the username and password fields
+                        txtUsername.Text = username;
+                        txtPassword.Attributes["value"] = password; // Populate the password field
+
+                        // Automatically log the user in
+                        pnlLoginForm.Visible = false;
+                        pnlLogout.Visible = true;
+                        lblAutoLoginStatus.Text = $"Welcome back, {username}!";
+                    }
+                }
+                else
+                {
+                    pnlLoginForm.Visible = true;
+                    pnlLogout.Visible = false;
+                }
+        }
+
+        protected void btnCreateAccount_Click(object sender, EventArgs e)
+        {
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text.Trim();
+
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            {
+                // Store username and password in a cookie
+                HttpCookie userCredentialsCookie = new HttpCookie("UserCredentials");
+                userCredentialsCookie["Username"] = username;
+                userCredentialsCookie["Password"] = password;
+                userCredentialsCookie.Expires = DateTime.Now.AddMonths(6);
+                Response.Cookies.Add(userCredentialsCookie);
+
+                // Log the user in and update UI
+                pnlLoginForm.Visible = false;
+                pnlLogout.Visible = true;
+                lblAutoLoginStatus.Text = $"Welcome back, {username}!";
+            }
+            else
+            {
+                lblAutoLoginStatus.Text = "Please enter a valid username and password.";
+            }
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            // Clear the user credentials cookie
+            if (Request.Cookies["UserCredentials"] != null)
+            {
+                HttpCookie userCredentialsCookie = new HttpCookie("UserCredentials");
+                userCredentialsCookie.Expires = DateTime.Now.AddMonths(-1); // Expire the cookie
+                Response.Cookies.Add(userCredentialsCookie);
+            }
+
+            // Reset the UI
+            pnlLoginForm.Visible = true;
+            pnlLogout.Visible = false;
+            lblAutoLoginStatus.Text = "";
+        }
     }
+
 
  
 

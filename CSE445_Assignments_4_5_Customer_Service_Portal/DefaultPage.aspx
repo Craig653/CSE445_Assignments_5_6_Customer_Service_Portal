@@ -154,17 +154,50 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Kiera Walker</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">Kiera Walker</td>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                </tr>
+                <td>Kiera Walker</td>
+                <td> Most Common Ticket Category Service (SOAP)</td>
+                <td>
+                    <strong>Get Most Common Ticket Category (WCF Service)</strong>: 
+                    This component reads the ticket XML database and finds the most common category of tickets. 
+                    <br><br><strong>Input:</strong> XML ticket database 
+                    <br><strong>Output:</strong> Most common ticket category as a string.
+                </td>
+                <td>
+                    The service is implemented using WCF. It reads and processes XML data using <code>XDocument</code> 
+                    to extract and count ticket categories. Used in TryItPage.aspx to display the most common category.
+                </td>
+            </tr>
+            <tr>
+                <td>Kiera Walker</td>
+                <td>TryItPage.aspx - Global.asax Event Handlers</td>
+                <td>
+                    <strong>Global.asax Event Handlers</strong>: 
+                    Tracks application lifecycle events including application start, end, and session start.
+                    <br><br><strong>Input:</strong> Application lifecycle events
+                    <br><strong>Output:</strong> Start/end times of application and session.
+                </td>
+                <td>
+                    The events are captured using the Global.asax lifecycle methods 
+                    (<code>Application_Start</code>, <code>Application_End</code>, <code>Session_Start</code>). 
+                    The information is displayed on TryItPage.aspx for logging and diagnostic purposes.
+                </td>
+            </tr>
+            <tr>
+                <td>Kiera Walker</td>
+                <td>TryItPage.aspx - Automatic Login System</td>
+                <td>
+                    <strong>Automatic Login System</strong>: 
+                    Enables users to create an account, which then automatically logs them in if their credentials are stored in a cookie. 
+                    If credentials aren't stored, it prompts users to enter their username and password.
+                    <br><br><strong>Input:</strong> Username and password
+                    <br><strong>Output:</strong> Logged in status.
+                </td>
+                <td>
+                    Credentials are saved using C# cookies (<code>HttpCookie</code>). 
+                    The <code>Page_Load</code> method checks for the cookie and pre-fills username and password fields accordingly. 
+                    Displayed on TryItPage.aspx for users to create an account or automatically log in.
+                </td>
+            </tr>
                 <tr>
                     <td>Craig Saunders</td>
                     <td>
