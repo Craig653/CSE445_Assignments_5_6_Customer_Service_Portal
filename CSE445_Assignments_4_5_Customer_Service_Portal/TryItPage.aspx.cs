@@ -221,7 +221,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
             HttpCookie mycookies = Request.Cookies["Username"];
 
-            if((mycookies == null) || mycookies["Username"] == "")
+            if ((mycookies == null) || mycookies["Username"] == "")
             {
                 HttpCookie newCookies = new HttpCookie("Username");
                 lblCookieCreatorStatus.Text = "Cookie Created!";
@@ -310,11 +310,6 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         }
     }
 
-        protected void btnDefaultPage_Click(object sender, EventArgs e)
-        {
-            Server.Transfer("DefaultPage.aspx");
-        }
-    }
 
 
     //Classes for JSON file object deseralization, starts at Root
