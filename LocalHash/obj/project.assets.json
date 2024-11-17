@@ -8,19 +8,19 @@
     ".NETFramework,Version=v4.7.2": []
   },
   "packageFolders": {
-    "C:\\Users\\busin\\.nuget\\packages\\": {}
+    "C:\\Users\\kiera\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\busin\\OneDrive\\Documents\\Personal\\Official_School\\ASU\\Fall_2024\\CSE_445_598\\Assignment_5_6\\Proj_5\\LocalHash\\LocalHash.csproj",
+      "projectUniqueName": "C:\\Users\\kiera\\OneDrive\\Desktop\\Fall 2024\\CSE 445\\Assignment_5_6\\LocalHash\\LocalHash.csproj",
       "projectName": "LocalHash",
-      "projectPath": "C:\\Users\\busin\\OneDrive\\Documents\\Personal\\Official_School\\ASU\\Fall_2024\\CSE_445_598\\Assignment_5_6\\Proj_5\\LocalHash\\LocalHash.csproj",
-      "packagesPath": "C:\\Users\\busin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\busin\\OneDrive\\Documents\\Personal\\Official_School\\ASU\\Fall_2024\\CSE_445_598\\Assignment_5_6\\Proj_5\\LocalHash\\obj\\",
+      "projectPath": "C:\\Users\\kiera\\OneDrive\\Desktop\\Fall 2024\\CSE 445\\Assignment_5_6\\LocalHash\\LocalHash.csproj",
+      "packagesPath": "C:\\Users\\kiera\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kiera\\OneDrive\\Desktop\\Fall 2024\\CSE 445\\Assignment_5_6\\LocalHash\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\busin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kiera\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -40,17 +40,12 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
       "net472": {
         "targetAlias": "net472",
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
