@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE445_Assignments_5_6_Customer_Service_Portal", "CSE445_Assignments_4_5_Customer_Service_Portal\CSE445_Assignments_5_6_Customer_Service_Portal.csproj", "{D3A348F7-68DB-4107-94BF-08372816F341}"
 	ProjectSection(ProjectDependencies) = postProject
 		{088CD535-B206-4E1C-A7F6-6870770D5A87} = {088CD535-B206-4E1C-A7F6-6870770D5A87}
+		{0DEF110D-CEC1-410B-BC56-4C2D17FBA090} = {0DEF110D-CEC1-410B-BC56-4C2D17FBA090}
 		{457424FD-2176-47A7-8A82-B212ABE69515} = {457424FD-2176-47A7-8A82-B212ABE69515}
 	EndProjectSection
 EndProject
@@ -23,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonSearch", "CommonSearc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonCategorySearch", "CommonCategorySearch\CommonCategorySearch.csproj", "{9F0974DC-C1F7-4999-8D76-A77B33980B51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalHash", "LocalHash\LocalHash.csproj", "{61A6B95A-1C72-4DEF-8883-D823BCB49D6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalHash", "LocalHash\LocalHash.csproj", "{61A6B95A-1C72-4DEF-8883-D823BCB49D6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

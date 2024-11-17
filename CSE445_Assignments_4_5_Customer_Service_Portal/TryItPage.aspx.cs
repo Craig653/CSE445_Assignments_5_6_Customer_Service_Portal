@@ -423,10 +423,19 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             pnlLogout.Visible = false;
             lblAutoLoginStatus.Text = "";
         }
+
+        // Chris's Service: Define most common category for every Ticket "Text" (issue summary) element
+        protected void testAttrbteUpdateBtn_Click(object sender, EventArgs e)
+        {
+            SetSummCateServRef.Service1Client categorizeSummariesProxy = new SetSummCateServRef.Service1Client();
+            categorizeSummariesProxy.MostCommon();
+            testAttrbteUpdateTxtBox .Text = categorizeSummariesProxy.GetCurrentXML();
+            categorizeSummariesProxy.Close();
+        }
     }
 
 
- 
+
 
 
     //Classes for JSON file object deseralization, starts at Root

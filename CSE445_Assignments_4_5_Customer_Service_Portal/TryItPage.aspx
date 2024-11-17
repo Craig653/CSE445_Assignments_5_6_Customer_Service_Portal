@@ -174,13 +174,39 @@
         </div>
         <h2><strong>Chris's Services/Components</strong></h2>
         <p>
-            Service 1 - Designate Most Common Ticket Category. This WSDL service reads the full XML Tickets Database, reads the &quot;Text&quot; element of this XML file, which is the summary of issue described by the customer, and updates the &quot;Category&quot; attribute with the most common, non-stopword in the the summary.</p>
+            Service 1 - Designate Most Common Ticket Category. This WSDL service reads the full XML Tickets Database, reads the &quot;Text&quot; element of this XML file, which is the summary of issue described by the customer, and updates the &quot;Category&quot; attribute with the most common, non-stopword in the the summary. This should ideally be trigerred everytime a user makes a change to the &quot;Text&quot; element in their ticket.</p>
+        <p>
+            To be able to see how this service is working, please open the local&quot;App_Data/TicketsDatabase.xml&quot; file in this service in any text editor, and feel free to make changes in the &quot;Text&quot; element of each Ticket parent element. The most common non-stop word for each Ticekt summary will be considered the main category of such ticket, and such will be updated in the &quot;Category&quot; attribute for each ticket. The Text Box below displays the most recent TicketsDatabase.xml.</p>
+        <p>
+            <asp:Label ID="testAttrbteUpdateLbl" runat="server" Text="Test attribute update:"></asp:Label>
+            <asp:Button ID="testAttrbteUpdateBtn" runat="server" OnClick="testAttrbteUpdateBtn_Click" Text="Triger attribute update" />
+        </p>
+        <p>
+            <asp:TextBox ID="testAttrbteUpdateTxtBox" runat="server" Height="527px" Width="2027px"></asp:TextBox>
+        </p>
+        <hr />
+        <p>
+            <asp:Label ID="custoLoginTitleLbl" runat="server" Text="Customer Login"></asp:Label>
+        </p>
         <asp:Label ID="custoUsrNmeLbl" runat="server" Text="Customer Username:"></asp:Label>
         <asp:TextBox ID="custoUsrNmeTxtBox" runat="server"></asp:TextBox>
         <p>
             <asp:Label ID="custoPasswdLbl" runat="server" Text="Customer Password:"></asp:Label>
             <asp:TextBox ID="custoPasswdTxtBox" runat="server"></asp:TextBox>
         </p>
+        <asp:Button ID="custoLoginBtn" runat="server" Text="Customer Login" />
+        <hr />
+        <br />
+        <asp:Label ID="adminLoginTitleLbl" runat="server" Text="Admin Login"></asp:Label>
+        <p>
+            <asp:Label ID="adminUsrNmeLbl" runat="server" Text="Admin Username:"></asp:Label>
+            <asp:TextBox ID="adminUsrNmeTxtBox" runat="server"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="adminPasswdLbl" runat="server" Text="Admin Password:"></asp:Label>
+            <asp:TextBox ID="adminPasswdTxtBox" runat="server"></asp:TextBox>
+        </p>
+        <asp:Button ID="adminLoginBtn" runat="server" Text="Admin Login" />
     </form>
 </body>
 </html>

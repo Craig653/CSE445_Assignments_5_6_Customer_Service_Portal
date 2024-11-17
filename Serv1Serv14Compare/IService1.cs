@@ -32,7 +32,10 @@ namespace Serv1Serv14Compare
 
         // check if a URL has been used by both Service 1 and Service 14
         [OperationContract]
-        bool MostCommon(string url);
+        bool MostCommon();
+
+        [OperationContract]
+        string GetCurrentXML();
     }
 
     // this created by default, I'm just going to leave it alone

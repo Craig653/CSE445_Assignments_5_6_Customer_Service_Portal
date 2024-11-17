@@ -82,7 +82,7 @@ namespace Serv1Serv14Compare
 "yourselves", "z", "zero"
         };
 
-        public bool MostCommon(string customerFile) // compare if a given URL has been used by both Service 1 and Service 14
+        public bool MostCommon() // compare if a given URL has been used by both Service 1 and Service 14
         {
             string localDir = HttpContext.Current.Server.MapPath("~/App_Data/"); // path to folder
             string localFile = Path.Combine(localDir, "TicketsDatabase.xml"); // path to file
@@ -159,7 +159,27 @@ namespace Serv1Serv14Compare
             return mostCommonWords.FirstOrDefault();
         }
 
+        private string GetCurrentXML()
+        {
+            string localDir = HttpContext.Current.Server.MapPath("~/App_Data/"); // path to folder
+            string localFile = Path.Combine(localDir, "TicketsDatabase.xml"); // path to file
 
+            // Ensure the directory exists
+            if (!Directory.Exists(localDir))
+            {
+                Directory.CreateDirectory(localDir);
+            }
+
+            // Ensure the file exists
+            if (!File.Exists(localFile))
+            {
+                File.Create(localFile).Dispose(); // Create the file and dispose to release the handle
+            }
+
+            XDocument xmlDoc = XDocument.Load(localFile);
+
+            return xmlDoc.ToString();
+        }
 
         public string GetData(int value) // this was created by default, I'm just going to leave it alone
         {
@@ -178,6 +198,11 @@ namespace Serv1Serv14Compare
                 composite.StringValue += "Suffix";
             }
             return composite;
+        }
+
+        string IService1.GetCurrentXML()
+        {
+            throw new NotImplementedException();
         }
     }
 }
