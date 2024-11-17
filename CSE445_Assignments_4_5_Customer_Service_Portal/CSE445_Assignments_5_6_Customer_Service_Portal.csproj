@@ -115,10 +115,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\ImgGroq\Service1.wsdl" />
+    <None Include="Connected Services\ImgGroq\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ImgGroq\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServiceReference1\Service1.disco" />
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
     <None Include="Connected Services\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ImgGroq\Service1.disco" />
+    <None Include="Connected Services\ImgGroq\configuration91.svcinfo" />
+    <None Include="Connected Services\ImgGroq\configuration.svcinfo" />
+    <None Include="Connected Services\ImgGroq\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -146,13 +160,6 @@
     </None>
     <Content Include="App_Data\TicketsDatabase.xml" />
     <Content Include="CaptchaImage.ascx" />
-    <None Include="Connected Services\ImgGroq\Service1.disco" />
-    <None Include="Connected Services\ImgGroq\configuration91.svcinfo" />
-    <None Include="Connected Services\ImgGroq\configuration.svcinfo" />
-    <None Include="Connected Services\ImgGroq\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="ImageProcess.aspx">
       <BrowseToURL>~/ImageProcess.aspx</BrowseToURL>
     </Content>
@@ -241,13 +248,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ImgGroq\Service1.wsdl" />
-    <None Include="Connected Services\ImgGroq\Service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ImgGroq\Service11.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\ServiceReference1\Service1.wsdl" />
     <None Include="Connected Services\ServiceReference1\Service1.xsd">
       <SubType>Designer</SubType>
