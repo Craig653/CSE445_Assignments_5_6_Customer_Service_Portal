@@ -212,7 +212,7 @@
         <br />
         Some Admin Credentials you can test that were preloaded:<br />
         <br />
-        (&quot;Username&quot;, &quot;Admin&quot;), (&quot;Password&quot;, Cse445!&quot;)<br />
+        (&quot;Username&quot;, &quot;TA&quot;), (&quot;Password&quot;, &quot;Cse445!&quot;)<br />
         <br />
         XML Database is located in &quot;CSE445_Assignments_5_6_Customer_Service_Portal/App_Data/CredentialsDatabase.xml&quot; <p>
             <asp:Label ID="adminUsrNmeLbl" runat="server" Text="Admin Username:"></asp:Label>

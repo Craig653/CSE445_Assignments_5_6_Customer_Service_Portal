@@ -531,20 +531,21 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                         // Log the user in
                         lblCustoLoginStatus.Text = "Login successful!";
                         return;
+                    } else
+                    {
+                        // If no match found
+                        lblCustoLoginStatus.Text = "Login failed. Invalid username or password.";
                     }
                 }
             }
-
-            // If no match found
-            lblCustoLoginStatus.Text = "Login failed. Invalid username or password.";
         }
 
 
         //Chris's Service: Encrypt admin credentials in XML database
         protected void adminLoginBtn_Click(object sender, EventArgs e)
         {
-            var attemptUsername = custoUsrNmeTxtBox.Text;
-            var attemptPassword = custoPasswdTxtBox.Text;
+            var attemptUsername = adminUsrNmeTxtBox.Text;
+            var attemptPassword = adminPasswdTxtBox.Text;
 
             string localDir = HttpContext.Current.Server.MapPath("~/App_Data/");
             string localFile = Path.Combine(localDir, "CredentialsDatabase.xml");
@@ -582,12 +583,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                         // Log the user in
                         lblAdminLoginStatus.Text = "Login successful!";
                         return;
+                    } else
+                    {
+                        // If no match found
+                        lblAdminLoginStatus.Text = "Login failed. Invalid username or password.";
                     }
                 }
             }
-
-            // If no match found
-            lblAdminLoginStatus.Text = "Login failed. Invalid username or password.";
         }
     }
 
