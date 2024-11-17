@@ -4,11 +4,11 @@ using System.Text;
 
 namespace LocalHash
 {
-    public class Encrypt
+    public class CredentialEncrypt
     {
         private readonly Aes _aes; // built-in AES object for encryption
 
-        public Encrypt()
+        public CredentialEncrypt()
         {
             _aes = Aes.Create();
 
@@ -33,11 +33,11 @@ namespace LocalHash
         }
     }
 
-    public class Decrypt
+    public class CredentialDecrypt
     {
         private readonly Aes _aes;
 
-        public Decrypt()
+        public CredentialDecrypt()
         {
             _aes = Aes.Create();
             _aes.Key = Encoding.UTF8.GetBytes("QyR!gUZQane#XHm#et2pVbLbWnMwrmpv"); // Ensure this key is 32 characters long
@@ -55,6 +55,4 @@ namespace LocalHash
             return Encoding.UTF8.GetString(decrypted);
         }
     }
-}
-   
 }

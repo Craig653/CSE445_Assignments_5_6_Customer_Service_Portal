@@ -357,6 +357,15 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected global::System.Web.UI.WebControls.Button custoLoginBtn;
 
         /// <summary>
+        /// lblCustoLoginStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCustoLoginStatus;
+
+        /// <summary>
         /// adminLoginTitleLbl control.
         /// </summary>
         /// <remarks>
@@ -409,5 +418,14 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button adminLoginBtn;
+
+        /// <summary>
+        /// lblAdminLoginStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAdminLoginStatus;
     }
 }

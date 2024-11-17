@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef {
+namespace CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2 {
     using System.Runtime.Serialization;
     using System;
     
@@ -75,7 +75,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SetSummCateServRef.IService1")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IService1")]
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetData", ReplyAction="http://tempuri.org/IService1/GetDataResponse")]
@@ -85,10 +85,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef {
         System.Threading.Tasks.Task<string> GetDataAsync(int value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService1/GetDataUsingDataContractResponse")]
-        CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef.CompositeType GetDataUsingDataContract(CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef.CompositeType composite);
+        CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2.CompositeType GetDataUsingDataContract(CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2.CompositeType composite);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService1/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef.CompositeType> GetDataUsingDataContractAsync(CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef.CompositeType composite);
+        System.Threading.Tasks.Task<CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2.CompositeType> GetDataUsingDataContractAsync(CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2.CompositeType composite);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/MostCommon", ReplyAction="http://tempuri.org/IService1/MostCommonResponse")]
         bool MostCommon();
@@ -104,12 +104,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IService1Channel : CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef.IService1, System.ServiceModel.IClientChannel {
+    public interface IService1Channel : CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2.IService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef.IService1>, CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef.IService1 {
+    public partial class Service1Client : System.ServiceModel.ClientBase<CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2.IService1>, CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2.IService1 {
         
         public Service1Client() {
         }
@@ -138,11 +138,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef {
             return base.Channel.GetDataAsync(value);
         }
         
-        public CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef.CompositeType GetDataUsingDataContract(CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef.CompositeType composite) {
+        public CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2.CompositeType GetDataUsingDataContract(CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2.CompositeType composite) {
             return base.Channel.GetDataUsingDataContract(composite);
         }
         
-        public System.Threading.Tasks.Task<CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef.CompositeType> GetDataUsingDataContractAsync(CSE445_Assignments_4_5_Customer_Service_Portal.SetSummCateServRef.CompositeType composite) {
+        public System.Threading.Tasks.Task<CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2.CompositeType> GetDataUsingDataContractAsync(CSE445_Assignments_4_5_Customer_Service_Portal.ServiceReference2.CompositeType composite) {
             return base.Channel.GetDataUsingDataContractAsync(composite);
         }
         

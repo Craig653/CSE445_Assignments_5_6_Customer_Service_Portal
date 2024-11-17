@@ -159,7 +159,7 @@ namespace Serv1Serv14Compare
             return mostCommonWords.FirstOrDefault();
         }
 
-        private string GetCurrentXML()
+        public string GetCurrentXML()
         {
             string localDir = HttpContext.Current.Server.MapPath("~/App_Data/"); // path to folder
             string localFile = Path.Combine(localDir, "TicketsDatabase.xml"); // path to file
@@ -200,9 +200,5 @@ namespace Serv1Serv14Compare
             return composite;
         }
 
-        string IService1.GetCurrentXML()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

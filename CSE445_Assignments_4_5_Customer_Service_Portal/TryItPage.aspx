@@ -176,29 +176,45 @@
         <p>
             Service 1 - Designate Most Common Ticket Category. This WSDL service reads the full XML Tickets Database, reads the &quot;Text&quot; element of this XML file, which is the summary of issue described by the customer, and updates the &quot;Category&quot; attribute with the most common, non-stopword in the the summary. This should ideally be trigerred everytime a user makes a change to the &quot;Text&quot; element in their ticket.</p>
         <p>
-            To be able to see how this service is working, please open the local&quot;App_Data/TicketsDatabase.xml&quot; file in this service in any text editor, and feel free to make changes in the &quot;Text&quot; element of each Ticket parent element. The most common non-stop word for each Ticekt summary will be considered the main category of such ticket, and such will be updated in the &quot;Category&quot; attribute for each ticket. The Text Box below displays the most recent TicketsDatabase.xml.</p>
+            To be able to see how this service is working, please open the local&quot;Serv1Serv14Compare/App_Data/TicketsDatabase.xml&quot; file in this service in any text editor, and feel free to make changes in the &quot;Text&quot; element of each Ticket parent element. The most common non-stop word for each Ticekt summary will be considered the main category of such ticket, and such will be updated in the &quot;Category&quot; attribute for each ticket. The Text Box below displays the most recent TicketsDatabase.xml.</p>
         <p>
             <asp:Label ID="testAttrbteUpdateLbl" runat="server" Text="Test attribute update:"></asp:Label>
             <asp:Button ID="testAttrbteUpdateBtn" runat="server" OnClick="testAttrbteUpdateBtn_Click" Text="Triger attribute update" />
         </p>
         <p>
-            <asp:TextBox ID="testAttrbteUpdateTxtBox" runat="server" Height="527px" Width="2027px"></asp:TextBox>
+            <asp:TextBox ID="testAttrbteUpdateTxtBox" runat="server" Height="527px" Width="2027px" ReadOnly="True" TextMode="MultiLine"></asp:TextBox>
         </p>
         <hr />
         <p>
             <asp:Label ID="custoLoginTitleLbl" runat="server" Text="Customer Login"></asp:Label>
         </p>
+        <p>
+            Component 1: This component uses a DLL implemented from a custom AES encryption implementation using the CSharp Cryptography library. Inilialization vector and secret key were arbitrarily imposed. This componentcreates the assumption of existing user credentials by hard-coding usernames and passwords expected at page load for both customers and admins, using the DLL to encrypt the password, and store the encrypted password along with its pertaining username in an xml database. When the customer tries to login, the implementation will verify that a customer is indeed the user type attempting to login, then hash the provided password by the user and compare this password hash to the ones saved in the XML database, where the username must also be the correct username for such hash.</p>
+        <p>
+            Some Customer Credentials you can test that were preloaded:</p>
+        <p>
+            (&quot;Username&quot;, &quot;Chris&quot;), (&quot;Password&quot;, Password123&quot;) |&nbsp; (&quot;Username&quot;, &quot;Craig&quot;), (&quot;Password&quot;, 123Password&quot;) |&nbsp; (&quot;Username&quot;, &quot;Kiera&quot;), (&quot;Password&quot;, Pass123word&quot;)</p>
+        <p>
+            XML Database is located in &quot;CSE445_Assignments_5_6_Customer_Service_Portal/App_Data/CredentialsDatabase.xml&quot;</p>
         <asp:Label ID="custoUsrNmeLbl" runat="server" Text="Customer Username:"></asp:Label>
         <asp:TextBox ID="custoUsrNmeTxtBox" runat="server"></asp:TextBox>
         <p>
             <asp:Label ID="custoPasswdLbl" runat="server" Text="Customer Password:"></asp:Label>
             <asp:TextBox ID="custoPasswdTxtBox" runat="server"></asp:TextBox>
         </p>
-        <asp:Button ID="custoLoginBtn" runat="server" Text="Customer Login" />
+        <asp:Button ID="custoLoginBtn" runat="server" Text="Customer Login" OnClick="custoLoginBtn_Click" />
+        <asp:Label ID="lblCustoLoginStatus" runat="server" Text="Customer Login Status"></asp:Label>
         <hr />
         <br />
         <asp:Label ID="adminLoginTitleLbl" runat="server" Text="Admin Login"></asp:Label>
-        <p>
+        <br />
+        Component 2: This component uses a DLL implemented from a custom AES encryption implementation using the CSharp Cryptography library. Inilialization vector and secret key were arbitrarily imposed. This componentcreates the assumption of existing user credentials by hard-coding usernames and passwords expected at page load for both customers and admins, using the DLL to encrypt the password, and store the encrypted password along with its pertaining username in an xml database. When the admin tries to login, the implementation will verify that a customer is indeed the user type attempting to login, then hash the provided password by the user and compare this password hash to the ones saved in the XML database, where the username must also be the correct username for such hash.<br />
+        <br />
+        Some Admin Credentials you can test that were preloaded:<br />
+        <br />
+        (&quot;Username&quot;, &quot;Admin&quot;), (&quot;Password&quot;, Cse445!&quot;)<br />
+        <br />
+        XML Database is located in &quot;CSE445_Assignments_5_6_Customer_Service_Portal/App_Data/CredentialsDatabase.xml&quot; <p>
             <asp:Label ID="adminUsrNmeLbl" runat="server" Text="Admin Username:"></asp:Label>
             <asp:TextBox ID="adminUsrNmeTxtBox" runat="server"></asp:TextBox>
         </p>
@@ -206,7 +222,8 @@
             <asp:Label ID="adminPasswdLbl" runat="server" Text="Admin Password:"></asp:Label>
             <asp:TextBox ID="adminPasswdTxtBox" runat="server"></asp:TextBox>
         </p>
-        <asp:Button ID="adminLoginBtn" runat="server" Text="Admin Login" />
+        <asp:Button ID="adminLoginBtn" runat="server" Text="Admin Login" OnClick="adminLoginBtn_Click" />
+        <asp:Label ID="lblAdminLoginStatus" runat="server" Text="Admin Login Status"></asp:Label>
     </form>
 </body>
 </html>

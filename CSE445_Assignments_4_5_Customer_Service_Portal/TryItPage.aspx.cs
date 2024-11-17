@@ -10,6 +10,8 @@ using System.Web;
 using System.Drawing.Printing;
 using System.Net.Http;
 using System.ServiceModel.Security;
+using LocalHash;
+using System.Xml.Linq;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -18,7 +20,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // usernames harcoded in this function, then hashed and stored in XML file
+            PreCreateHashes();
             CheckForAutomaticLogin();
             //Craig's Tree view filtering used in conjuction with the username cookie
             string username = "";
@@ -96,7 +99,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 string text = txtbxGroq.Text;
                 byte[] abc;
-                Uri baseUri = new Uri("http://localhost:63092/Service1.svc");
+                //Uri baseUri = new Uri("http://localhost:63092/Service1.svc");
+                Uri baseUri = new Uri("http://webstrar10.fulton.asu.edu/page1/Service1.svc");
                 UriTemplate myTempalte = new UriTemplate("AskGroq/{text}");
                 Uri completeUri = myTempalte.BindByPosition(baseUri, text);
                 WebClient channel = new WebClient();
@@ -427,10 +431,163 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         // Chris's Service: Define most common category for every Ticket "Text" (issue summary) element
         protected void testAttrbteUpdateBtn_Click(object sender, EventArgs e)
         {
-            SetSummCateServRef.Service1Client categorizeSummariesProxy = new SetSummCateServRef.Service1Client();
+            ServiceReference2.Service1Client categorizeSummariesProxy = new ServiceReference2.Service1Client();
             categorizeSummariesProxy.MostCommon();
-            testAttrbteUpdateTxtBox .Text = categorizeSummariesProxy.GetCurrentXML();
+            testAttrbteUpdateTxtBox.Text = Server.HtmlEncode(categorizeSummariesProxy.GetCurrentXML()); // Display the XML pweety
             categorizeSummariesProxy.Close();
+        }
+
+        // precreate credential hashes for the XML database
+        private void PreCreateHashes()
+        {
+            string localDir = HttpContext.Current.Server.MapPath("~/App_Data/");
+            string localFile = Path.Combine(localDir, "CredentialsDatabase.xml");
+
+            // Ensure the directory exists
+            if (!Directory.Exists(localDir))
+            {
+                Directory.CreateDirectory(localDir);
+            }
+
+            // Ensure the file exists
+            if (!File.Exists(localFile))
+            {
+                File.Create(localFile).Dispose(); // Create the file and dispose to release the handle
+            }
+
+            XDocument xmlDoc = new XDocument(
+                new XElement("CredentialsDatabase",
+                    new XElement("Credentials",
+                        new XElement("Username", "TA"),
+                        new XElement("Password", EncryptPassword("Cse445!")),
+                        new XAttribute("UserType", "Admin")
+                    ),
+                    new XElement("Credentials",
+                        new XElement("Username", "Chris"),
+                        new XElement("Password", EncryptPassword("Password123")),
+                        new XAttribute("UserType", "Customer")
+                    ),
+                    new XElement("Credentials",
+                        new XElement("Username", "Craig"),
+                        new XElement("Password", EncryptPassword("123Password")),
+                        new XAttribute("UserType", "Customer")
+                    ),
+                    new XElement("Credentials",
+                        new XElement("Username", "Kiera"),
+                        new XElement("Password", EncryptPassword("Pass123word")),
+                        new XAttribute("UserType", "Customer")
+                    )
+                )
+            );
+            xmlDoc.Save(localFile);
+        }
+
+        // helper for encrypting passwords
+        private string EncryptPassword(string password)
+        {
+            CredentialEncrypt encryptor = new CredentialEncrypt();
+            return encryptor.EncryptString(password);
+        }
+
+        //Chris's Service: Encrypt customer credentials in XML database 
+        protected void custoLoginBtn_Click(object sender, EventArgs e)
+        {
+            var attemptUsername = custoUsrNmeTxtBox.Text;
+            var attemptPassword = custoPasswdTxtBox.Text;
+
+            string localDir = HttpContext.Current.Server.MapPath("~/App_Data/");
+            string localFile = Path.Combine(localDir, "CredentialsDatabase.xml");
+
+            // Ensure the directory exists
+            if (!Directory.Exists(localDir))
+            {
+                Directory.CreateDirectory(localDir);
+            }
+
+            // Ensure the file exists
+            if (!File.Exists(localFile))
+            {
+                File.Create(localFile).Dispose(); // Create the file and dispose to release the handle
+            }
+
+            XDocument xmlDoc = XDocument.Load(localFile);
+
+            // Encrypt the attempted password
+            CredentialEncrypt encryptor = new CredentialEncrypt();
+            string encryptedAttemptPassword = encryptor.EncryptString(attemptPassword);
+
+            // Iterate through each <Credentials> element
+            foreach (var user in xmlDoc.Descendants("Credentials"))
+            {
+                var usernameElement = user.Element("Username");
+                var passwordElement = user.Element("Password");
+                var userAttribute = user.Attribute("UserType");
+
+                if (userAttribute.Value == "Customer") // credentials belong to a customer
+                {
+                    // Check if the username and password match
+                    if (usernameElement.Value == attemptUsername && passwordElement.Value == encryptedAttemptPassword)
+                    {
+                        // Log the user in
+                        lblCustoLoginStatus.Text = "Login successful!";
+                        return;
+                    }
+                }
+            }
+
+            // If no match found
+            lblCustoLoginStatus.Text = "Login failed. Invalid username or password.";
+        }
+
+
+        //Chris's Service: Encrypt admin credentials in XML database
+        protected void adminLoginBtn_Click(object sender, EventArgs e)
+        {
+            var attemptUsername = custoUsrNmeTxtBox.Text;
+            var attemptPassword = custoPasswdTxtBox.Text;
+
+            string localDir = HttpContext.Current.Server.MapPath("~/App_Data/");
+            string localFile = Path.Combine(localDir, "CredentialsDatabase.xml");
+
+            // Ensure the directory exists
+            if (!Directory.Exists(localDir))
+            {
+                Directory.CreateDirectory(localDir);
+            }
+
+            // Ensure the file exists
+            if (!File.Exists(localFile))
+            {
+                File.Create(localFile).Dispose(); // Create the file and dispose to release the handle
+            }
+
+            XDocument xmlDoc = XDocument.Load(localFile);
+
+            // Encrypt the attempted password
+            CredentialEncrypt encryptor = new CredentialEncrypt();
+            string encryptedAttemptPassword = encryptor.EncryptString(attemptPassword);
+
+            // Iterate through each <Credentials> element
+            foreach (var user in xmlDoc.Descendants("Credentials"))
+            {
+                var usernameElement = user.Element("Username");
+                var passwordElement = user.Element("Password");
+                var userAttribute = user.Attribute("UserType");
+
+                if (userAttribute.Value == "Admin") // credentials belong to a customer
+                {
+                    // Check if the username and password match
+                    if (usernameElement.Value == attemptUsername && passwordElement.Value == encryptedAttemptPassword)
+                    {
+                        // Log the user in
+                        lblCustoLoginStatus.Text = "Login successful!";
+                        return;
+                    }
+                }
+            }
+
+            // If no match found
+            lblCustoLoginStatus.Text = "Login failed. Invalid username or password.";
         }
     }
 
