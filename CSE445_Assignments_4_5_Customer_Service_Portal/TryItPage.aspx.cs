@@ -144,8 +144,16 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 Root myParsedConent = JsonSerializer.Deserialize<Root>(filteredText);
 
 
-                lblAskGroq.Text = myParsedConent.choices[0].message.content;
-                lblAskGroq.Visible = true;
+                if (myParsedConent != null)
+                {
+                    lblAskGroq.Text = myParsedConent.choices[0].message.content;
+                    lblAskGroq.Visible = true;
+                }
+                else
+                {
+                    lblAskGroq.Text = "Oh No! Looks like Groq AI might be down, try again later. Or check Groq.AI for there service status";
+                    lblAskGroq.Visible = true;
+                }
 
             }
 
@@ -217,8 +225,17 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                     Root myParsedConent = JsonSerializer.Deserialize<Root>(jsonStr);
 
-                    lblImageGroq.Text = myParsedConent.choices[0].message.content;
-                    lblImageGroq.Visible = true;
+                    if (myParsedConent != null)
+                    {
+                        lblImageGroq.Text = myParsedConent.choices[0].message.content;
+                        lblImageGroq.Visible = true;
+                    }
+                    else
+                    {
+                        lblImageGroq.Text = "Oh No! Looks like Groq AI might be down, try again later. Or check Groq.AI for there service status";
+                        lblImageGroq.Visible = true;
+                    }
+
                 }
             }
         }
