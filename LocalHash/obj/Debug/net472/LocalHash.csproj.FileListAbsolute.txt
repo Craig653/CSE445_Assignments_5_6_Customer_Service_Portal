@@ -1,0 +1,10 @@
+C:\Users\busin\OneDrive\Documents\Personal\Official_School\ASU\Fall_2024\CSE_445_598\Assignment_5_6\Proj_5\LocalHash\bin\Debug\net472\LocalHash.dll
+C:\Users\busin\OneDrive\Documents\Personal\Official_School\ASU\Fall_2024\CSE_445_598\Assignment_5_6\Proj_5\LocalHash\bin\Debug\net472\LocalHash.pdb
+C:\Users\busin\OneDrive\Documents\Personal\Official_School\ASU\Fall_2024\CSE_445_598\Assignment_5_6\Proj_5\LocalHash\obj\Debug\net472\LocalHash.csproj.AssemblyReference.cache
+C:\Users\busin\OneDrive\Documents\Personal\Official_School\ASU\Fall_2024\CSE_445_598\Assignment_5_6\Proj_5\LocalHash\obj\Debug\net472\LocalHash.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\busin\OneDrive\Documents\Personal\Official_School\ASU\Fall_2024\CSE_445_598\Assignment_5_6\Proj_5\LocalHash\obj\Debug\net472\LocalHash.AssemblyInfoInputs.cache
+C:\Users\busin\OneDrive\Documents\Personal\Official_School\ASU\Fall_2024\CSE_445_598\Assignment_5_6\Proj_5\LocalHash\obj\Debug\net472\LocalHash.AssemblyInfo.cs
+C:\Users\busin\OneDrive\Documents\Personal\Official_School\ASU\Fall_2024\CSE_445_598\Assignment_5_6\Proj_5\LocalHash\obj\Debug\net472\LocalHash.csproj.CoreCompileInputs.cache
+C:\Users\busin\OneDrive\Documents\Personal\Official_School\ASU\Fall_2024\CSE_445_598\Assignment_5_6\Proj_5\LocalHash\obj\Debug\net472\LocalHash.sourcelink.json
+C:\Users\busin\OneDrive\Documents\Personal\Official_School\ASU\Fall_2024\CSE_445_598\Assignment_5_6\Proj_5\LocalHash\obj\Debug\net472\LocalHash.dll
+C:\Users\busin\OneDrive\Documents\Personal\Official_School\ASU\Fall_2024\CSE_445_598\Assignment_5_6\Proj_5\LocalHash\obj\Debug\net472\LocalHash.pdb
