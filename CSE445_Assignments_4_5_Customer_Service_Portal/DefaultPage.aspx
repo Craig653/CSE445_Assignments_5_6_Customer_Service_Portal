@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <meta charset="utf-8" />
     <title></title>
     <style type="text/css">
         .auto-style1 {
@@ -138,6 +139,9 @@
             color: #000000;
             padding: 5px;
         }
+            .auto-style2 {
+                height: 487px;
+            }
             </style>
         <div class="table_component" role="region" tabindex="0">
         <table>
@@ -381,15 +385,59 @@
                 </tr>
                 <tr>
                     <td>Christopher Angulo</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>Ticket Issue Categorization based on Issue Summary<br />
+                        <br />
+                        WSDL<br />
+                        <br />
+                        Currently in TryItPage</td>
+                    <td><b id="docs-internal-guid-52ebc648-7fff-3c7b-df0f-f86fff4b7226" style="font-weight:normal;">
+                        <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">This component uses a service that reads the issue summary of all Tickets, and updates the Ticket Category based on the most common issues mentioned in the issue summary. Stopwords are ignored.</span></p>
+                        <br />
+                        <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Input</span><span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">: XML Element</span></p>
+                        <br />
+                        <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Return: </span>X</b>ML Attribute<br />
+                        <br />
+                        <strong>Output:</strong> Displays Lastest Tickets XML for testing reference</td>
+                    <td>Reads the XML Tickets database using XDocument, Descendants, Element, and SetAttributeValue to access specific XML Attribute contents and write to specific XML Attributes.
+                        <br />
+                        <br />
+                        Analyzes all &lt;Text&gt; element contents, detects the most common issue, and updates such Ticket element Category with that most common issue. Ignores stopwords since these are likely not &quot;the main issue&quot; in a ticket.</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">Christopher Angulo</td>
+                    <td class="auto-style2">Customer Login<br />
+                        <br />
+                        DLL<br />
+                        <br />
+                        Currently in TryItPage</td>
+                    <td class="auto-style2"><b id="docs-internal-guid-52ebc648-7fff-3c7b-df0f-f86fff4b7227" style="font-weight:normal;">
+                        <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">This component uses a custom local library DLL </span>that uses AES encryption to encrypt user entered passwords at login (and decrypt, but decrypt not curretnly used) and compare this cyphertext to cyphertext passwords already pre-ciphered in the Credentials XML database.</p>
+                        <br />
+                        <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Input</span><span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">: Username and Password string input</span></p>
+                        <br />
+                        <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Return:</span><span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> Successful or unsuccesful login string response</span></b></td>
+                    <td class="auto-style2">Captures credential login data from user. Uses local AES encryption DLL to encrypt password, and match the key-value pair of username and password ciphertext against stored user credentials, also stored with passwords as AES ciphertext.</td>
                 </tr>
                 <tr>
                     <td>Christopher Angulo</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>Admin Login<br />
+                        <br />
+                        DLL<br />
+                        <br />
+                        Currently in TryItPage</td>
+                    <td><b id="docs-internal-guid-52ebc648-7fff-3c7b-df0f-f86fff4b7228" style="font-weight:normal;">
+                        <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">This component uses a custom local library DLL </span>that uses AES encryption to encrypt user entered passwords at login (and decrypt, but decrypt not curretnly used) and compare this cyphertext to cyphertext passwords already pre-ciphered in the Credentials XML database.</p>
+                        <br />
+                        <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                            <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Input</span><span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">: Username and Password string input</span></p>
+                        <br />
+                        <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Return:</span><span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> Successful or unsuccesful login string response</span></b></td>
+                    <td>Captures credential login data from user. Uses local AES encryption DLL to encrypt password, and match the key-value pair of username and password ciphertext against stored user credentials, also stored with passwords as AES ciphertext.</td>
                 </tr>
             </tbody>
         </table>
