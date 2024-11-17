@@ -597,14 +597,14 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     if (usernameElement.Value == attemptUsername && passwordElement.Value == encryptedAttemptPassword)
                     {
                         // Log the user in
-                        lblCustoLoginStatus.Text = "Login successful!";
+                        lblAdminLoginStatus.Text = "Login successful!";
                         return;
                     }
                 }
             }
 
             // If no match found
-            lblCustoLoginStatus.Text = "Login failed. Invalid username or password.";
+            lblAdminLoginStatus.Text = "Login failed. Invalid username or password.";
         }
     }
 
