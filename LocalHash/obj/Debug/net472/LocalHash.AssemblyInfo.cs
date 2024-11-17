@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LocalHash")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee08ec2b37d31991a619e7aff288d337cb753a11")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a010d703c2e0edb91891bbda088a101de30f0fff")]
 [assembly: System.Reflection.AssemblyProductAttribute("LocalHash")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LocalHash")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
