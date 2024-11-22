@@ -17,7 +17,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected void lblLogout_Click(object sender, EventArgs e)
         {
             //ToDo add logic to log out here
-            Server.Transfer("DefaultPage.aspx");
+            Response.Redirect("DefaultPage.aspx");
         }
     }
 }

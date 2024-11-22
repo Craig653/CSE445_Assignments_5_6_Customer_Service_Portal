@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="LoginForm" runat="server">
         <div>
             <h1 class="auto-style3"><span class="auto-style2">Login Page</span></h1>
         </div>

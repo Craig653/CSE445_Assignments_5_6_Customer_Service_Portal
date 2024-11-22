@@ -15,13 +15,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
 
         /// <summary>
-        /// form1 control.
+        /// LoginForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm LoginForm;
 
         /// <summary>
         /// TextBox1 control.
