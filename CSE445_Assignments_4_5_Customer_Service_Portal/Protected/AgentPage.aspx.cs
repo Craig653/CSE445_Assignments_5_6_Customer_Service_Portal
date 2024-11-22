@@ -278,7 +278,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected void lblLogout_Click(object sender, EventArgs e)
         {
             //Todo add logic to logout here
-            Response.Redirect("DefaultPage.aspx");
+            Response.Redirect("../DefaultPage.aspx");
         }
 
     }
