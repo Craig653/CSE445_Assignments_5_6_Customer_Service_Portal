@@ -17,13 +17,14 @@ using System.Security.Claims;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
-    public partial class StaffPage : System.Web.UI.Page
+    public partial class AgentPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
             //Craig's Xml Ticket loading
             XmlDocument doc = new XmlDocument();
+            string path2 = HttpRuntime.AppDomainAppPath;
             string path = Server.MapPath("~/App_Data/TicketsDatabase.xml");
             doc.Load(path);
 

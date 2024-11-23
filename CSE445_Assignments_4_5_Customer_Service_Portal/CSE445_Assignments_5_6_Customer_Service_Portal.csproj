@@ -127,12 +127,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference1\Service1.disco" />
-    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
-    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
-    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
+    <None Include="App_Data\CredentialsSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\TicketSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference1\Service1.wsdl" />
+    <None Include="Connected Services\ServiceReference1\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference1\Service11.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference2\Service1.disco" />
     <None Include="Connected Services\ServiceReference2\configuration91.svcinfo" />
@@ -141,11 +147,17 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\ServiceReference1\Service1.disco" />
+    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="App_Data\CredentialsDatabase.xml" />
+    <Content Include="App_Data\TicketsDatabase.xml" />
     <Content Include="Global.asax" />
     <Content Include="Protected\StaffPage.aspx" />
-    <None Include="App_Data\TicketSchema.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\CaptchaService\Service.wsdl" />
     <None Include="Connected Services\CaptchaService\Service.xsd">
       <SubType>Designer</SubType>
@@ -163,7 +175,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="App_Data\TicketsDatabase.xml" />
     <Content Include="CaptchaImage.ascx" />
     <Content Include="ImageProcess.aspx">
       <BrowseToURL>~/ImageProcess.aspx</BrowseToURL>
@@ -258,13 +269,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference1\Service1.wsdl" />
-    <None Include="Connected Services\ServiceReference1\Service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiceReference1\Service11.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\ServiceReference2\Service1.wsdl" />
     <None Include="Connected Services\ServiceReference2\Service1.xsd">
       <SubType>Designer</SubType>
@@ -293,6 +297,7 @@
     <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference2\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

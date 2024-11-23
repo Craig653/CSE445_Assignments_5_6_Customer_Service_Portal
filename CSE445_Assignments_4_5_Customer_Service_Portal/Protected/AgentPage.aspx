@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgentPage.aspx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.StaffPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgentPage.aspx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.AgentPage" %>
 
 <!DOCTYPE html>
 

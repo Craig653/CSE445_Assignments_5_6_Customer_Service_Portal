@@ -11,7 +11,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
 
 
-    public partial class StaffPage
+    public partial class AgentPage
     {
 
         /// <summary>
