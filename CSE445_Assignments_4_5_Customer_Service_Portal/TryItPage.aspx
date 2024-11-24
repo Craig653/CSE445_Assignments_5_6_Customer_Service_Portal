@@ -79,6 +79,7 @@
         <br />
         <br />
         <br />
+                    <hr />
         Image Recognizer Groq: (WSDL)<br />
         </strong><span class="auto-style2">This service is connected to Groq Visualizer. Using the llama-3.2-11b-vision-preview model. More details can be found at <a href="https://console.groq.com/docs/vision">https://console.groq.com/docs/vision</a>
         <br />
@@ -99,6 +100,7 @@
         <asp:Label ID="lblImageGroq" runat="server" Visible="False"></asp:Label>
         </span>
         <br />
+                <hr />
         <h3>Local Component 1 - Captcha Generator</h3>
         <p class="auto-style2">
             This Service connects to ASU&#39;s string image generator. This will be used to validate people are not robots upon creating a password.</p>
