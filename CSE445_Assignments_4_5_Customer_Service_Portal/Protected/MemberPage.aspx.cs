@@ -24,16 +24,23 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 username = userCookie.Value.ToString();
                 username = username.Split('=')[1];
+
+                string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"" + username + "\"]]";
+
+                //Craig's Code to force a Tree Reload
+                TreeView1.DataSourceID = "";
+                TreeView1.DataSourceID = "XmlDataSource1";
+
+                XmlDataSource1.XPath = xpath;
+
+                lblSubmitStatus.Visible = false;
             }
-            string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"" + username + "\"]]";
-
-            //Craig's Code to force a Tree Reload
-            TreeView1.DataSourceID = "";
-            TreeView1.DataSourceID = "XmlDataSource1";
-
-            XmlDataSource1.XPath = xpath;
-
-            lblSubmitStatus.Visible = false;
+            else
+            {
+                lblNoCookie.Text = "Error don't have cookies Enabled, I don't know your username. Default Username is CUSTOMER, or you can set a cookie in the try it page under cookie setter.\n Assignment 6 will set cookies upon login.";
+                TreeView1.DataSourceID = "";
+                return;
+            }
         }
 
         protected void btnLoginStaff_Click(object sender, EventArgs e)
