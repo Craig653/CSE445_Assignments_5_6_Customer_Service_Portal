@@ -27,7 +27,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
             string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"" + username + "\"]]";
 
+            //Craig's Code to force a Tree Reload
+            TreeView1.DataSourceID = "";
+            TreeView1.DataSourceID = "XmlDataSource1";
+
             XmlDataSource1.XPath = xpath;
+
+            lblSubmitStatus.Visible = false;
         }
 
         protected void btnLoginStaff_Click(object sender, EventArgs e)
@@ -69,6 +75,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         {
             if (txtIssueBox.Value.Length > 0 && FileUpload2.HasFile)
             {
+                lblSubmitStatus.Visible = false;
                 string filename = FileUpload2.FileName;
                 string img = "";
 
@@ -179,10 +186,16 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 root.AppendChild(Ticket);
 
                 doc.Save(path);
+
+
+                lblSubmitStatus.Visible = true;
+                lblSubmitStatus.Text = "Submitted Successfully";
+
+
             }
             else
             {
-                lblSubmitStatus.Visible = false;
+                lblSubmitStatus.Visible = true;
                 lblSubmitStatus.Text = "Missing Required information to submit a ticket";
             }
         }

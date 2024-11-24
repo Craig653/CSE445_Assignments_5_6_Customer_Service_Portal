@@ -52,9 +52,11 @@
 
     <form id="form1" runat="server" style="margin: 20px;">
 
-        <h2>Create a Ticket
-            <asp:Label ID="lblSubmitStatus" runat="server"></asp:Label>
-        </h2>
+        <h2>Create a Ticket</h2>
+        <p>
+            <asp:Label ID="lblSubmitStatus" runat="server" style="color: #FF3300"></asp:Label>
+        </p>
+        
 
         <div>
           <label for="txtIssueBox" class="form-label mt-4">Input Issue</label>
@@ -69,8 +71,11 @@
 
     <hr />
 
-    <h2>Your Tickets<h2>&nbsp;
-        <asp:Label ID="lblNoCookie" runat="server" style="color: #FF3300"></asp:Label>
+    <h2>Your Tickets
+        
+        <h2>&nbsp;
+            <p><asp:Label ID="lblNoCookie" runat="server" style="color: #FF3300"></asp:Label></p>
+
         <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" ImageSet="Simple" NodeIndent="10" Width="367px">
             <DataBindings>
                 <asp:TreeNodeBinding DataMember="TicketNumber" Depth="1" FormatString="TicketNumber: {0}" SelectAction="None" TextField="#InnerText" ValueField="#InnerText" />
