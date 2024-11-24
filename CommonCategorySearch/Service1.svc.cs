@@ -18,8 +18,8 @@ namespace CommonCategorySearch
             try
             {
                 // Load the XML document from the App_Data folder
-                string filePath = HostingEnvironment.MapPath("~/App_Data/TicketsDatabase.xml");
-                filePath = Path.Combine(HttpRuntime.AppDomainAppPath);
+                //string filePath = HostingEnvironment.MapPath("~/App_Data/TicketsDatabase.xml");
+                string filePath = Path.Combine(HttpRuntime.AppDomainAppPath);
                 filePath = filePath.Replace("CommonCategorySearch", "CSE445_Assignments_4_5_Customer_Service_Portal") + "/App_Data/TicketsDatabase.xml";
 
                 // Load the XML document using XDocument

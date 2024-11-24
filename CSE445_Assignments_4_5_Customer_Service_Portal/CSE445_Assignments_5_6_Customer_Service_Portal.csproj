@@ -155,7 +155,10 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="App_Data\CredentialsDatabase.xml" />
+    <Content Include="App_Data\Member.xml" />
+    <Content Include="App_Data\Staff.xml" />
     <Content Include="App_Data\TicketsDatabase.xml" />
+    <Content Include="App_Data\Agent.xml" />
     <Content Include="Global.asax" />
     <Content Include="Protected\StaffPage.aspx" />
     <None Include="Connected Services\CaptchaService\Service.wsdl" />
