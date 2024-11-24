@@ -7,42 +7,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <style type="text/css">
-
-        .auto-style2 {
-            background-color: #000099;
-        }
-        .auto-style3 {
-            height: 36px;
-            color: #FFFFFF;
-            background-color: #000099;
-        }
-        #form1 {
-            background-color: #FFFFFF;
-        }
-        #LoginForm {
-            background-color: #FFFFFF;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, intial-scale=1, shrink-to-fit= no" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
 </head>
 <body>
-    <form id="LoginForm" runat="server">
-        <div>
-            <h1 class="auto-style3"><span class="auto-style2">Login Page&nbsp;&nbsp;&nbsp; <asp:Button ID="btnDefault" runat="server" OnClick="btnDefault_Click" Text="Default Page" />
-                </span></h1>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+        <a class="navbar-brand">Customer Service App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link " id="btnDefault" runat="server" onserverclick="btnDefault_Click">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="btnMemberLogin" runat="server" onserverclick="btnLoginMember_Click">Member</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="btnLoginAgent" runat="server" onserverclick="btnLoginAgent_Click">Agent</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="btnLoginStaff" runat="server" onserverclick="btnLoginStaff_Click">Staff</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="btnTryIt" runat="server" onserverclick="btnTryIt_Click">TryIt Page</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">Component Table</a>
+            </li>
+            </ul>
         </div>
+        <div class="pull-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a class="nav-link active" id="Login" runat="server" onserverclick="btnTryIt_Click">Login</a>
+                </li>
+            </ul>     
+        </div> 
+        </div>
+    </nav>
+
+    <form id="LoginForm" runat="server" style="margin: 20px;">
+
         <h2>Welcome Please Login </h2>
-        <p>
-            Username:&nbsp;
-            <asp:TextBox ID="txtbxUsername" runat="server"></asp:TextBox>
-        </p>
-        <p>
-            Password:
-            <asp:TextBox ID="txtbxPassword" runat="server"></asp:TextBox>
-        </p>
-        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
-&nbsp;
-        <asp:Button ID="btnShowCreate" runat="server" OnClick="btnShowCreate_Click" Text="Create New Account" />
+
+        <div>
+          <label for="txtbxUsername" class="form-label mt-4 w-25">Username</label>
+          <input type="text" class="form-control w-25" id="txtbxUsername" aria-describedby="txtbxUsername" placeholder="Enter Username" runat="server"/>
+        </div>
+        <div>
+          <label for="txtbxPassword" class="form-label mt-4 w-25">Password</label>
+          <input type="password" class="form-control w-25" id="txtbxPassword" placeholder="Password" autocomplete="off" runat="server"/>
+        </div>
+        <br />
+
+        <button type="button" class="btn btn-primary" id="btnLogin" runat="server" onserverclick="btnLogin_Click">Login</button>
+        &nbsp;
+        <button type="button" class="btn btn-primary" id="btnShowCreate" runat="server" onserverclick="btnShowCreate_Click">Create New Account</button>
         <br />
         <asp:Label ID="lblAuthentication" runat="server"></asp:Label>
         <br />
@@ -50,25 +75,25 @@
 
         <asp:Panel ID="Panel1" runat="server">
             <h2><strong>Create an Account</strong></h2>
-            <p>
-                Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
-            </p>
-            <p>
-                Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
-            </p>
-            <p>
-                Confirm Password:&nbsp;
-                <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
-            </p>
+            <div>
+              <label for="txtbxUsername1" class="form-label mt-4 w-25">Username</label>
+              <input type="text" class="form-control w-25" id="txtbxUsername1" aria-describedby="txtbxUsername1" placeholder="Enter Username" runat="server"/>
+            </div>
+            <div>
+              <label for="txtbxPassword" class="form-label mt-4 w-25">Password</label>
+              <input type="password" class="form-control w-25" id="Password1" placeholder="Password" autocomplete="off" runat="server"/>
+            </div>
+
+            <br />
+
             <cse:Captcha runat ="server" ID="Captcha1"/>
-            <p>
-                <asp:Button ID="btnCreate" runat="server" Text="Create Account" />
-            </p>
+
+            <br />
+
+            <button type="button" class="btn btn-primary" id="btnCreate" runat="server">Create Account</button>
+
             <hr />
-            <p>
-                &nbsp;</p>
+
         </asp:Panel>
     </form>
     <p>

@@ -16,6 +16,29 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         {
             Panel1.Visible = false;
         }
+        protected void btnLoginStaff_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Protected/StaffPage.aspx");
+        }
+
+        protected void btnLoginMember_Click(object sender, EventArgs e)
+        {
+            //check login cookies and database
+            //Server.Transfer("LoginPage.aspx");
+            Response.Redirect("Protected/MemberPage.aspx");
+        }
+
+        protected void btnLoginAgent_Click(object sender, EventArgs e)
+        {
+            //check login cookies and database
+            //Server.Transfer("LoginPage.aspx");
+            Response.Redirect("Protected/AgentPage.aspx");
+        }
+
+        protected void btnTryIt_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("TryItPage.aspx");
+        }
 
         protected void btnDefault_Click(object sender, EventArgs e)
         {
@@ -29,12 +52,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (myAuthenticate(txtbxUsername.Text, txtbxPassword.Text))
-                FormsAuthentication.RedirectFromLoginPage(txtbxUsername.Text, true);
+            if (myAuthenticate(txtbxUsername.Value, txtbxPassword.Value))
+                FormsAuthentication.RedirectFromLoginPage(txtbxUsername.Value, true);
                 //Response.Redirect("Protected/MemberPage.aspx");
             else
                 lblAuthentication.Text = "Invalid login";
         }
+
 
         protected bool myAuthenticate(string username, string password)
         {

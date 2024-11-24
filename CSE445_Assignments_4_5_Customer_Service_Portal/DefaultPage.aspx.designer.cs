@@ -15,22 +15,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
 
         /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
         /// btnMemberLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMemberLogin;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnMemberLogin;
 
         /// <summary>
         /// btnLoginAgent control.
@@ -39,7 +30,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLoginAgent;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnLoginAgent;
 
         /// <summary>
         /// btnLoginStaff control.
@@ -48,7 +39,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLoginStaff;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnLoginStaff;
 
         /// <summary>
         /// btnTryIt control.
@@ -57,6 +48,24 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTryIt;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnTryIt;
+
+        /// <summary>
+        /// Login control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor Login;
+
+        /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
     }
 }

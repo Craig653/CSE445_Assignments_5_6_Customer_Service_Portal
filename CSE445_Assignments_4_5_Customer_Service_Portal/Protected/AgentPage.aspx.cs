@@ -52,6 +52,35 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             XmlDataSource1.XPath = xpath;
         }
 
+        protected void btnLoginStaff_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Protected/StaffPage.aspx");
+        }
+
+        protected void btnLoginMember_Click(object sender, EventArgs e)
+        {
+            //check login cookies and database
+            //Server.Transfer("LoginPage.aspx");
+            Response.Redirect("Protected/MemberPage.aspx");
+        }
+
+        protected void btnLoginAgent_Click(object sender, EventArgs e)
+        {
+            //check login cookies and database
+            //Server.Transfer("LoginPage.aspx");
+            Response.Redirect("Protected/AgentPage.aspx");
+        }
+
+        protected void btnTryIt_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../TryItPage.aspx");
+        }
+
+        protected void btnDefault_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../DefaultPage.aspx");
+        }
+
         //Craig's Ticket Loading
         protected void lblLoadTicket_Click(object sender, EventArgs e)
         {
@@ -100,7 +129,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
 
 
-        //Crai'gs Analyze the Ticket Description using GROQ AI
+        //Craigs Analyze the Ticket Description using GROQ AI
        
         protected void btnAnzDesc_Click(object sender, EventArgs e)
         {

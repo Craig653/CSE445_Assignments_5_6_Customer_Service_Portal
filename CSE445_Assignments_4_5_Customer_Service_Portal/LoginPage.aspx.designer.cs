@@ -15,6 +15,60 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
 
         /// <summary>
+        /// btnDefault control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnDefault;
+
+        /// <summary>
+        /// btnMemberLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnMemberLogin;
+
+        /// <summary>
+        /// btnLoginAgent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnLoginAgent;
+
+        /// <summary>
+        /// btnLoginStaff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnLoginStaff;
+
+        /// <summary>
+        /// btnTryIt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnTryIt;
+
+        /// <summary>
+        /// Login control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor Login;
+
+        /// <summary>
         /// LoginForm control.
         /// </summary>
         /// <remarks>
@@ -24,22 +78,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected global::System.Web.UI.HtmlControls.HtmlForm LoginForm;
 
         /// <summary>
-        /// btnDefault control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDefault;
-
-        /// <summary>
         /// txtbxUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbxUsername;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtbxUsername;
 
         /// <summary>
         /// txtbxPassword control.
@@ -48,7 +93,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbxPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtbxPassword;
 
         /// <summary>
         /// btnLogin control.
@@ -57,7 +102,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnLogin;
 
         /// <summary>
         /// btnShowCreate control.
@@ -66,7 +111,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowCreate;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnShowCreate;
 
         /// <summary>
         /// lblAuthentication control.
@@ -87,31 +132,22 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected global::System.Web.UI.WebControls.Panel Panel1;
 
         /// <summary>
-        /// TextBox3 control.
+        /// txtbxUsername1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtbxUsername1;
 
         /// <summary>
-        /// TextBox4 control.
+        /// Password1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
-
-        /// <summary>
-        /// TextBox5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password1;
 
         /// <summary>
         /// Captcha1 control.
@@ -129,6 +165,6 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreate;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnCreate;
     }
 }
