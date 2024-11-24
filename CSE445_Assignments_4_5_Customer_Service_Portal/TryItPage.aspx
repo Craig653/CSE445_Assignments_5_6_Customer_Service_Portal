@@ -6,35 +6,60 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            color: #FFFFFF;
-        }
-        #form1 {
-            font-weight: 700;
-        }
-        .auto-style2 {
-            font-weight: normal;
-        }
-        .auto-style3 {
-            font-weight: normal;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, intial-scale=1, shrink-to-fit= no" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/bootstrap.bundle.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div class="auto-style1" style="background-color: #000099">
-            <h1>Try it Page&nbsp;
-                <asp:Button ID="btnDefaultPage" runat="server" OnClick="btnDefaultPage_Click" Text="Default Page" />
-            </h1>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+        <a class="navbar-brand">Customer Service App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link" id="btnDefault" runat="server" onserverclick="btnDefault_Click">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " id="btnMemberLogin" runat="server" onserverclick="btnLoginMember_Click">Member</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " id="btnLoginAgent" runat="server" onserverclick="btnLoginAgent_Click">Agent</a>
+                <span class="visually-hidden">(current)</span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="btnLoginStaff" runat="server" onserverclick="btnLoginStaff_Click">Staff</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" id="btnTryIt" runat="server" onserverclick="btnTryIt_Click">TryIt Page</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" id="btnComponentTable" runat="server" onserverclick="btnComponentTable_Click">Component Table</a>
+            </li>
+            </ul>
         </div>
+        <div class="pull-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a class="nav-link" id="Login" runat="server" onserverclick="btnTryIt_Click">Login</a>
+                </li>
+            </ul>     
+        </div> 
+        </div>
+    </nav>
+
+    <form id="form1" runat="server" style="margin: 20px;">
+
         <h2><strong>Craig&#39;s Services/Components</strong></h2>
         <h3><strong>Service 1 Groq AI (2 Functions, Chat and Image Recognizer)</strong></h3>
         <strong>AskGroq (REST)</strong><br />
         <span class="auto-style2">This Service is connected to Groq. A Fast AI Inference using the mixtral-8x7b-32768 model. More details can be found at <a href="https://groq.com/">https://groq.com/</a>
         <br />
         This it the <strong>generic chat connection</strong>, it will be used to analyze the description. See the <strong>Agent page</strong> for implementation and try it to tickets database.<br />
-        URL: <a href="http://localhost:63092/Service1.svc">http://localhost:63092/Service1.svc</a> or http://localhost:63092/Service1.svc/AskGroq/{string}</span><br />
+        URL: <a href="http://webstrar10.fulton.asu.edu/page0/Service1.svc">http://webstrar10.fulton.asu.edu/page1/Service1.svc</a>&nbsp; or http://localhost:63092/Service1.svc/AskGroq/{string}</span><br />
         <span class="auto-style2">Method: AskGroq(String)<br />
         Returns String<br />
         </span>
@@ -58,7 +83,7 @@
         </strong><span class="auto-style2">This service is connected to Groq Visualizer. Using the llama-3.2-11b-vision-preview model. More details can be found at <a href="https://console.groq.com/docs/vision">https://console.groq.com/docs/vision</a>
         <br />
         This it the <strong>generic chat connection</strong>, it will be used to analyze the description. See the <strong>Agent page</strong> for implementation and try it to tickets database.<br />
-        URL: <a href="http://localhost:56274/Service1.svc">http://localhost:56274/Service1.svc</a></span><br />
+        URL: </span><a href="http://webstrar10.fulton.asu.edu/page0/Service1.svc">http://webstrar10.fulton.asu.edu/page0/Service1.svc</a> <br />
         <span class="auto-style2">Method: ImgGroq(String image in base64)<br />
         Returns string<br />
         <br />
@@ -130,9 +155,9 @@
             &nbsp;</p>
         <hr />
         <h2><strong>Kiera's Services/Components</strong></h2>
-        <h3><strong>Service 1 - Get Most Common Ticket Category (RESTful Service)</strong></h3>
-        <strong>Get Most Common Ticket Category (REST)</strong><br />
-        <strong>Ticket Processing Service - Get Most Common Category (WCF)</strong><br />
+        <h3><strong>Service 1 - Get Most Common Ticket Category</strong></h3>
+        <strong>Get Most Common Ticket Category</strong><br />
+        <strong>Ticket Processing Service - Get Most Common Category</strong><br />
         <span class="auto-style2">
             This service reads the ticket XML database and finds the most common category of tickets.<br />
             URL: <a href="http://localhost:44360/Service1.svc">http://localhost:44360/Service1.svc</a><br />
@@ -172,6 +197,7 @@
             <asp:Button ID="btnLogout" runat="server" Text="Log Out" OnClick="btnLogout_Click" />
         </asp:Panel>
         </div>
+        <hr />
         <h2><strong>Chris's Services/Components</strong></h2>
         <p>
             Service 1 - Designate Most Common Ticket Category. This WSDL service reads the full XML Tickets Database, reads the &quot;Text&quot; element of this XML file, which is the summary of issue described by the customer, and updates the &quot;Category&quot; attribute with the most common, non-stopword in the the summary. This should ideally be trigerred everytime a user makes a change to the &quot;Text&quot; element in their ticket.</p>
@@ -212,7 +238,7 @@
         <br />
         Some Admin Credentials you can test that were preloaded:<br />
         <br />
-        (&quot;Username&quot;, &quot;Admin&quot;), (&quot;Password&quot;, Cse445!&quot;)<br />
+        (&quot;Username&quot;, &quot;TA&quot;), (&quot;Password&quot;, &quot;Cse445!&quot;)<br />
         <br />
         XML Database is located in &quot;CSE445_Assignments_5_6_Customer_Service_Portal/App_Data/CredentialsDatabase.xml&quot; <p>
             <asp:Label ID="adminUsrNmeLbl" runat="server" Text="Admin Username:"></asp:Label>

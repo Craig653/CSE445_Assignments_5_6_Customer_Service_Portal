@@ -159,6 +159,7 @@
     <Content Include="App_Data\Staff.xml" />
     <Content Include="App_Data\TicketsDatabase.xml" />
     <Content Include="App_Data\Agent.xml" />
+    <Content Include="ComponentTable.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -218,6 +219,13 @@
     </Compile>
     <Compile Include="CaptchaImage.ascx.designer.cs">
       <DependentUpon>CaptchaImage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ComponentTable.aspx.cs">
+      <DependentUpon>ComponentTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ComponentTable.aspx.designer.cs">
+      <DependentUpon>ComponentTable.aspx</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\CaptchaService\Reference.cs">
       <AutoGen>True</AutoGen>

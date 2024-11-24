@@ -15,6 +15,15 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
 
         /// <summary>
+        /// btnDefault control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnDefault;
+
+        /// <summary>
         /// btnMemberLogin control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btnTryIt;
+
+        /// <summary>
+        /// btnComponentTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnComponentTable;
 
         /// <summary>
         /// Login control.

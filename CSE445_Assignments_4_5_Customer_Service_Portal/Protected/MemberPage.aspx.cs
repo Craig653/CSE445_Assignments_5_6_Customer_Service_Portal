@@ -30,12 +30,44 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             XmlDataSource1.XPath = xpath;
         }
 
+        protected void btnLoginStaff_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("StaffPage.aspx");
+        }
+
+        protected void btnLoginMember_Click(object sender, EventArgs e)
+        {
+            //check login cookies and database
+            //Server.Transfer("LoginPage.aspx");
+            Response.Redirect("MemberPage.aspx");
+        }
+
+        protected void btnLoginAgent_Click(object sender, EventArgs e)
+        {
+            //check login cookies and database
+            //Server.Transfer("LoginPage.aspx");
+            Response.Redirect("AgentPage.aspx");
+        }
+
+        protected void btnTryIt_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../TryItPage.aspx");
+        }
+
+        protected void btnDefault_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../DefaultPage.aspx");
+        }
+        protected void btnComponentTable_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../ComponentTable.aspx");
+        }
 
 
         //Craig's Submit TICKET Code
         protected void btnSubmitTicket_Click(object sender, EventArgs e)
         {
-            if(txtIssueBox.Text.Length > 0 && FileUpload2.HasFile)
+            if (txtIssueBox.Value.Length > 0 && FileUpload2.HasFile)
             {
                 string filename = FileUpload2.FileName;
                 string img = "";
@@ -49,7 +81,6 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 else
                 {
                     img = Convert.ToBase64String(FileUpload2.FileBytes);
-
                     ImgGroq.Service1Client proxy = new ImgGroq.Service1Client();
 
                     string jsonStr;
@@ -132,7 +163,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 XmlElement Requester = doc.CreateElement("RequestingUsername");
                 Requester.InnerText = username;
                 XmlElement Text = doc.CreateElement("Text");
-                Text.InnerText = txtIssueBox.Text;
+                Text.InnerText = txtIssueBox.Value;
                 XmlElement Image = doc.CreateElement("Image");
                 Image.InnerText = img;
                 XmlElement Status = doc.CreateElement("Status");
@@ -156,10 +187,5 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
-        protected void lblLogout_Click(object sender, EventArgs e)
-        {
-            //Todo Add logic to logout here
-            Response.Redirect("../DefaultPage.aspx");
-        }
     }
 }

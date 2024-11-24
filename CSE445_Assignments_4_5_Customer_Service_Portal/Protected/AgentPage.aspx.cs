@@ -54,21 +54,21 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Protected/StaffPage.aspx");
+            Response.Redirect("StaffPage.aspx");
         }
 
         protected void btnLoginMember_Click(object sender, EventArgs e)
         {
             //check login cookies and database
             //Server.Transfer("LoginPage.aspx");
-            Response.Redirect("Protected/MemberPage.aspx");
+            Response.Redirect("MemberPage.aspx");
         }
 
         protected void btnLoginAgent_Click(object sender, EventArgs e)
         {
             //check login cookies and database
             //Server.Transfer("LoginPage.aspx");
-            Response.Redirect("Protected/AgentPage.aspx");
+            Response.Redirect("AgentPage.aspx");
         }
 
         protected void btnTryIt_Click(object sender, EventArgs e)
@@ -79,6 +79,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected void btnDefault_Click(object sender, EventArgs e)
         {
             Response.Redirect("../DefaultPage.aspx");
+        }
+        protected void btnComponentTable_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../ComponentTable.aspx");
         }
 
         //Craig's Ticket Loading

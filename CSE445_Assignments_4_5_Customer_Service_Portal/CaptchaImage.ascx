@@ -1,4 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CaptchaImage.ascx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.CaptchaImage" %>
+
+
 <style type="text/css">
 
         .auto-style2 {

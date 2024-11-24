@@ -36,7 +36,7 @@
                 <a class="nav-link" id="btnTryIt" runat="server" onserverclick="btnTryIt_Click">TryIt Page</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">Component Table</a>
+                  <a class="nav-link" id="btnComponentTable" runat="server" onserverclick="btnComponentTable_Click">Component Table</a>
             </li>
             </ul>
         </div>

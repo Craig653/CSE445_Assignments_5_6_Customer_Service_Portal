@@ -90,6 +90,34 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+        protected void btnLoginStaff_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Protected/StaffPage.aspx");
+        }
+
+        protected void btnLoginMember_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Protected/MemberPage.aspx");
+        }
+
+        protected void btnLoginAgent_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Protected/AgentPage.aspx");
+        }
+
+        protected void btnTryIt_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("TryItPage.aspx");
+        }
+        protected void btnComponentTable_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ComponentTable.aspx");
+        }
+        protected void btnDefault_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DefaultPage.aspx");
+        }
+
 
         //Craig's Service 1.1: Ask Groq, ask groq any question. Its an AI chat bot. This will ball the REST API ASK groq. Then return a string reply
         //Start AskGroq service to use this
