@@ -108,7 +108,7 @@
             <asp:Button ID="btnSetInProgress" runat="server" Enabled="False" Text="InProgress" Width="80px" OnClick="btnSetInProgress_Click" />
           </p>
           <p>
-            <asp:Label ID="lblStatusUpdate" runat="server"></asp:Label>
+            <asp:Label ID="lblStatusUpdate" runat="server" style="color: #FF3300"></asp:Label>
           </p>
           <hr />
           <h2>

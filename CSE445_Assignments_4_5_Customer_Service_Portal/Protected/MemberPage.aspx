@@ -71,10 +71,12 @@
 
     <hr />
 
-    <h2>Your Tickets
+        <p><asp:Label ID="lblNoCookie" runat="server" style="color: #FF3300"></asp:Label>
         
-        <h2>&nbsp;
-            <p><asp:Label ID="lblNoCookie" runat="server" style="color: #FF3300"></asp:Label></p>
+        </p>
+        <h2>Your Tickets
+        
+        </h2>
 
         <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" ImageSet="Simple" NodeIndent="10" Width="367px">
             <DataBindings>
