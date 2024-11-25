@@ -85,7 +85,9 @@ namespace Serv1Serv14Compare
         public bool MostCommon() // compare if a given URL has been used by both Service 1 and Service 14
         {
             string localDir = HttpContext.Current.Server.MapPath("~/App_Data/"); // path to folder
-            string localFile = Path.Combine(localDir, "TicketsDatabase.xml"); // path to file
+            //string localFile = Path.Combine(localDir, "TicketsDatabase.xml"); // path to file
+            string localFile = Path.Combine(HttpRuntime.AppDomainAppPath);
+            localFile = localFile.Replace("CommonCategorySearch", "CSE445_Assignments_4_5_Customer_Service_Portal") + "/App_Data/TicketsDatabase.xml";
 
             // Ensure the directory exists
             if (!Directory.Exists(localDir))

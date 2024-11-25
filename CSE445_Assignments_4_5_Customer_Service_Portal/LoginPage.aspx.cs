@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -75,6 +76,25 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     // use hash function if the credential is hashed
                     // check if the username and password exist in the XML file;
 
+                }
+            }
+
+
+            HttpCookie mycookies = Request.Cookies["Username"];
+
+            if (txtbxUsername.Value.Length > 0)
+            {
+                if ((mycookies == null) || mycookies["Username"] == "")
+                {
+                    HttpCookie newCookies = new HttpCookie("Username");
+                    newCookies["Username"] = txtbxUsername.Value;
+                    newCookies.Expires = DateTime.Now.AddMonths(6);
+                    Response.Cookies.Add(newCookies);
+                }
+                else
+                {
+                    mycookies["Username"] = txtbxUsername.Value;
+                    Response.Cookies.Add(mycookies);
                 }
             }
 

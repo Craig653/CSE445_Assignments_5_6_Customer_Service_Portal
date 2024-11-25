@@ -50,7 +50,8 @@
           </div>
         </nav>
         <form id="form1" runat="server" style="margin: 20px;">
-        <h2><strong>Welcome to the Customer Service App</strong></h2>
+        <h2 ><strong>Welcome to the Customer Service App</strong></h2>
+
         <p>
             <strong>Summary</strong></p>
         <p>
