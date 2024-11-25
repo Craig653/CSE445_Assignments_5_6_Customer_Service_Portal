@@ -80,7 +80,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
 
 
+            //Todo get account type here
+            string accountType = "Staff";
+
             HttpCookie mycookies = Request.Cookies["Username"];
+            HttpCookie mycookiesType = Request.Cookies["Type"];
 
             if (txtbxUsername.Value.Length > 0)
             {
@@ -96,6 +100,21 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     mycookies["Username"] = txtbxUsername.Value;
                     Response.Cookies.Add(mycookies);
                 }
+
+                if ((mycookiesType == null) || mycookiesType["Type"] == "")
+                {
+                    HttpCookie newType = new HttpCookie("Type");
+                    newType["Type"] = accountType;
+                    newType.Expires = DateTime.Now.AddMonths(6);
+                    Response.Cookies.Add(newType);
+                }
+                else
+                {
+                    mycookiesType["Type"] = accountType;
+                    Response.Cookies.Add(mycookiesType);
+                }
+
+
             }
 
             return true;

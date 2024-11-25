@@ -5,6 +5,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text.Json;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -18,10 +19,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         {
 
             //Craig's Get username cookie on Load
-            string username = "";
             HttpCookie userCookie = Request.Cookies["Username"];
             if ((userCookie != null))
             {
+                string username = "";
                 username = userCookie.Value.ToString();
                 username = username.Split('=')[1];
 
@@ -76,7 +77,30 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             Response.Redirect("../ComponentTable.aspx");
         }
 
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            //Craig's Get username cookie on Load
+            HttpCookie userCookie = Request.Cookies["Username"];
+            if ((userCookie != null))
+            {
+                HttpCookie delCookie = new HttpCookie("Username");
+                delCookie.Expires = DateTime.Now.AddMonths(-10);
+                delCookie.Value = null;
+                Response.Cookies.Add(delCookie);
+                HttpContext.Current.Request.Cookies.Clear();
 
+                delCookie = new HttpCookie("Type");
+                delCookie.Expires = DateTime.Now.AddMonths(-10);
+                delCookie.Value = null;
+                Response.Cookies.Add(delCookie);
+                HttpContext.Current.Request.Cookies.Clear();
+
+                FormsAuthentication.SignOut();
+                Server.Transfer("../DefaultPage.aspx");
+            }
+        }
+
+        
         //Craig's Submit TICKET Code
         protected void btnSubmitTicket_Click(object sender, EventArgs e)
         {
@@ -153,8 +177,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 }
                 else
                 {
-                    lblNoCookie.Text = "Error don't have cookies Enabled, I don't know your username. Default Username is CUSTOMER, or you can set a cookie in the try it page under cookie setter.\n Assignment 6 will set cookies upon login.";
-                    username = "CUSTOMER";
+                    lblNoCookie.Text = "Error don't have cookies enabled! This app requires cookies";
                     return;
                 }
 

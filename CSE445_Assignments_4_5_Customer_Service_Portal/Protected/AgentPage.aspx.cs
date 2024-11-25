@@ -14,6 +14,7 @@ using System.Text.Json;
 using System.Net;
 using System.Runtime.Serialization;
 using System.Security.Claims;
+using System.Web.Security;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -83,6 +84,29 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected void btnComponentTable_Click(object sender, EventArgs e)
         {
             Response.Redirect("../ComponentTable.aspx");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            //Craig's Get username cookie on Load
+            HttpCookie userCookie = Request.Cookies["Username"];
+            if ((userCookie != null))
+            {
+                HttpCookie delCookie = new HttpCookie("Username");
+                delCookie.Expires = DateTime.Now.AddMonths(-10);
+                delCookie.Value = null;
+                Response.Cookies.Add(delCookie);
+                HttpContext.Current.Request.Cookies.Clear();
+
+                delCookie = new HttpCookie("Type");
+                delCookie.Expires = DateTime.Now.AddMonths(-10);
+                delCookie.Value = null;
+                Response.Cookies.Add(delCookie);
+                HttpContext.Current.Request.Cookies.Clear();
+
+                FormsAuthentication.SignOut();
+                Server.Transfer("../DefaultPage.aspx");
+            }
         }
 
         //Craig's Ticket Loading

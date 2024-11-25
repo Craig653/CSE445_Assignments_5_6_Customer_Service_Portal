@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StaffPage.aspx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.WebForm4" %>
+﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="StaffPage.aspx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.WebForm4" %>
 
 <!DOCTYPE html>
 
@@ -43,7 +43,7 @@
         <div class="pull-right">
             <ul class="nav navbar-nav">
                 <li>
-                    <a class="nav-link" id="Login" runat="server" onserverclick="btnTryIt_Click">Login</a>
+                    <a class="nav-link" id="Login" runat="server" onserverclick="btnLogout_Click">Logout</a>
                 </li>
             </ul>     
         </div> 

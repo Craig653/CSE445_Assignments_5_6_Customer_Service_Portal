@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.ServiceModel.Security;
 using LocalHash;
 using System.Xml.Linq;
+using System.Web.Security;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -20,13 +21,19 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            HttpCookie userCookie = Request.Cookies["Username"];
+            if ((userCookie != null))
+            {
+                Login.InnerText = "Logout";
+            }
+
             // usernames harcoded in this function, then hashed and stored in XML file
             PreCreateHashes();
             CheckForAutomaticLogin();
             //Craig's Tree view filtering used in conjuction with the username cookie
             string username = "";
             string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"\"]]";
-            HttpCookie userCookie = Request.Cookies["Username"];
+            userCookie = Request.Cookies["Username"];
             if ((userCookie != null))
             {
                 username = userCookie.Value.ToString();
@@ -118,6 +125,32 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             Response.Redirect("DefaultPage.aspx");
         }
 
+        protected void btnLoginOut_Click(object sender, EventArgs e)
+        {
+            //Craig's Get username cookie on Load
+            HttpCookie userCookie = Request.Cookies["Username"];
+            if ((userCookie != null))
+            {
+                HttpCookie delCookie = new HttpCookie("Username");
+                delCookie.Expires = DateTime.Now.AddMonths(-10);
+                delCookie.Value = null;
+                Response.Cookies.Add(delCookie);
+                HttpContext.Current.Request.Cookies.Clear();
+
+                delCookie = new HttpCookie("Type");
+                delCookie.Expires = DateTime.Now.AddMonths(-10);
+                delCookie.Value = null;
+                Response.Cookies.Add(delCookie);
+                HttpContext.Current.Request.Cookies.Clear();
+
+                FormsAuthentication.SignOut();
+                Server.Transfer("DefaultPage.aspx");
+            }
+            else
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
+        }
 
         //Craig's Service 1.1: Ask Groq, ask groq any question. Its an AI chat bot. This will ball the REST API ASK groq. Then return a string reply
         //Start AskGroq service to use this

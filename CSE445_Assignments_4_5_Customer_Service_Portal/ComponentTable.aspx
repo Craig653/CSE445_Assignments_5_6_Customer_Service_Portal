@@ -42,7 +42,7 @@
         <div class="pull-right">
             <ul class="nav navbar-nav">
                 <li>
-                    <a class="nav-link" id="Login" runat="server" onserverclick="btnTryIt_Click">Login</a>
+                    <a class="nav-link" id="Login" runat="server" onserverclick="btnLoginOut_Click">Login</a>
                 </li>
             </ul>     
         </div> 
