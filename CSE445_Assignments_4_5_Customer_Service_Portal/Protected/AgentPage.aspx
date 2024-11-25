@@ -63,7 +63,7 @@
       <p> Most Common Category of Ticket: <asp:Label ID="lblCommonCat" runat="server"></asp:Label>
       </p>
       <hr />
-      <h2>Ticket Tool</h2>
+      <h2><strong>Ticket Tool</strong></h2>
       <p> Enter a Ticket Number:&nbsp; <asp:TextBox ID="txtLoadTicket" runat="server" style="margin-top: 4px"></asp:TextBox> &nbsp;
         <asp:Button ID="lblLoadTicket" runat="server" OnClick="lblLoadTicket_Click" Text="Load Ticket" /> &nbsp; <asp:Label ID="lblTicketToolStatus" runat="server"></asp:Label>
       </p>

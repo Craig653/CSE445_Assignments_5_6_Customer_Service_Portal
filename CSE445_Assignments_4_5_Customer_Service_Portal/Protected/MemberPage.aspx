@@ -52,7 +52,7 @@
 
     <form id="form1" runat="server" style="margin: 20px;">
 
-        <h2>Create a Ticket</h2>
+        <h2><strong>Create a Ticket</strong></h2>
         <p>
             <asp:Label ID="lblSubmitStatus" runat="server" style="color: #FF3300"></asp:Label>
         </p>
@@ -74,7 +74,9 @@
         <p><asp:Label ID="lblNoCookie" runat="server" style="color: #FF3300"></asp:Label>
         
         </p>
-        <h2>Your Tickets
+        <h2><strong>Your Tickets
+        
+        </strong>
         
         </h2>
 

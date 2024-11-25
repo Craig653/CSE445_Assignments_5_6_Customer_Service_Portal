@@ -54,8 +54,8 @@
     <form id="form1" runat="server" style="margin: 20px;">
 
         <h2><strong>Craig&#39;s Services/Components</strong></h2>
-        <h3><strong>Service 1 Groq AI (2 Functions, Chat and Image Recognizer)</strong></h3>
-        <strong>AskGroq (REST)</strong><br />
+        <strong>Service 1 Groq AI (2 Functions, Chat and Image Recognizer)<br />
+        AskGroq (REST)</strong><br />
         <span class="auto-style2">This Service is connected to Groq. A Fast AI Inference using the mixtral-8x7b-32768 model. More details can be found at <a href="https://groq.com/">https://groq.com/</a>
         <br />
         This it the <strong>generic chat connection</strong>, it will be used to analyze the description. See the <strong>Agent page</strong> for implementation and try it to tickets database.<br />
