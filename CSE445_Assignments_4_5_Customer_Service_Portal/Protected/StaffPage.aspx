@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeBehind="StaffPage.aspx.cs" Inherits="CSE445_Assignments_4_5_Customer_Service_Portal.WebForm4" %>
-
+<%@ Register src="../CaptchaImage.ascx" tagname="Captcha" tagprefix="cse" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -51,6 +51,80 @@
     </nav>
 
     <form id="form1" runat="server" style="margin: 20px;">
+
+        <h2>Staff Accounts</h2>
+        <p>&nbsp;</p>
+        <h2>Agent Accounts</h2>
+        <p>&nbsp;</p>
+        <h2>Customer Accounts</h2>
+        <p>&nbsp;</p>
+        <hr />
+        <h2>Account Modifier</h2>
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+&nbsp;<asp:Button ID="btnAccount" runat="server" Text="Load" />
+        <br />
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+            <label class="form-check-label" for="optionsRadios1">
+                Staff
+            </label> 
+        </div> 
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+            <label class="form-check-label" for="optionsRadios2">
+                Agent
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+            <label class="form-check-label" for="optionsRadios3">
+                Customer
+            </label>
+        </div> 
+                <hr />
+        <asp:Panel ID="Panel1" runat="server">
+            <h2><strong>Create an Account</strong></h2>
+            <div>
+              <label for="txtbxUsername1" class="form-label mt-4 w-25">Username</label>
+              <input type="text" class="form-control w-25" id="txtbxUsername1" aria-describedby="txtbxUsername1" placeholder="Enter Username" runat="server"/>
+            </div>
+            <div>
+              <label for="txtbxPassword" class="form-label mt-4 w-25">Password</label>
+              <input type="password" class="form-control w-25" id="Password1" placeholder="Password" autocomplete="off" runat="server"/>
+            </div>
+
+            <p>Account Type</p>
+             <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadio1" value="option1" checked="">
+            <label class="form-check-label" for="optionsRadios4">
+                Staff
+            </label> 
+        </div> 
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadio2" value="option2">
+            <label class="form-check-label" for="optionsRadios5">
+                Agent
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadio3" value="option3">
+            <label class="form-check-label" for="optionsRadios6">
+                Customer
+            </label>
+        </div> 
+
+            <br />
+            <br />
+
+            <cse:Captcha runat ="server" ID="Captcha1"/>
+
+            <br />
+
+            <button type="button" class="btn btn-primary" id="btnCreate" runat="server">Create Account</button>
+
+            <hr />
+
+        </asp:Panel>
 
     </form>
 </body>

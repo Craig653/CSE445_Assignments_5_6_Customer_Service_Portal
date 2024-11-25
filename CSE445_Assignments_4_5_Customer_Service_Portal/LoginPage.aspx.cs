@@ -57,7 +57,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 FormsAuthentication.RedirectFromLoginPage(txtbxUsername.Value, true);
                 //Response.Redirect("Protected/MemberPage.aspx");
             else
-                lblAuthentication.Text = "Invalid login";
+                lblAuthentication.Text = "Invalid Login, talk to a Staff member to get access to that page";
         }
 
 
