@@ -42,5 +42,19 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 VerificationLbl.Text = "I am sorry, the string you entered does not match the image. Please try again!";
             }
         }
+
+        public bool validate()
+        {
+            if (Session["generatedString"].Equals(CaptchaEnterTxtBx.Text))
+            {
+                VerificationLbl.Text = "You Entered the Captcha Correctly";
+                return true;
+            }
+            else
+            {
+                VerificationLbl.Text = "I am sorry, the string you entered does not match the image. Please try again!";
+                return false;
+            }
+        }
     }
 }

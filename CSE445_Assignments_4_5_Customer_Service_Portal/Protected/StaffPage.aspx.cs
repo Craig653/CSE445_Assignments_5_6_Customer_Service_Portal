@@ -582,5 +582,88 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             CredentialEncrypt encryptor = new CredentialEncrypt();
             return encryptor.EncryptString(password);
         }
+
+
+        protected void btnCreate_Click(object sender, EventArgs e)
+        {
+            if(Password1.Value == "") // || (txtbxUsername1.Value = "")) // || CaptchaImage.validate() == false)
+            {
+                //create some sort of status here
+            }
+            else
+            {
+                XmlDocument docStaff = new XmlDocument();
+                string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
+                docStaff.Load(pathStaff);
+                XmlNode rootStaff = docStaff.DocumentElement;
+                string xpath1 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+                var myNodeStaff = docStaff.SelectSingleNode(xpath1);
+
+                XmlDocument docAgent = new XmlDocument(); ;
+                string pathAgent = Server.MapPath("~/App_Data/Agent.xml");
+                docAgent.Load(pathAgent);
+                XmlNode rootAgent = docAgent.DocumentElement;
+                string xpath2 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+                var myNodeAgent = docAgent.SelectSingleNode(xpath2);
+
+                XmlDocument docMember = new XmlDocument();
+                string pathMember = Server.MapPath("~/App_Data/Member.xml");
+                docMember.Load(pathMember);
+                XmlNode rootMember = docMember.DocumentElement;
+                string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+                var myNodeMember = docMember.SelectSingleNode(xpath3);
+
+                if (optionsRadio1.Checked)
+                {
+
+                    XmlElement Credentials = docStaff.CreateElement("Credentials");
+                    Credentials.SetAttribute("UserType", "Staff");
+                    XmlElement Username = docStaff.CreateElement("Username");
+                    Username.InnerText = txtbxUsername1.Value;
+                    XmlElement Password = docStaff.CreateElement("Password");
+                    Password.InnerText = EncryptPassword(Password1.Value);
+
+                    Credentials.AppendChild(Username);
+                    Credentials.AppendChild(Password);
+
+                    rootStaff.AppendChild(Credentials);
+
+                    docStaff.Save(pathStaff);
+
+                }
+                else if (optionsRadio2.Checked)
+                {
+                    XmlElement Credentials = docAgent.CreateElement("Credentials");
+                    Credentials.SetAttribute("UserType", "Agent");
+                    XmlElement Username = docAgent.CreateElement("Username");
+                    Username.InnerText = txtbxUsername1.Value;
+                    XmlElement Password = docAgent.CreateElement("Password");
+                    Password.InnerText = EncryptPassword(Password1.Value);
+
+                    Credentials.AppendChild(Username);
+                    Credentials.AppendChild(Password);
+
+                    rootAgent.AppendChild(Credentials);
+
+                    docAgent.Save(pathAgent);
+                }
+                else if (optionsRadio3.Checked)
+                {
+                    XmlElement Credentials = docMember.CreateElement("Credentials");
+                    Credentials.SetAttribute("UserType", "Member");
+                    XmlElement Username = docMember.CreateElement("Username");
+                    Username.InnerText = txtbxUsername1.Value;
+                    XmlElement Password = docMember.CreateElement("Password");
+                    Password.InnerText = EncryptPassword(Password1.Value);
+
+                    Credentials.AppendChild(Username);
+                    Credentials.AppendChild(Password);
+
+                    rootMember.AppendChild(Credentials);
+
+                    docMember.Save(pathMember);
+                }
+            }
+        }
     }
 }

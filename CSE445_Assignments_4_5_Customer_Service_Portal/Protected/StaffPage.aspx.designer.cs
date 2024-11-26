@@ -285,6 +285,33 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password1;
 
         /// <summary>
+        /// optionsRadio1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton optionsRadio1;
+
+        /// <summary>
+        /// optionsRadio2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton optionsRadio2;
+
+        /// <summary>
+        /// optionsRadio3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton optionsRadio3;
+
+        /// <summary>
         /// Captcha1 control.
         /// </summary>
         /// <remarks>

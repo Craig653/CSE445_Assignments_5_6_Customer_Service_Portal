@@ -115,19 +115,19 @@
 
             <p>Account Type</p>
              <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadio1" value="option1" checked="">
+            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadio1" value="option1" runat="server" checked="">
             <label class="form-check-label" for="optionsRadios4">
                 Staff
             </label> 
         </div> 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadio2" value="option2">
+            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadio2" runat="server" value="option2">
             <label class="form-check-label" for="optionsRadios5">
                 Agent
             </label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadio3" value="option3">
+            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadio3" runat="server"  value="option3">
             <label class="form-check-label" for="optionsRadios6">
                 Customer
             </label>
@@ -140,7 +140,7 @@
 
             <br />
 
-            <button type="button" class="btn btn-primary" id="btnCreate" runat="server">Create Account</button>
+            <button type="button" class="btn btn-primary" id="btnCreate" onserverclick="btnCreate_Click" runat="server">Create Account</button>
 
             <hr />
 
