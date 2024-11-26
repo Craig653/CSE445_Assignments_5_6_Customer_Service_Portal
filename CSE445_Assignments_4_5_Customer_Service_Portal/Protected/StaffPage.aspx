@@ -52,12 +52,25 @@
 
     <form id="form1" runat="server" style="margin: 20px;">
 
-        <h2>Staff Accounts</h2>
-        <p>&nbsp;</p>
-        <h2>Agent Accounts</h2>
-        <p>&nbsp;</p>
-        <h2>Customer Accounts</h2>
-        <p>&nbsp;</p>
+
+        <asp:Table ID="Table1" runat="server" class="table">
+            <asp:TableHeaderRow>
+                <asp:TableHeaderCell>Staff Accounts</asp:TableHeaderCell>
+                <asp:TableHeaderCell>Agent Accounts</asp:TableHeaderCell>
+                <asp:TableHeaderCell>Member Accounts</asp:TableHeaderCell>
+            </asp:TableHeaderRow>
+            <asp:TableRow>
+                <asp:TableCell ID="C1"><asp:Label ID="lblStaffList" runat="server"></asp:Label></asp:TableCell>
+                <asp:TableCell ID="C2"><asp:Label ID="lblAgentList" runat="server"></asp:Label></asp:TableCell>
+                <asp:TableCell ID="C3"><asp:Label ID="lblMemberList" runat="server"></asp:Label></asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+        <br />
+
+
+
+
+
         <hr />
         <h2>Account Modifier</h2>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -12,7 +15,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            loadStaffAccounts();
+            loadAgentAccounts();
+            loadMemberAccounts();
+            
         }
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
@@ -67,6 +73,70 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 FormsAuthentication.SignOut();
                 Server.Transfer("../DefaultPage.aspx");
             }
+        }
+
+        protected void loadStaffAccounts()
+        {
+            XmlDocument doc = new XmlDocument();
+            string path2 = HttpRuntime.AppDomainAppPath;
+            string path = Server.MapPath("~/App_Data/Staff.xml");
+            doc.Load(path);
+            string label = "";
+
+            foreach(XmlNode node in doc)
+            {
+                foreach (XmlNode child in node.ChildNodes)
+                {
+                    label += child.FirstChild.FirstChild.Value + "<br/> ";
+
+                }
+
+            }
+            lblStaffList.Text = label;
+
+        }
+
+        protected void loadAgentAccounts()
+        {
+            XmlDocument doc = new XmlDocument();
+            string path2 = HttpRuntime.AppDomainAppPath;
+            string path = Server.MapPath("~/App_Data/Agent.xml");
+            doc.Load(path);
+            string label = "";
+
+            foreach (XmlNode node in doc)
+            {
+                foreach (XmlNode child in node.ChildNodes)
+                {
+                    label += child.FirstChild.FirstChild.Value + "<br/> ";
+
+                }
+
+            }
+
+            lblAgentList.Text = label;
+
+        }
+
+        protected void loadMemberAccounts()
+        {
+            XmlDocument doc = new XmlDocument();
+            string path2 = HttpRuntime.AppDomainAppPath;
+            string path = Server.MapPath("~/App_Data/Member.xml");
+            doc.Load(path);
+            string label = "";
+
+            foreach (XmlNode node in doc)
+            {
+                foreach (XmlNode child in node.ChildNodes)
+                {
+                    label += child.FirstChild.FirstChild.Value + "<br/> ";
+
+                }
+
+            }
+
+            lblMemberList.Text = label;
         }
     }
 }
