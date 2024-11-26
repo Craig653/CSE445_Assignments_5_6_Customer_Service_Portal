@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Xml;
+using LocalHash;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -22,7 +23,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             btnDelete.Enabled = false;
             btnToAgent.Enabled = false;
             btnToMember.Enabled = false;
-            lblModifyStatus.Text = "";
+            TextBox2.Enabled = false;
+            btnNewPass.Enabled = false;
+            TextBox2.Text = "";
             lblAccount.Text = "";
             lblType.Text = "";
 
@@ -149,7 +152,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected void btnAccount_Click(object sender, EventArgs e)
         {
             lblModifyStatus.Text = "";
-            if(TextBox1.Text != "")
+            TextBox2.Text = "";
+            lblPassword.Text = "";
+
+            if (TextBox1.Text != "")
             {
                 XmlDocument docStaff = new XmlDocument();
                 string path = Server.MapPath("~/App_Data/Staff.xml");
@@ -177,6 +183,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     btnDelete.Enabled = true;
                     btnToAgent.Enabled = true;
                     btnToMember.Enabled = true;
+                    TextBox2.Enabled = true;
+                    btnNewPass.Enabled = true;
                 }
                 else if(myNodeAgent != null)
                 {
@@ -186,6 +194,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     btnDelete.Enabled = true;
                     btnToAgent.Enabled = false;
                     btnToMember.Enabled = true;
+                    TextBox2.Enabled = true;
+                    btnNewPass.Enabled = true;
                 }
                 else if(myNodeMember != null)
                 {
@@ -195,6 +205,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     btnDelete.Enabled = true;
                     btnToAgent.Enabled = true;
                     btnToMember.Enabled = false;
+                    TextBox2.Enabled = true;
+                    btnNewPass.Enabled = true;
                 }
                 else
                 {
@@ -509,6 +521,56 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 docMember.Save(pathMember);
                 this.Page_Load(null, null);
             }
+        }
+
+        protected void btnNewPass_Click(object sender, EventArgs e)
+        {
+            XmlDocument docStaff = new XmlDocument();
+            string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
+            docStaff.Load(pathStaff);
+            XmlNode rootStaff = docStaff.DocumentElement;
+            string xpath1 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeStaff = docStaff.SelectSingleNode(xpath1);
+
+            XmlDocument docAgent = new XmlDocument(); ;
+            string pathAgent = Server.MapPath("~/App_Data/Agent.xml");
+            docAgent.Load(pathAgent);
+            XmlNode rootAgent = docAgent.DocumentElement;
+            string xpath2 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeAgent = docAgent.SelectSingleNode(xpath2);
+
+            XmlDocument docMember = new XmlDocument();
+            string pathMember = Server.MapPath("~/App_Data/Member.xml");
+            docMember.Load(pathMember);
+            XmlNode rootMember = docMember.DocumentElement;
+            string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeMember = docMember.SelectSingleNode(xpath3);
+
+            if (myNodeStaff != null)
+            {
+                myNodeStaff.NextSibling.InnerText = EncryptPassword(TextBox2.Text);
+                docStaff.Save(pathStaff);
+            }
+            else if (myNodeAgent != null)
+            {
+                myNodeAgent.NextSibling.InnerText = EncryptPassword(TextBox2.Text);
+                docAgent.Save(pathAgent);
+            }
+            else if (myNodeMember != null)
+            {
+                myNodeMember.NextSibling.InnerText = EncryptPassword(TextBox2.Text);
+                docMember.Save(pathMember);
+            }
+
+            lblPassword.Text = TextBox2.Text;
+            TextBox2.Text = "";
+        }
+
+        //Chris's DLL encryption
+        private string EncryptPassword(string password)
+        {
+            CredentialEncrypt encryptor = new CredentialEncrypt();
+            return encryptor.EncryptString(password);
         }
     }
 }

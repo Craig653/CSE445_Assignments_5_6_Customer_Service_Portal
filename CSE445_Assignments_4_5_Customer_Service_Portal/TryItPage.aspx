@@ -40,14 +40,14 @@
                   <a class="nav-link" id="btnComponentTable" runat="server" onserverclick="btnComponentTable_Click">Component Table</a>
             </li>
             </ul>
-        </div>
-        <div class="pull-right">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a class="nav-link" id="Login" runat="server" onserverclick="btnLoginOut_Click">Login</a>
-                </li>
-            </ul>     
-        </div> 
+                <div class="pull-right">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a class="nav-link" id="Login" runat="server" onserverclick="btnLogout_Click">Logout</a>
+                        </li>
+                    </ul>     
+                </div> 
+            </div>
         </div>
     </nav>
 

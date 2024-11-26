@@ -39,7 +39,7 @@
                   <a class="nav-link" id="btnComponentTable" runat="server" onserverclick="btnComponentTable_Click">Component Table</a>
                 </li>
               </ul>
-            </div>
+
             <div class="pull-right">
               <ul class="nav navbar-nav">
                   <li>
@@ -47,6 +47,7 @@
                   </li>
               </ul>     
             </div> 
+                </div> 
           </div>
         </nav>
         <form id="form1" runat="server" style="margin: 20px;">

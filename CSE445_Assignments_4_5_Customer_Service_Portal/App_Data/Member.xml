@@ -5,11 +5,11 @@
     <Password>RRKtEYjML3BDPDsD9YsAdQ==</Password>
   </Credentials>
   <Credentials UserType="Member">
-    <Username>Craig</Username>
-    <Password>+BKH+koODwAO1G911y7B+Q==</Password>
-  </Credentials>
-  <Credentials UserType="Member">
     <Username>Kiera</Username>
     <Password>pkheO58sgno716FnlU9JeQ==</Password>
+  </Credentials>
+  <Credentials UserType="Staff">
+    <Username>Craig</Username>
+    <Password>4NNdpE0a0dKwajyKkRbZBg==</Password>
   </Credentials>
 </CredentialsDatabase>
