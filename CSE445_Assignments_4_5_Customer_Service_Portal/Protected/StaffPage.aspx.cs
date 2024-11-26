@@ -233,24 +233,32 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             if (myNodeAgent != null)
             {
 
-                XmlElement Credentials = docStaff.CreateElement("Credentials");
-                Credentials.SetAttribute("UserType", "Staff");
-                XmlElement Username = docStaff.CreateElement("Username");
-                Username.InnerText = TextBox1.Text;
-                XmlElement Password = docStaff.CreateElement("Password");
-                Password.InnerText = myNodeAgent.NextSibling.InnerText;
+                if (myNodeAgent.ParentNode.NextSibling == null && myNodeAgent.ParentNode.PreviousSibling == null)
+                {
+                    lblModifyStatus.Text = "Cannot Move User:  " + TextBox1.Text + "  no Agents would be left!";
+                }
+                else
+                {
 
-                Credentials.AppendChild(Username);
-                Credentials.AppendChild(Password);
 
-                rootStaff.AppendChild(Credentials);
+                    XmlElement Credentials = docStaff.CreateElement("Credentials");
+                    Credentials.SetAttribute("UserType", "Staff");
+                    XmlElement Username = docStaff.CreateElement("Username");
+                    Username.InnerText = TextBox1.Text;
+                    XmlElement Password = docStaff.CreateElement("Password");
+                    Password.InnerText = myNodeAgent.NextSibling.InnerText;
 
-                docStaff.Save(pathStaff);
+                    Credentials.AppendChild(Username);
+                    Credentials.AppendChild(Password);
 
-                rootAgent.RemoveChild(myNodeAgent.ParentNode);
-                docAgent.Save(pathAgent);
-                this.Page_Load(null, null);
+                    rootStaff.AppendChild(Credentials);
 
+                    docStaff.Save(pathStaff);
+
+                    rootAgent.RemoveChild(myNodeAgent.ParentNode);
+                    docAgent.Save(pathAgent);
+                    this.Page_Load(null, null);
+                }
 
             }
             else if (myNodeMember != null)
@@ -306,25 +314,32 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
             if (myNodeStaff != null)
             {
+                if (myNodeStaff.ParentNode.NextSibling == null && myNodeStaff.ParentNode.PreviousSibling == null)
+                {
+                    lblModifyStatus.Text = "Cannot Move User:  " + TextBox1.Text + "  no Staff would be left!";
+                }
+                else
+                {
 
-                XmlElement Credentials = docAgent.CreateElement("Credentials");
-                Credentials.SetAttribute("UserType", "Staff");
-                XmlElement Username = docAgent.CreateElement("Username");
-                Username.InnerText = TextBox1.Text;
-                XmlElement Password = docAgent.CreateElement("Password");
-                Password.InnerText = myNodeStaff.NextSibling.InnerText;
+                    XmlElement Credentials = docAgent.CreateElement("Credentials");
+                    Credentials.SetAttribute("UserType", "Staff");
+                    XmlElement Username = docAgent.CreateElement("Username");
+                    Username.InnerText = TextBox1.Text;
+                    XmlElement Password = docAgent.CreateElement("Password");
+                    Password.InnerText = myNodeStaff.NextSibling.InnerText;
 
-                Credentials.AppendChild(Username);
-                Credentials.AppendChild(Password);
+                    Credentials.AppendChild(Username);
+                    Credentials.AppendChild(Password);
 
-                rootAgent.AppendChild(Credentials);
+                    rootAgent.AppendChild(Credentials);
 
-                docAgent.Save(pathAgent);
+                    docAgent.Save(pathAgent);
 
-                rootStaff.RemoveChild(myNodeStaff.ParentNode);
-                docStaff.Save(pathStaff);
-                this.Page_Load(null, null);
+                    rootStaff.RemoveChild(myNodeStaff.ParentNode);
+                    docStaff.Save(pathStaff);
+                    this.Page_Load(null, null);
 
+                }
 
             }
             else if (myNodeMember != null)
@@ -379,46 +394,57 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
             if (myNodeStaff != null)
             {
+                if (myNodeStaff.ParentNode.NextSibling == null && myNodeStaff.ParentNode.PreviousSibling == null)
+                {
+                    lblModifyStatus.Text = "Cannot Move User:  " + TextBox1.Text + "  no Staff would be left!";
+                }
+                else
+                {
+                    XmlElement Credentials = docMember.CreateElement("Credentials");
+                    Credentials.SetAttribute("UserType", "Staff");
+                    XmlElement Username = docMember.CreateElement("Username");
+                    Username.InnerText = TextBox1.Text;
+                    XmlElement Password = docMember.CreateElement("Password");
+                    Password.InnerText = myNodeStaff.NextSibling.InnerText;
 
-                XmlElement Credentials = docMember.CreateElement("Credentials");
-                Credentials.SetAttribute("UserType", "Staff");
-                XmlElement Username = docMember.CreateElement("Username");
-                Username.InnerText = TextBox1.Text;
-                XmlElement Password = docMember.CreateElement("Password");
-                Password.InnerText = myNodeStaff.NextSibling.InnerText;
+                    Credentials.AppendChild(Username);
+                    Credentials.AppendChild(Password);
 
-                Credentials.AppendChild(Username);
-                Credentials.AppendChild(Password);
+                    rootMember.AppendChild(Credentials);
 
-                rootMember.AppendChild(Credentials);
+                    docMember.Save(pathMember);
 
-                docMember.Save(pathMember);
-
-                rootStaff.RemoveChild(myNodeStaff.ParentNode);
-                docStaff.Save(pathStaff);
-                this.Page_Load(null, null);
-
-
+                    rootStaff.RemoveChild(myNodeStaff.ParentNode);
+                    docStaff.Save(pathStaff);
+                    this.Page_Load(null, null);
+                }
             }
             else if (myNodeAgent != null)
             {
-                XmlElement Credentials = docMember.CreateElement("Credentials");
-                Credentials.SetAttribute("UserType", "Staff");
-                XmlElement Username = docMember.CreateElement("Username");
-                Username.InnerText = TextBox1.Text;
-                XmlElement Password = docMember.CreateElement("Password");
-                Password.InnerText = myNodeAgent.NextSibling.InnerText;
+                if (myNodeAgent.ParentNode.NextSibling == null && myNodeAgent.ParentNode.PreviousSibling == null)
+                {
+                    lblModifyStatus.Text = "Cannot Move User:  " + TextBox1.Text + "  no Agents would be left!";
+                }
+                else
+                {
+                    XmlElement Credentials = docMember.CreateElement("Credentials");
+                    Credentials.SetAttribute("UserType", "Staff");
+                    XmlElement Username = docMember.CreateElement("Username");
+                    Username.InnerText = TextBox1.Text;
+                    XmlElement Password = docMember.CreateElement("Password");
+                    Password.InnerText = myNodeAgent.NextSibling.InnerText;
 
-                Credentials.AppendChild(Username);
-                Credentials.AppendChild(Password);
+                    Credentials.AppendChild(Username);
+                    Credentials.AppendChild(Password);
 
-                rootMember.AppendChild(Credentials);
+                    rootMember.AppendChild(Credentials);
 
-                docMember.Save(pathMember);
+                    docMember.Save(pathMember);
 
-                rootAgent.RemoveChild(myNodeAgent.ParentNode);
-                docAgent.Save(pathAgent);
-                this.Page_Load(null, null);
+                    rootAgent.RemoveChild(myNodeAgent.ParentNode);
+                    docAgent.Save(pathAgent);
+                    this.Page_Load(null, null);
+                }
             }
             else
             {
