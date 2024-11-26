@@ -70,30 +70,30 @@
 
 
 
-
         <hr />
         <h2>Account Modifier</h2>
+        Enter Account you would like to Modify:
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-&nbsp;<asp:Button ID="btnAccount" runat="server" Text="Load" />
+&nbsp;<asp:Button ID="btnAccount" runat="server" Text="Load" OnClick="btnAccount_Click" />
+        &nbsp;<asp:Label ID="lblModifyStatus" runat="server" style="color: #FF3300"></asp:Label>
         <br />
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-            <label class="form-check-label" for="optionsRadios1">
-                Staff
-            </label> 
-        </div> 
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-            <label class="form-check-label" for="optionsRadios2">
-                Agent
-            </label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-            <label class="form-check-label" for="optionsRadios3">
-                Customer
-            </label>
-        </div> 
+        <br />
+        Account Name: <asp:Label ID="lblAccount" runat="server"></asp:Label>
+        <br />
+        Current Account Type:
+        <asp:Label ID="lblType" runat="server"></asp:Label>
+        <br />
+        <br />
+        New Account Type<br />
+        <asp:Button ID="btnlToStaff" runat="server" OnClick="btnlToStaff_Click" Text="Staff" />
+&nbsp;<asp:Button ID="btnToAgent" runat="server" OnClick="btnToAgent_Click" Text="Agent" />
+&nbsp;<asp:Button ID="btnToMember" runat="server" OnClick="btnToMember_Click" Text="Member" />
+        <br />
+        <br />
+        Delete Account<br />
+        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+        <br />
+        <br />
                 <hr />
         <asp:Panel ID="Panel1" runat="server">
             <h2><strong>Create an Account</strong></h2>

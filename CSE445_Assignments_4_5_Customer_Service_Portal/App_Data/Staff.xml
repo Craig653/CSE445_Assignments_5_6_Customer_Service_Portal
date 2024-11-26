@@ -1,7 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <CredentialsDatabase>
   <Credentials UserType="Staff">
     <Username>TA</Username>
     <Password>wWHOKNYGomkmJg1ZBgYYog==</Password>
+  </Credentials>
+  <Credentials UserType="Staff">
+    <Username>Keeks</Username>
+    <Password>pkheO58sgno716FnlU9JeQ==</Password>
   </Credentials>
 </CredentialsDatabase>

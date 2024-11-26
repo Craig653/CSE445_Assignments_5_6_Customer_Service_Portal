@@ -18,7 +18,14 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             loadStaffAccounts();
             loadAgentAccounts();
             loadMemberAccounts();
-            
+            btnlToStaff.Enabled = false;
+            btnDelete.Enabled = false;
+            btnToAgent.Enabled = false;
+            btnToMember.Enabled = false;
+            lblModifyStatus.Text = "";
+            lblAccount.Text = "";
+            lblType.Text = "";
+
         }
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
@@ -137,6 +144,337 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
 
             lblMemberList.Text = label;
+        }
+
+        protected void btnAccount_Click(object sender, EventArgs e)
+        {
+            lblModifyStatus.Text = "";
+            if(TextBox1.Text != "")
+            {
+                XmlDocument docStaff = new XmlDocument();
+                string path = Server.MapPath("~/App_Data/Staff.xml");
+                docStaff.Load(path);
+                string xpath1 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" +"]";
+                var myNodeStaff = docStaff.SelectSingleNode(xpath1);
+
+                XmlDocument docAgent = new XmlDocument();;
+                string path2 = Server.MapPath("~/App_Data/Agent.xml");
+                docAgent.Load(path2);
+                string xpath2 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+                var myNodeAgent = docAgent.SelectSingleNode(xpath2);
+
+                XmlDocument docMember = new XmlDocument();
+                string path3 = Server.MapPath("~/App_Data/Member.xml");
+                docMember.Load(path3);
+                string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+                var myNodeMember = docMember.SelectSingleNode(xpath3);
+
+                if(myNodeStaff != null)
+                {
+                    lblAccount.Text = myNodeStaff.FirstChild.InnerText;
+                    lblType.Text = myNodeStaff.ParentNode.Attributes[0].InnerText;
+                    btnlToStaff.Enabled = false;
+                    btnDelete.Enabled = true;
+                    btnToAgent.Enabled = true;
+                    btnToMember.Enabled = true;
+                }
+                else if(myNodeAgent != null)
+                {
+                    lblAccount.Text = myNodeAgent.FirstChild.InnerText;
+                    lblType.Text = myNodeAgent.ParentNode.Attributes[0].InnerText;
+                    btnlToStaff.Enabled = true;
+                    btnDelete.Enabled = true;
+                    btnToAgent.Enabled = false;
+                    btnToMember.Enabled = true;
+                }
+                else if(myNodeMember != null)
+                {
+                    lblAccount.Text = myNodeMember.FirstChild.InnerText;
+                    lblType.Text = myNodeMember.ParentNode.Attributes[0].InnerText;
+                    btnlToStaff.Enabled = true;
+                    btnDelete.Enabled = true;
+                    btnToAgent.Enabled = true;
+                    btnToMember.Enabled = false;
+                }
+                else
+                {
+                    lblModifyStatus.Text = "Account does not Exist!";
+
+                }
+
+
+            }
+        }
+
+        protected void btnlToStaff_Click(object sender, EventArgs e)
+        {
+
+            XmlDocument docStaff = new XmlDocument();
+            string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
+            docStaff.Load(pathStaff);
+            XmlNode rootStaff = docStaff.DocumentElement;
+            string xpath1 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeStaff = docStaff.SelectSingleNode(xpath1);
+
+            XmlDocument docAgent = new XmlDocument(); ;
+            string pathAgent = Server.MapPath("~/App_Data/Agent.xml");
+            docAgent.Load(pathAgent);
+            XmlNode rootAgent = docAgent.DocumentElement;
+            string xpath2 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeAgent = docAgent.SelectSingleNode(xpath2);
+
+            XmlDocument docMember = new XmlDocument();
+            string pathMember = Server.MapPath("~/App_Data/Member.xml");
+            docMember.Load(pathMember);
+            XmlNode rootMember = docMember.DocumentElement;
+            string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeMember = docMember.SelectSingleNode(xpath3);
+
+            if (myNodeAgent != null)
+            {
+
+                XmlElement Credentials = docStaff.CreateElement("Credentials");
+                Credentials.SetAttribute("UserType", "Staff");
+                XmlElement Username = docStaff.CreateElement("Username");
+                Username.InnerText = TextBox1.Text;
+                XmlElement Password = docStaff.CreateElement("Password");
+                Password.InnerText = myNodeAgent.NextSibling.InnerText;
+
+                Credentials.AppendChild(Username);
+                Credentials.AppendChild(Password);
+
+                rootStaff.AppendChild(Credentials);
+
+                docStaff.Save(pathStaff);
+
+                rootAgent.RemoveChild(myNodeAgent.ParentNode);
+                docAgent.Save(pathAgent);
+                this.Page_Load(null, null);
+
+
+            }
+            else if (myNodeMember != null)
+            {
+                XmlElement Credentials = docStaff.CreateElement("Credentials");
+                Credentials.SetAttribute("UserType", "Staff");
+                XmlElement Username = docStaff.CreateElement("Username");
+                Username.InnerText = TextBox1.Text;
+                XmlElement Password = docStaff.CreateElement("Password");
+                Password.InnerText = myNodeMember.NextSibling.InnerText;
+
+                Credentials.AppendChild(Username);
+                Credentials.AppendChild(Password);
+
+                rootStaff.AppendChild(Credentials);
+
+                docStaff.Save(pathStaff);
+
+                rootMember.RemoveChild(myNodeMember.ParentNode);
+                docMember.Save(pathMember);
+                this.Page_Load(null, null);
+            }
+            else
+            {
+                lblModifyStatus.Text = "Well this is awkward.... Logout and try again";
+
+            }
+        }
+
+        protected void btnToAgent_Click(object sender, EventArgs e)
+        {
+
+            XmlDocument docStaff = new XmlDocument();
+            string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
+            docStaff.Load(pathStaff);
+            XmlNode rootStaff = docStaff.DocumentElement;
+            string xpath1 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeStaff = docStaff.SelectSingleNode(xpath1);
+
+            XmlDocument docAgent = new XmlDocument(); ;
+            string pathAgent = Server.MapPath("~/App_Data/Agent.xml");
+            docAgent.Load(pathAgent);
+            XmlNode rootAgent = docAgent.DocumentElement;
+            string xpath2 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeAgent = docAgent.SelectSingleNode(xpath2);
+
+            XmlDocument docMember = new XmlDocument();
+            string pathMember = Server.MapPath("~/App_Data/Member.xml");
+            docMember.Load(pathMember);
+            XmlNode rootMember = docMember.DocumentElement;
+            string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeMember = docMember.SelectSingleNode(xpath3);
+
+            if (myNodeStaff != null)
+            {
+
+                XmlElement Credentials = docStaff.CreateElement("Credentials");
+                Credentials.SetAttribute("UserType", "Staff");
+                XmlElement Username = docStaff.CreateElement("Username");
+                Username.InnerText = TextBox1.Text;
+                XmlElement Password = docStaff.CreateElement("Password");
+                Password.InnerText = myNodeStaff.NextSibling.InnerText;
+
+                Credentials.AppendChild(Username);
+                Credentials.AppendChild(Password);
+
+                rootAgent.AppendChild(Credentials);
+
+                docAgent.Save(pathAgent);
+
+                rootStaff.RemoveChild(myNodeStaff.ParentNode);
+                docStaff.Save(pathStaff);
+                this.Page_Load(null, null);
+
+
+            }
+            else if (myNodeMember != null)
+            {
+                XmlElement Credentials = docStaff.CreateElement("Credentials");
+                Credentials.SetAttribute("UserType", "Staff");
+                XmlElement Username = docStaff.CreateElement("Username");
+                Username.InnerText = TextBox1.Text;
+                XmlElement Password = docStaff.CreateElement("Password");
+                Password.InnerText = myNodeMember.NextSibling.InnerText;
+
+                Credentials.AppendChild(Username);
+                Credentials.AppendChild(Password);
+
+                rootAgent.AppendChild(Credentials);
+
+                docAgent.Save(pathAgent);
+
+                rootMember.RemoveChild(myNodeMember.ParentNode);
+                docMember.Save(pathMember);
+                this.Page_Load(null, null);
+            }
+            else
+            {
+                lblModifyStatus.Text = "Well this is awkward.... Logout and try again";
+
+            }
+        }
+
+        protected void btnToMember_Click(object sender, EventArgs e)
+        {
+            XmlDocument docStaff = new XmlDocument();
+            string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
+            docStaff.Load(pathStaff);
+            XmlNode rootStaff = docStaff.DocumentElement;
+            string xpath1 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeStaff = docStaff.SelectSingleNode(xpath1);
+
+            XmlDocument docAgent = new XmlDocument(); ;
+            string pathAgent = Server.MapPath("~/App_Data/Agent.xml");
+            docAgent.Load(pathAgent);
+            XmlNode rootAgent = docAgent.DocumentElement;
+            string xpath2 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeAgent = docAgent.SelectSingleNode(xpath2);
+
+            XmlDocument docMember = new XmlDocument();
+            string pathMember = Server.MapPath("~/App_Data/Member.xml");
+            docMember.Load(pathMember);
+            XmlNode rootMember = docMember.DocumentElement;
+            string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeMember = docMember.SelectSingleNode(xpath3);
+
+            if (myNodeStaff != null)
+            {
+
+                XmlElement Credentials = docStaff.CreateElement("Credentials");
+                Credentials.SetAttribute("UserType", "Staff");
+                XmlElement Username = docStaff.CreateElement("Username");
+                Username.InnerText = TextBox1.Text;
+                XmlElement Password = docStaff.CreateElement("Password");
+                Password.InnerText = myNodeStaff.NextSibling.InnerText;
+
+                Credentials.AppendChild(Username);
+                Credentials.AppendChild(Password);
+
+                rootMember.AppendChild(Credentials);
+
+                docMember.Save(pathMember);
+
+                rootStaff.RemoveChild(myNodeStaff.ParentNode);
+                docStaff.Save(pathStaff);
+                this.Page_Load(null, null);
+
+
+            }
+            else if (myNodeAgent != null)
+            {
+                XmlElement Credentials = docStaff.CreateElement("Credentials");
+                Credentials.SetAttribute("UserType", "Staff");
+                XmlElement Username = docStaff.CreateElement("Username");
+                Username.InnerText = TextBox1.Text;
+                XmlElement Password = docStaff.CreateElement("Password");
+                Password.InnerText = myNodeMember.NextSibling.InnerText;
+
+                Credentials.AppendChild(Username);
+                Credentials.AppendChild(Password);
+
+                rootMember.AppendChild(Credentials);
+
+                docMember.Save(pathMember);
+
+                rootAgent.RemoveChild(myNodeAgent.ParentNode);
+                docAgent.Save(pathAgent);
+                this.Page_Load(null, null);
+            }
+            else
+            {
+                lblModifyStatus.Text = "Well this is awkward.... Logout and try again";
+
+            }
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            XmlDocument docStaff = new XmlDocument();
+            string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
+            docStaff.Load(pathStaff);
+            XmlNode rootStaff = docStaff.DocumentElement;
+            string xpath1 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeStaff = docStaff.SelectSingleNode(xpath1);
+
+            XmlDocument docAgent = new XmlDocument(); ;
+            string pathAgent = Server.MapPath("~/App_Data/Agent.xml");
+            docAgent.Load(pathAgent);
+            XmlNode rootAgent = docAgent.DocumentElement;
+            string xpath2 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeAgent = docAgent.SelectSingleNode(xpath2);
+
+            XmlDocument docMember = new XmlDocument();
+            string pathMember = Server.MapPath("~/App_Data/Member.xml");
+            docMember.Load(pathMember);
+            XmlNode rootMember = docMember.DocumentElement;
+            string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
+            var myNodeMember = docMember.SelectSingleNode(xpath3);
+
+            if (myNodeStaff != null)
+            {
+                rootStaff.RemoveChild(myNodeStaff.ParentNode);
+                docStaff.Save(pathStaff);
+                this.Page_Load(null, null);
+            }
+            else if (myNodeAgent != null)
+            {
+
+                rootAgent.RemoveChild(myNodeAgent.ParentNode);
+                docAgent.Save(pathAgent);
+                this.Page_Load(null, null);
+            }
+            else if (myNodeMember != null)
+            {
+
+                rootMember.RemoveChild(myNodeMember.ParentNode);
+                docMember.Save(pathMember);
+                this.Page_Load(null, null);
+            }
+            else
+            {
+                lblModifyStatus.Text = "Cannot Delete Account it is the last of its type";
+
+            }
         }
     }
 }

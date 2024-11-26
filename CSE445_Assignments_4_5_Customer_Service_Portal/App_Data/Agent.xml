@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <CredentialsDatabase>
   <Credentials UserType="Member">
     <Username>Chromechris</Username>
@@ -7,9 +7,5 @@
   <Credentials UserType="Member">
     <Username>Craig653</Username>
     <Password>+BKH+koODwAO1G911y7B+Q==</Password>
-  </Credentials>
-  <Credentials UserType="Member">
-    <Username>Keeks</Username>
-    <Password>pkheO58sgno716FnlU9JeQ==</Password>
   </Credentials>
 </CredentialsDatabase>
