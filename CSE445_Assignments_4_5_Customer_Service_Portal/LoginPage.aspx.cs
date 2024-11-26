@@ -60,6 +60,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblAuthentication.Text = "Invalid Login, talk to a Staff member to get access to that page";
         }
 
+        protected void btnLoginBar_Click(object sender, EventArgs e)
+        {
+            //do nothing here, don't need to go back to the login page haha 
+        }
+
 
         protected bool myAuthenticate(string username, string password)
         {

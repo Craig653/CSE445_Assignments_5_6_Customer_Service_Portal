@@ -70,9 +70,6 @@
         </asp:Table>
         <br />
 
-
-
-
         <hr />
         <h2>Account Modifier</h2>
         Enter Account you would like to Modify:
@@ -90,7 +87,7 @@
         New Password:
         <asp:Label ID="lblPassword" runat="server" style="color: #FF3300"></asp:Label>
         <br />
-        <asp:TextBox ID="TextBox2" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="TextBox3" runat="server" TextMode="SingleLine"></asp:TextBox>
         <asp:Button ID="btnNewPass" runat="server" OnClick="btnNewPass_Click" Text="Set" />
         <br />
         <br />

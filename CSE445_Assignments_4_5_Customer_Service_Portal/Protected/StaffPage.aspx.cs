@@ -23,9 +23,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             btnDelete.Enabled = false;
             btnToAgent.Enabled = false;
             btnToMember.Enabled = false;
-            TextBox2.Enabled = false;
+            TextBox3.ReadOnly= true;
             btnNewPass.Enabled = false;
-            TextBox2.Text = "";
             lblAccount.Text = "";
             lblType.Text = "";
 
@@ -152,7 +151,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected void btnAccount_Click(object sender, EventArgs e)
         {
             lblModifyStatus.Text = "";
-            TextBox2.Text = "";
+            TextBox3.ReadOnly = false;
+            TextBox3.Text = "";
+            TextBox3.ReadOnly = true;
             lblPassword.Text = "";
 
             if (TextBox1.Text != "")
@@ -183,7 +184,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     btnDelete.Enabled = true;
                     btnToAgent.Enabled = true;
                     btnToMember.Enabled = true;
-                    TextBox2.Enabled = true;
+                    TextBox3.ReadOnly = false;
                     btnNewPass.Enabled = true;
                 }
                 else if(myNodeAgent != null)
@@ -194,7 +195,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     btnDelete.Enabled = true;
                     btnToAgent.Enabled = false;
                     btnToMember.Enabled = true;
-                    TextBox2.Enabled = true;
+                    TextBox3.ReadOnly = false;
                     btnNewPass.Enabled = true;
                 }
                 else if(myNodeMember != null)
@@ -205,7 +206,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     btnDelete.Enabled = true;
                     btnToAgent.Enabled = true;
                     btnToMember.Enabled = false;
-                    TextBox2.Enabled = true;
+                    TextBox3.ReadOnly = false;
                     btnNewPass.Enabled = true;
                 }
                 else
@@ -546,24 +547,33 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
             var myNodeMember = docMember.SelectSingleNode(xpath3);
 
-            if (myNodeStaff != null)
+            if(TextBox3.Text.Length != 0)
             {
-                myNodeStaff.NextSibling.InnerText = EncryptPassword(TextBox2.Text);
-                docStaff.Save(pathStaff);
+                if (myNodeStaff != null)
+                {
+                    myNodeStaff.NextSibling.InnerText = EncryptPassword(TextBox3.Text);
+                    docStaff.Save(pathStaff);
+                }
+                else if (myNodeAgent != null)
+                {
+                    myNodeAgent.NextSibling.InnerText = EncryptPassword(TextBox3.Text);
+                    docAgent.Save(pathAgent);
+                }
+                else if (myNodeMember != null)
+                {
+                    myNodeMember.NextSibling.InnerText = EncryptPassword(TextBox3.Text);
+                    docMember.Save(pathMember);
+                }
+                lblPassword.Text = "Set";
+                TextBox3.Text = "";
             }
-            else if (myNodeAgent != null)
+            else
             {
-                myNodeAgent.NextSibling.InnerText = EncryptPassword(TextBox2.Text);
-                docAgent.Save(pathAgent);
-            }
-            else if (myNodeMember != null)
-            {
-                myNodeMember.NextSibling.InnerText = EncryptPassword(TextBox2.Text);
-                docMember.Save(pathMember);
+                lblPassword.Text = "Please enter a Value";
             }
 
-            lblPassword.Text = TextBox2.Text;
-            TextBox2.Text = "";
+
+
         }
 
         //Chris's DLL encryption
