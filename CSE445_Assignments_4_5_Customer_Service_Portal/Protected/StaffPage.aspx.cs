@@ -307,11 +307,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             if (myNodeStaff != null)
             {
 
-                XmlElement Credentials = docStaff.CreateElement("Credentials");
+                XmlElement Credentials = docAgent.CreateElement("Credentials");
                 Credentials.SetAttribute("UserType", "Staff");
-                XmlElement Username = docStaff.CreateElement("Username");
+                XmlElement Username = docAgent.CreateElement("Username");
                 Username.InnerText = TextBox1.Text;
-                XmlElement Password = docStaff.CreateElement("Password");
+                XmlElement Password = docAgent.CreateElement("Password");
                 Password.InnerText = myNodeStaff.NextSibling.InnerText;
 
                 Credentials.AppendChild(Username);
@@ -329,11 +329,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
             else if (myNodeMember != null)
             {
-                XmlElement Credentials = docStaff.CreateElement("Credentials");
+                XmlElement Credentials = docAgent.CreateElement("Credentials");
                 Credentials.SetAttribute("UserType", "Staff");
-                XmlElement Username = docStaff.CreateElement("Username");
+                XmlElement Username = docAgent.CreateElement("Username");
                 Username.InnerText = TextBox1.Text;
-                XmlElement Password = docStaff.CreateElement("Password");
+                XmlElement Password = docAgent.CreateElement("Password");
                 Password.InnerText = myNodeMember.NextSibling.InnerText;
 
                 Credentials.AppendChild(Username);
@@ -380,11 +380,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             if (myNodeStaff != null)
             {
 
-                XmlElement Credentials = docStaff.CreateElement("Credentials");
+                XmlElement Credentials = docMember.CreateElement("Credentials");
                 Credentials.SetAttribute("UserType", "Staff");
-                XmlElement Username = docStaff.CreateElement("Username");
+                XmlElement Username = docMember.CreateElement("Username");
                 Username.InnerText = TextBox1.Text;
-                XmlElement Password = docStaff.CreateElement("Password");
+                XmlElement Password = docMember.CreateElement("Password");
                 Password.InnerText = myNodeStaff.NextSibling.InnerText;
 
                 Credentials.AppendChild(Username);
@@ -402,12 +402,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
             else if (myNodeAgent != null)
             {
-                XmlElement Credentials = docStaff.CreateElement("Credentials");
+                XmlElement Credentials = docMember.CreateElement("Credentials");
                 Credentials.SetAttribute("UserType", "Staff");
-                XmlElement Username = docStaff.CreateElement("Username");
+                XmlElement Username = docMember.CreateElement("Username");
                 Username.InnerText = TextBox1.Text;
-                XmlElement Password = docStaff.CreateElement("Password");
-                Password.InnerText = myNodeMember.NextSibling.InnerText;
+                XmlElement Password = docMember.CreateElement("Password");
+                Password.InnerText = myNodeAgent.NextSibling.InnerText;
 
                 Credentials.AppendChild(Username);
                 Credentials.AppendChild(Password);
@@ -452,16 +452,29 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
             if (myNodeStaff != null)
             {
-                rootStaff.RemoveChild(myNodeStaff.ParentNode);
-                docStaff.Save(pathStaff);
-                this.Page_Load(null, null);
+                if(myNodeStaff.ParentNode.NextSibling == null && myNodeStaff.ParentNode.PreviousSibling == null)
+                {
+                    lblModifyStatus.Text = "Cannot delete User:  " + TextBox1.Text + "  no Staff would be left!"; 
+                }
+                else
+                {
+                    rootStaff.RemoveChild(myNodeStaff.ParentNode);
+                    docStaff.Save(pathStaff);
+                    this.Page_Load(null, null);
+                }
             }
             else if (myNodeAgent != null)
             {
-
-                rootAgent.RemoveChild(myNodeAgent.ParentNode);
-                docAgent.Save(pathAgent);
-                this.Page_Load(null, null);
+                if (myNodeAgent.ParentNode.NextSibling == null && myNodeAgent.ParentNode.PreviousSibling == null)
+                {
+                    lblModifyStatus.Text = "Cannot delete User:  " + TextBox1.Text + "  no Staff would be left!";
+                }
+                else
+                {
+                    rootAgent.RemoveChild(myNodeAgent.ParentNode);
+                    docAgent.Save(pathAgent);
+                    this.Page_Load(null, null);
+                }
             }
             else if (myNodeMember != null)
             {
@@ -469,11 +482,6 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 rootMember.RemoveChild(myNodeMember.ParentNode);
                 docMember.Save(pathMember);
                 this.Page_Load(null, null);
-            }
-            else
-            {
-                lblModifyStatus.Text = "Cannot Delete Account it is the last of its type";
-
             }
         }
     }
