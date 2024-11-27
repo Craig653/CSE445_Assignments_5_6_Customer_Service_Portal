@@ -38,7 +38,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
             else
             {
-                lblNoCookie.Text = "Error don't have cookies Enabled, I don't know your username. Default Username is CUSTOMER, or you can set a cookie in the try it page under cookie setter.\n Assignment 6 will set cookies upon login.";
+                lblNoCookie.Text = "Error don't have cookies dnabled, I don't know your username. All your tickets will be created with the anonymous user id of CUSTOMER";
                 TreeView1.DataSourceID = "";
                 return;
             }
