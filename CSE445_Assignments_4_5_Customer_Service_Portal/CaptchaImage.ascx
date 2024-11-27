@@ -8,19 +8,19 @@
         }
     </style>
 
-<p style="width: 534px">
+<p style="width: 554px">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Image ID="CaptchaImg" runat="server" style="height: 30px; text-align: center;" Visible="False" />
         </p>
-        <p style="width: 534px">
+        <p style="width: 557px">
             Type the Characters above
             <asp:TextBox ID="CaptchaEnterTxtBx" runat="server"></asp:TextBox>
             &nbsp;<asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" style="height: 26px" Text="Validate" />
         &nbsp;<asp:Button ID="btnShowImage" runat="server" OnClick="btnShowImage_Click" Text="New Captcha" Height="26px" />
         </p>
-        <p style="width: 534px">
+        <p style="width: 554px">
             <span >
-            <asp:Label ID="VerificationLbl" runat="server"></asp:Label>
+            <asp:Label ID="VerificationLbl" runat="server" style="color: #FF0000"></asp:Label>
                  </span>
 
         </p>

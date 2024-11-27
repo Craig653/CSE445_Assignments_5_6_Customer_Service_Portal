@@ -104,6 +104,9 @@
                 <hr />
         <asp:Panel ID="Panel1" runat="server">
             <h2><strong>Create an Account</strong></h2>
+            <p>
+                <asp:Label ID="lblCreateStatus" runat="server" style="color: #FF3300"></asp:Label>
+            </p>
             <div>
               <label for="txtbxUsername1" class="form-label mt-4 w-25">Username</label>
               <input type="text" class="form-control w-25" id="txtbxUsername1" aria-describedby="txtbxUsername1" placeholder="Enter Username" runat="server"/>
