@@ -8,6 +8,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using LocalHash;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -15,7 +16,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Panel1.Visible = false;
+            if (!Panel1.Visible)
+            {
+                Panel1.Visible = false;
+            }
+
         }
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
@@ -123,6 +128,92 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
 
             return true;
+        }
+
+        //Chris's DLL encryption
+        private string EncryptPassword(string password)
+        {
+            CredentialEncrypt encryptor = new CredentialEncrypt();
+            return encryptor.EncryptString(password);
+        }
+
+        protected void btnCreate_Click(object sender, EventArgs e)
+        {
+            if (Password1.Value == "" && txtbxUsername1.Value == "")
+            {
+                lblCreateStatus.Text = "Enter a Username and Password";
+            }
+            else if (txtbxUsername1.Value == "")
+            {
+                lblCreateStatus.Text = "Enter a Username";
+            }
+            else if (Password1.Value == "")
+            {
+                lblCreateStatus.Text = "Enter a Password";
+            }
+            else
+            {
+                XmlDocument docStaff = new XmlDocument();
+                string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
+                docStaff.Load(pathStaff);
+                XmlNode rootStaff = docStaff.DocumentElement;
+                string xpath1 = "/CredentialsDatabase/Credentials/Username[text()=\"" + txtbxUsername1.Value + "\"" + "]";
+                var myNodeStaff = docStaff.SelectSingleNode(xpath1);
+
+                XmlDocument docAgent = new XmlDocument(); ;
+                string pathAgent = Server.MapPath("~/App_Data/Agent.xml");
+                docAgent.Load(pathAgent);
+                XmlNode rootAgent = docAgent.DocumentElement;
+                string xpath2 = "/CredentialsDatabase/Credentials/Username[text()=\"" + txtbxUsername1.Value + "\"" + "]";
+                var myNodeAgent = docAgent.SelectSingleNode(xpath2);
+
+                XmlDocument docMember = new XmlDocument();
+                string pathMember = Server.MapPath("~/App_Data/Member.xml");
+                docMember.Load(pathMember);
+                XmlNode rootMember = docMember.DocumentElement;
+                string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + txtbxUsername1.Value + "\"" + "]";
+                var myNodeMember = docMember.SelectSingleNode(xpath3);
+
+                bool testCaptcha = Captcha1.validate();
+
+                if (testCaptcha)
+                {
+                    //only can create member accounts
+                    if ( myNodeMember == null)
+                    {
+                        XmlElement Credentials = docMember.CreateElement("Credentials");
+                        Credentials.SetAttribute("UserType", "Member");
+                        XmlElement Username = docMember.CreateElement("Username");
+                        Username.InnerText = txtbxUsername1.Value;
+                        XmlElement Password = docMember.CreateElement("Password");
+                        Password.InnerText = EncryptPassword(Password1.Value);
+
+                        Credentials.AppendChild(Username);
+                        Credentials.AppendChild(Password);
+
+                        rootMember.AppendChild(Credentials);
+
+                        docMember.Save(pathMember);
+
+                        lblCreateStatus.Text = "Member Account: " + txtbxUsername1.Value + " created";
+                    }
+                    else
+                    {
+                        if (myNodeStaff != null)
+                        {
+                            lblCreateStatus.Text = "Staff Account: " + txtbxUsername1.Value + " already exists";
+                        }
+                        else if (myNodeAgent != null)
+                        {
+                            lblCreateStatus.Text = "Agent Account: " + txtbxUsername1.Value + " already exists";
+                        }
+                        else if (myNodeMember != null)
+                        {
+                            lblCreateStatus.Text = "Member Account: " + txtbxUsername1.Value + " already exists";
+                        }
+                    }
+                }
+            }
         }
     }
 }
