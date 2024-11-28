@@ -16,7 +16,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Check session state to set login button
             if (Session["AccountType"] != "Staff")
             {
                 ValidationLabel.Visible = true;
@@ -24,9 +24,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
             else
             {
+                //make panel invisible so you can't see page if you don't have correct account type
                 Panel2.Visible = true;
             }
 
+
+            //Set inital states and load the dashboard info
             loadStaffAccounts();
             loadAgentAccounts();
             loadMemberAccounts();
@@ -40,6 +43,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             lblType.Text = "";
 
         }
+        //page redirect functions
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
             Response.Redirect("StaffPage.aspx");
@@ -47,15 +51,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void btnLoginMember_Click(object sender, EventArgs e)
         {
-            //check login cookies and database
-            //Server.Transfer("LoginPage.aspx");
+
             Response.Redirect("MemberPage.aspx");
         }
 
         protected void btnLoginAgent_Click(object sender, EventArgs e)
         {
-            //check login cookies and database
-            //Server.Transfer("LoginPage.aspx");
+
             Response.Redirect("AgentPage.aspx");
         }
 
@@ -98,6 +100,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+
+        //Get all staff accounts for the dashboard
         protected void loadStaffAccounts()
         {
             XmlDocument doc = new XmlDocument();
@@ -119,6 +123,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         }
 
+        //Get all agent accounts for the dashboard
         protected void loadAgentAccounts()
         {
             XmlDocument doc = new XmlDocument();
@@ -141,6 +146,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         }
 
+        //Get all member accounts for the dashboard
         protected void loadMemberAccounts()
         {
             XmlDocument doc = new XmlDocument();
@@ -162,6 +168,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             lblMemberList.Text = label;
         }
 
+
+        //check if account exists in all xml files
         protected void btnAccount_Click(object sender, EventArgs e)
         {
             lblModifyStatus.Text = "";
@@ -172,6 +180,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
             if (TextBox1.Text != "")
             {
+                //look up info using xpath for all xmls
                 XmlDocument docStaff = new XmlDocument();
                 string path = Server.MapPath("~/App_Data/Staff.xml");
                 docStaff.Load(path);
@@ -233,9 +242,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+
+        //Set selected account to got to staff
         protected void btnlToStaff_Click(object sender, EventArgs e)
         {
-
+            //look up info using xpath for all xmls
             XmlDocument docStaff = new XmlDocument();
             string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
             docStaff.Load(pathStaff);
@@ -257,6 +268,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
             var myNodeMember = docMember.SelectSingleNode(xpath3);
 
+
+            //Check if it is an agent account
             if (myNodeAgent != null)
             {
 
@@ -267,7 +280,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 else
                 {
 
-
+                    //Create new item for staff xml file
                     XmlElement Credentials = docStaff.CreateElement("Credentials");
                     Credentials.SetAttribute("UserType", "Staff");
                     XmlElement Username = docStaff.CreateElement("Username");
@@ -282,14 +295,19 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                     docStaff.Save(pathStaff);
 
+
+                    //remove from agent 
                     rootAgent.RemoveChild(myNodeAgent.ParentNode);
                     docAgent.Save(pathAgent);
                     this.Page_Load(null, null);
                 }
 
             }
+
+            //Chekc if it is member
             else if (myNodeMember != null)
             {
+                //Create new item for staff xml file
                 XmlElement Credentials = docStaff.CreateElement("Credentials");
                 Credentials.SetAttribute("UserType", "Staff");
                 XmlElement Username = docStaff.CreateElement("Username");
@@ -304,6 +322,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                 docStaff.Save(pathStaff);
 
+
+                //remove from member
                 rootMember.RemoveChild(myNodeMember.ParentNode);
                 docMember.Save(pathMember);
                 this.Page_Load(null, null);
@@ -316,9 +336,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             
         }
 
+        //set selected account to agent
         protected void btnToAgent_Click(object sender, EventArgs e)
         {
-
+            //look up info using xpath for all xmls
             XmlDocument docStaff = new XmlDocument();
             string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
             docStaff.Load(pathStaff);
@@ -340,8 +361,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
             var myNodeMember = docMember.SelectSingleNode(xpath3);
 
+
+            //check if staff
             if (myNodeStaff != null)
             {
+                //validate some staff would be left!!
                 if (myNodeStaff.ParentNode.NextSibling == null && myNodeStaff.ParentNode.PreviousSibling == null)
                 {
                     lblModifyStatus.Text = "Error: Cannot Move User:  " + TextBox1.Text + "  no Staff would be left!";
@@ -349,8 +373,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 else
                 {
 
+                    //Create a new agent 
                     XmlElement Credentials = docAgent.CreateElement("Credentials");
-                    Credentials.SetAttribute("UserType", "Staff");
+                    Credentials.SetAttribute("UserType", "Agent");
                     XmlElement Username = docAgent.CreateElement("Username");
                     Username.InnerText = TextBox1.Text;
                     XmlElement Password = docAgent.CreateElement("Password");
@@ -363,6 +388,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                     docAgent.Save(pathAgent);
 
+                    //remove from staff
                     rootStaff.RemoveChild(myNodeStaff.ParentNode);
                     docStaff.Save(pathStaff);
                     this.Page_Load(null, null);
@@ -370,10 +396,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 }
 
             }
+            //check if member
             else if (myNodeMember != null)
             {
+
+                //Create new agent
                 XmlElement Credentials = docAgent.CreateElement("Credentials");
-                Credentials.SetAttribute("UserType", "Staff");
+                Credentials.SetAttribute("UserType", "Agent");
                 XmlElement Username = docAgent.CreateElement("Username");
                 Username.InnerText = TextBox1.Text;
                 XmlElement Password = docAgent.CreateElement("Password");
@@ -386,6 +415,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                 docAgent.Save(pathAgent);
 
+
+                //Remove from member
                 rootMember.RemoveChild(myNodeMember.ParentNode);
                 docMember.Save(pathMember);
                 this.Page_Load(null, null);
@@ -397,8 +428,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+        //set selected acount to member
         protected void btnToMember_Click(object sender, EventArgs e)
         {
+            //look up info using xpath for all xmls
             XmlDocument docStaff = new XmlDocument();
             string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
             docStaff.Load(pathStaff);
@@ -420,16 +453,20 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
             var myNodeMember = docMember.SelectSingleNode(xpath3);
 
+
+            //is it staff
             if (myNodeStaff == null)
                 {
+                //don't let you delete only staff member
                 if (myNodeStaff.ParentNode.NextSibling == null && myNodeStaff.ParentNode.PreviousSibling == null)
                 {
                     lblModifyStatus.Text = "Error: Cannot Move User:  " + TextBox1.Text + "  no Staff would be left!";
                 }
                 else
                 {
+                    //create new member
                     XmlElement Credentials = docMember.CreateElement("Credentials");
-                    Credentials.SetAttribute("UserType", "Staff");
+                    Credentials.SetAttribute("UserType", "Member");
                     XmlElement Username = docMember.CreateElement("Username");
                     Username.InnerText = TextBox1.Text;
                     XmlElement Password = docMember.CreateElement("Password");
@@ -442,6 +479,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                     docMember.Save(pathMember);
 
+                    //remove from staff
                     rootStaff.RemoveChild(myNodeStaff.ParentNode);
                     docStaff.Save(pathStaff);
                     this.Page_Load(null, null);
@@ -455,8 +493,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 }
                 else
                 {
+                    //create new member
                     XmlElement Credentials = docMember.CreateElement("Credentials");
-                    Credentials.SetAttribute("UserType", "Staff");
+                    Credentials.SetAttribute("UserType", "Member");
                     XmlElement Username = docMember.CreateElement("Username");
                     Username.InnerText = TextBox1.Text;
                     XmlElement Password = docMember.CreateElement("Password");
@@ -468,7 +507,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     rootMember.AppendChild(Credentials);
 
                     docMember.Save(pathMember);
-
+                    //remove from agent
                     rootAgent.RemoveChild(myNodeAgent.ParentNode);
                     docAgent.Save(pathAgent);
                     this.Page_Load(null, null);
@@ -481,8 +520,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+
+        //delete account
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+
+            //look up info using xpath for all xmls
             XmlDocument docStaff = new XmlDocument();
             string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
             docStaff.Load(pathStaff);
@@ -504,6 +547,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
             var myNodeMember = docMember.SelectSingleNode(xpath3);
 
+            //Check if you can acctually delete accounts, if youc an remove them from the appropriate file
             if (myNodeStaff != null)
             {
                 if(myNodeStaff.ParentNode.NextSibling == null && myNodeStaff.ParentNode.PreviousSibling == null)
@@ -539,8 +583,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+        //Set new password
         protected void btnNewPass_Click(object sender, EventArgs e)
         {
+            //look up info using xpath for all xmls
             XmlDocument docStaff = new XmlDocument();
             string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
             docStaff.Load(pathStaff);
@@ -562,6 +608,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
             var myNodeMember = docMember.SelectSingleNode(xpath3);
 
+
+            //Validate passowrd filed is set then encrypt and set new password
             if(TextBox3.Text.Length != 0)
             {
                 if (myNodeStaff != null)
@@ -599,6 +647,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         }
 
 
+        //Create new account
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             if(Password1.Value == "" && txtbxUsername1.Value == "")
@@ -615,6 +664,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
             else
             {
+                //look up info using xpath for all xmls
                 XmlDocument docStaff = new XmlDocument();
                 string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
                 docStaff.Load(pathStaff);
@@ -639,11 +689,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 bool testCaptcha = Captcha1.validate();
 
 
-
+                //Validate against captacha
                 if (testCaptcha)
                 {
+                    //If an account exists with that username accross all XMLS don't create a new one
                     if (myNodeMember == null & myNodeAgent == null && myNodeStaff == null)
                     {
+                        //Figure out what type of account you want then create it based on user selection
                         if (optionsRadio1.Checked && myNodeStaff == null)
                         {
 
@@ -700,6 +752,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                             lblCreateStatus.Text = "Member Account: " + txtbxUsername1.Value + " created";
                         }
+                        //Various error checking to prevent duplicat accounts
                         else
                         {
                             if (myNodeStaff != null)

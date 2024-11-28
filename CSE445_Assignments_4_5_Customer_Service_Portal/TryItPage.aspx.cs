@@ -21,6 +21,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //Check if logged in and display accordingly
             if (Session["Username"] != null)
             {
                 Login.InnerText = "Logout";
@@ -101,6 +103,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+        //functions to redirect to correct page
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
             Response.Redirect("Protected/StaffPage.aspx");
@@ -128,7 +131,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         {
             Response.Redirect("DefaultPage.aspx");
         }
+        protected void btnDefaultPage_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("DefaultPage.aspx");
+        }
 
+        //Logout and delete session states and cookies
         protected void btnLoginOut_Click(object sender, EventArgs e)
         {
             //Craig's Get username cookie on Load
@@ -358,10 +366,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             this.Page_Load(null, null);
         }
 
-        protected void btnDefaultPage_Click(object sender, EventArgs e)
-        {
-            Server.Transfer("DefaultPage.aspx");
-        }
+
+
         protected void btnGetMostCommonCategory_Click(object sender, EventArgs e)
         {
             try
@@ -385,6 +391,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+        //Filter the Tree based on username cookie using xpath
         protected void LoadTreeViewFilter()
         {
             string username = "";
@@ -408,6 +415,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             TreeView1.DataSourceID = "XmlDataSource1";
             XmlDataSource1.XPath = xpath;
         }
+
+
 
         private void AutoLogin()
         {
@@ -454,6 +463,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 }
         }
 
+        //
         protected void btnCreateAccount_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text.Trim();

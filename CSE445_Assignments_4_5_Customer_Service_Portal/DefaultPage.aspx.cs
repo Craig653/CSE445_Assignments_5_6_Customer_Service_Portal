@@ -13,6 +13,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //Check session state to set login button
             if (Session["Username"] != null)
             {
                 Login.InnerText = "Logout";
@@ -23,6 +25,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+        //page redirect functions
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
             Response.Redirect("Protected/StaffPage.aspx");
@@ -51,6 +54,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             Response.Redirect("DefaultPage.aspx");
         }
 
+
+        //Logout and delete all session and cookies
         protected void btnLoginOut_Click(object sender, EventArgs e)
         {
             //Craig's Get username cookie on Load

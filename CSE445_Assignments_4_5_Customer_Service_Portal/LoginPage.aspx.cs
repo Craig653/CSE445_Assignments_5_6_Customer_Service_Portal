@@ -19,11 +19,14 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //don't show create account unless they ask for it
             if (!Panel1.Visible)
             {
                 Panel1.Visible = false;
             }
         }
+
+        //Page redirect functions
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
             Response.Redirect("Protected/StaffPage.aspx");
@@ -31,15 +34,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void btnLoginMember_Click(object sender, EventArgs e)
         {
-            //check login cookies and database
-            //Server.Transfer("LoginPage.aspx");
             Response.Redirect("Protected/MemberPage.aspx");
         }
 
         protected void btnLoginAgent_Click(object sender, EventArgs e)
         {
-            //check login cookies and database
-            //Server.Transfer("LoginPage.aspx");
             Response.Redirect("Protected/AgentPage.aspx");
         }
 
@@ -58,6 +57,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             Panel1.Visible = true;
         }
 
+
+        //login clicking function, will authenticate and check if you typed everhting
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             if(txtbxUsername.Value == "" && txtbxPassword.Value == "")
@@ -88,53 +89,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         }
 
-        //Look up account type in case cookies aren't enable
-        protected string checkAccountType(string username)
-        {
-
-            XmlDocument docStaff = new XmlDocument();
-            string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
-            docStaff.Load(pathStaff);
-            XmlNode rootStaff = docStaff.DocumentElement;
-            string xpath1 = "/CredentialsDatabase/Credentials/Username[text()=\"" + username + "\"" + "]";
-            var myNodeStaff = docStaff.SelectSingleNode(xpath1);
-
-            XmlDocument docAgent = new XmlDocument(); ;
-            string pathAgent = Server.MapPath("~/App_Data/Agent.xml");
-            docAgent.Load(pathAgent);
-            XmlNode rootAgent = docAgent.DocumentElement;
-            string xpath2 = "/CredentialsDatabase/Credentials/Username[text()=\"" + username + "\"" + "]";
-            var myNodeAgent = docAgent.SelectSingleNode(xpath2);
-
-            XmlDocument docMember = new XmlDocument();
-            string pathMember = Server.MapPath("~/App_Data/Member.xml");
-            docMember.Load(pathMember);
-            XmlNode rootMember = docMember.DocumentElement;
-            string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + username + "\"" + "]";
-            var myNodeMember = docMember.SelectSingleNode(xpath3);
-
-            if(myNodeStaff != null)
-            {
-                return "/Protected/StaffPage.aspx";
-            }
-            else if(myNodeAgent != null)
-            {
-                return "/Protected/AgentPage.aspx";
-            }
-            else if(myNodeMember != null)
-            {
-                return "/Protected/MemberPage.aspx";
-            }
-            else
-            {
-                return "ERROR";
-            }
-
-        }
-
         protected void btnLoginBar_Click(object sender, EventArgs e)
         {
-            //do nothing here, don't need to go back to the login page haha 
+            //do nothing here, don't need to go back to the login page haha
         }
 
 
@@ -159,7 +116,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
 
 
-            //Need session state and cookies
+            //Need session state and cookies to be setup for other functions
             HttpCookie mycookies = Request.Cookies["Username"];
             HttpCookie mycookiesType = Request.Cookies["Type"];
 

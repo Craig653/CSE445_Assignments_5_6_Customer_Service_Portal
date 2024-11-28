@@ -17,6 +17,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Check session state to set login button
             if (Session["AccountType"] != "Member")
             {
                 ValidationLabel.Visible = true;
@@ -24,6 +25,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
             else
             {
+                //make panel invisible so you can't see page if you don't have correct account type
                 Panel1.Visible = true;
             }
 
@@ -53,6 +55,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+        //page redirect functions
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
             Response.Redirect("StaffPage.aspx");
@@ -88,7 +91,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
-            //Craig's Get username cookie on Load
+            //logout cleanup function
 
             HttpCookie userCookie = Request.Cookies["Username"];
             if ((userCookie != null))

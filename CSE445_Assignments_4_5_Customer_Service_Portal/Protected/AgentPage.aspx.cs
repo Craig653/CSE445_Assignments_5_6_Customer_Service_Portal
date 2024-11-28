@@ -22,7 +22,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ////Check session state to set login button
             if (Session["AccountType"] != "Agent")
             {
                 ValidationLabel.Visible = true;
@@ -30,6 +30,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
             else
             {
+                //make panel invisible so you can't see page if you don't have correct account type
                 Panel1.Visible = true;
             }
 
@@ -63,6 +64,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             XmlDataSource1.XPath = xpath;
         }
 
+        //page redirect functions
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
             Response.Redirect("StaffPage.aspx");
@@ -70,15 +72,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void btnLoginMember_Click(object sender, EventArgs e)
         {
-            //check login cookies and database
-            //Server.Transfer("LoginPage.aspx");
+
             Response.Redirect("MemberPage.aspx");
         }
 
         protected void btnLoginAgent_Click(object sender, EventArgs e)
         {
-            //check login cookies and database
-            //Server.Transfer("LoginPage.aspx");
+
             Response.Redirect("AgentPage.aspx");
         }
 
@@ -98,7 +98,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
-            //Craig's Get username cookie on Load
+            //logout clean up session and cookies
 
             HttpCookie userCookie = Request.Cookies["Username"];
             if ((userCookie != null))
