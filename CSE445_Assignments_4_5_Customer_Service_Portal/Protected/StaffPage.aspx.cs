@@ -16,6 +16,17 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Session["AccountType"] != "Staff")
+            {
+                ValidationLabel.Visible = true;
+                ValidationLabel.Text = "User account:" + Session["Username"] + "(" + Session["AccountType"] + ")" + " does not have access to the Staff page";
+            }
+            else
+            {
+                Panel2.Visible = true;
+            }
+
             loadStaffAccounts();
             loadAgentAccounts();
             loadMemberAccounts();
@@ -64,9 +75,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             //Craig's Get username cookie on Load
+
             HttpCookie userCookie = Request.Cookies["Username"];
             if ((userCookie != null))
             {
+                Session["Username"] = null;
+                Session["AccountType"] = null;
                 HttpCookie delCookie = new HttpCookie("Username");
                 delCookie.Expires = DateTime.Now.AddMonths(-10);
                 delCookie.Value = null;

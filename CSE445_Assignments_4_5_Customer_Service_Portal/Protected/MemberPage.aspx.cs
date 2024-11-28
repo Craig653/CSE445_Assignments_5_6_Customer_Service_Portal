@@ -17,6 +17,15 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["AccountType"] != "Member")
+            {
+                ValidationLabel.Visible = true;
+                ValidationLabel.Text = "User account:" + Session["Username"] + "("+ Session["AccountType"] + ")"+ " does not have access to the Member page";
+            }
+            else
+            {
+                Panel1.Visible = true;
+            }
 
             //Craig's Get username cookie on Load
             HttpCookie userCookie = Request.Cookies["Username"];
@@ -38,7 +47,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
             else
             {
-                lblNoCookie.Text = "Error don't have cookies dnabled, I don't know your username. All your tickets will be created with the anonymous user id of CUSTOMER";
+                lblNoCookie.Text = "Error don't have cookies enabled, I don't know your username. All your tickets will be created with the anonymous user id of CUSTOMER";
                 TreeView1.DataSourceID = "";
                 return;
             }
@@ -80,9 +89,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             //Craig's Get username cookie on Load
+
             HttpCookie userCookie = Request.Cookies["Username"];
             if ((userCookie != null))
             {
+                Session["Username"] = null;
+                Session["AccountType"] = null;
                 HttpCookie delCookie = new HttpCookie("Username");
                 delCookie.Expires = DateTime.Now.AddMonths(-10);
                 delCookie.Value = null;
@@ -177,7 +189,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 }
                 else
                 {
-                    lblNoCookie.Text = "Error don't have cookies enabled! This app requires cookies";
+                    username = Session["Username"].ToString();
                     return;
                 }
 

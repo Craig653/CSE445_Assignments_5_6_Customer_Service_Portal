@@ -54,6 +54,9 @@
     <form id="LoginForm" runat="server" style="margin: 20px;">
 
         <h2>Welcome Please Login </h2>
+        <p>
+            <asp:Label ID="lblType" runat="server"></asp:Label>
+        </p>
 
         <div>
           <label for="txtbxUsername" class="form-label mt-4 w-25">Username</label>
@@ -69,7 +72,7 @@
         &nbsp;
         <button type="button" class="btn btn-primary" id="btnShowCreate" runat="server" onserverclick="btnShowCreate_Click">Create New Account</button>
         <br />
-        <asp:Label ID="lblAuthentication" runat="server"></asp:Label>
+        <asp:Label ID="lblAuthentication" runat="server" style="color: #FF3300"></asp:Label>
         <br />
         <hr />
 

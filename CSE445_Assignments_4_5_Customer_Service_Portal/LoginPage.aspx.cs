@@ -9,6 +9,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using LocalHash;
+using System.Runtime.Remoting.Lifetime;
+using System.ServiceModel.Channels;
+using System.Web.SessionState;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -20,7 +23,6 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 Panel1.Visible = false;
             }
-
         }
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
@@ -58,11 +60,76 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (myAuthenticate(txtbxUsername.Value, txtbxPassword.Value))
-                FormsAuthentication.RedirectFromLoginPage(txtbxUsername.Value, true);
-                //Response.Redirect("Protected/MemberPage.aspx");
+            if(txtbxUsername.Value == "" && txtbxPassword.Value == "")
+            {
+                lblAuthentication.Text = "Please enter your username and password";
+            }
+            else if(txtbxUsername.Value == "")
+            {
+                lblAuthentication.Text = "Please enter a username";
+            }
+            else if ( txtbxPassword.Value == "")
+            {
+                lblAuthentication.Text = "Please enter a password";
+            }
             else
-                lblAuthentication.Text = "Invalid Login, talk to a Staff member to get access to that page";
+            {
+                if (myAuthenticate(txtbxUsername.Value, txtbxPassword.Value))
+                {
+                    FormsAuthentication.RedirectFromLoginPage(txtbxUsername.Value, true);
+
+                }
+                else
+                {
+                    lblAuthentication.Text = "Invalid Login Try Again";
+                }
+            }
+
+
+        }
+
+        //Look up account type in case cookies aren't enable
+        protected string checkAccountType(string username)
+        {
+
+            XmlDocument docStaff = new XmlDocument();
+            string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
+            docStaff.Load(pathStaff);
+            XmlNode rootStaff = docStaff.DocumentElement;
+            string xpath1 = "/CredentialsDatabase/Credentials/Username[text()=\"" + username + "\"" + "]";
+            var myNodeStaff = docStaff.SelectSingleNode(xpath1);
+
+            XmlDocument docAgent = new XmlDocument(); ;
+            string pathAgent = Server.MapPath("~/App_Data/Agent.xml");
+            docAgent.Load(pathAgent);
+            XmlNode rootAgent = docAgent.DocumentElement;
+            string xpath2 = "/CredentialsDatabase/Credentials/Username[text()=\"" + username + "\"" + "]";
+            var myNodeAgent = docAgent.SelectSingleNode(xpath2);
+
+            XmlDocument docMember = new XmlDocument();
+            string pathMember = Server.MapPath("~/App_Data/Member.xml");
+            docMember.Load(pathMember);
+            XmlNode rootMember = docMember.DocumentElement;
+            string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + username + "\"" + "]";
+            var myNodeMember = docMember.SelectSingleNode(xpath3);
+
+            if(myNodeStaff != null)
+            {
+                return "/Protected/StaffPage.aspx";
+            }
+            else if(myNodeAgent != null)
+            {
+                return "/Protected/AgentPage.aspx";
+            }
+            else if(myNodeMember != null)
+            {
+                return "/Protected/MemberPage.aspx";
+            }
+            else
+            {
+                return "ERROR";
+            }
+
         }
 
         protected void btnLoginBar_Click(object sender, EventArgs e)
@@ -93,11 +160,15 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             //Todo get account type here
             string accountType = "Staff";
 
+
+
+            //Need session state and cookies
             HttpCookie mycookies = Request.Cookies["Username"];
             HttpCookie mycookiesType = Request.Cookies["Type"];
 
             if (txtbxUsername.Value.Length > 0)
             {
+                //set cookies
                 if ((mycookies == null) || mycookies["Username"] == "")
                 {
                     HttpCookie newCookies = new HttpCookie("Username");
@@ -124,7 +195,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     Response.Cookies.Add(mycookiesType);
                 }
 
-
+                //set session state
+                Session["Username"] = txtbxUsername.Value;
+                Session["AccountType"] = accountType;
             }
 
             return true;

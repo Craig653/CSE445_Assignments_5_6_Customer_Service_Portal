@@ -21,10 +21,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            HttpCookie userCookie = Request.Cookies["Username"];
-            if ((userCookie != null))
+            if (Session["Username"] != null)
             {
                 Login.InnerText = "Logout";
+            }
+            else
+            {
+                Login.InnerText = "Login";
             }
 
             // usernames harcoded in this function, then hashed and stored in XML file
@@ -33,6 +36,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             //Craig's Tree view filtering used in conjuction with the username cookie
             string username = "";
             string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"\"]]";
+            HttpCookie userCookie = Request.Cookies["Username"];
             userCookie = Request.Cookies["Username"];
             if ((userCookie != null))
             {
@@ -131,6 +135,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             HttpCookie userCookie = Request.Cookies["Username"];
             if ((userCookie != null))
             {
+                Session["Username"] = null;
+                Session["AccountType"] = null;
                 HttpCookie delCookie = new HttpCookie("Username");
                 delCookie.Expires = DateTime.Now.AddMonths(-10);
                 delCookie.Value = null;

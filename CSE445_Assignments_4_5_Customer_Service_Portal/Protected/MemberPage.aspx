@@ -51,7 +51,8 @@
 
 
     <form id="form1" runat="server" style="margin: 20px;">
-
+        <asp:Label ID="ValidationLabel" runat="server" Visible ="False" style="color: #FF0000"></asp:Label>
+        <asp:Panel ID="Panel1" runat="server" Visible="False">
         <h2><strong>Create a Ticket</strong></h2>
         <p>
             <asp:Label ID="lblSubmitStatus" runat="server" style="color: #FF3300"></asp:Label>
@@ -95,6 +96,7 @@
             <SelectedNodeStyle Font-Underline="True" ForeColor="#DD5555" HorizontalPadding="0px" VerticalPadding="0px" />
         </asp:TreeView>
         <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/App_Data/TicketsDatabase.xml" XPath="/Tickets/Ticket"></asp:XmlDataSource>
+        </asp:Panel>
     </form>
     </body>
 </html>

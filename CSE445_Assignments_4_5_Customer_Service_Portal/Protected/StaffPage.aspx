@@ -54,8 +54,8 @@
     </nav>
 
     <form id="form1" runat="server" style="margin: 20px;">
-
-
+        <asp:Label ID="ValidationLabel" runat="server" Visible ="False" style="color: #FF0000"></asp:Label>
+        <asp:Panel ID="Panel2" runat="server" Visible="False">
         <asp:Table ID="Table1" runat="server" class="table">
             <asp:TableHeaderRow>
                 <asp:TableHeaderCell>Staff Accounts</asp:TableHeaderCell>
@@ -148,7 +148,7 @@
             <hr />
 
         </asp:Panel>
-
+            </asp:Panel>
     </form>
 </body>
 </html>
