@@ -225,7 +225,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 }
                 else
                 {
-                    lblModifyStatus.Text = "Account does not Exist!";
+                    lblModifyStatus.Text = "Error: Account does not Exist!";
 
                 }
 
@@ -313,6 +313,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblModifyStatus.Text = "Well this is awkward.... Logout and try again";
 
             }
+            
         }
 
         protected void btnToAgent_Click(object sender, EventArgs e)
@@ -343,7 +344,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 if (myNodeStaff.ParentNode.NextSibling == null && myNodeStaff.ParentNode.PreviousSibling == null)
                 {
-                    lblModifyStatus.Text = "Cannot Move User:  " + TextBox1.Text + "  no Staff would be left!";
+                    lblModifyStatus.Text = "Error: Cannot Move User:  " + TextBox1.Text + "  no Staff would be left!";
                 }
                 else
                 {
@@ -419,11 +420,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
             var myNodeMember = docMember.SelectSingleNode(xpath3);
 
-            if (myNodeStaff != null)
-            {
+            if (myNodeStaff == null)
+                {
                 if (myNodeStaff.ParentNode.NextSibling == null && myNodeStaff.ParentNode.PreviousSibling == null)
                 {
-                    lblModifyStatus.Text = "Cannot Move User:  " + TextBox1.Text + "  no Staff would be left!";
+                    lblModifyStatus.Text = "Error: Cannot Move User:  " + TextBox1.Text + "  no Staff would be left!";
                 }
                 else
                 {
@@ -450,7 +451,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 if (myNodeAgent.ParentNode.NextSibling == null && myNodeAgent.ParentNode.PreviousSibling == null)
                 {
-                    lblModifyStatus.Text = "Cannot Move User:  " + TextBox1.Text + "  no Agents would be left!";
+                    lblModifyStatus.Text = "Error: Cannot Move User:  " + TextBox1.Text + "  no Agents would be left!";
                 }
                 else
                 {
@@ -507,7 +508,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 if(myNodeStaff.ParentNode.NextSibling == null && myNodeStaff.ParentNode.PreviousSibling == null)
                 {
-                    lblModifyStatus.Text = "Cannot delete User:  " + TextBox1.Text + "  no Staff would be left!"; 
+                    lblModifyStatus.Text = "Error: Cannot delete User:  " + TextBox1.Text + "  no Staff would be left!"; 
                 }
                 else
                 {
@@ -520,7 +521,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 if (myNodeAgent.ParentNode.NextSibling == null && myNodeAgent.ParentNode.PreviousSibling == null)
                 {
-                    lblModifyStatus.Text = "Cannot delete User:  " + TextBox1.Text + "  no Staff would be left!";
+                    lblModifyStatus.Text = "Error: Cannot delete User:  " + TextBox1.Text + "  no Staff would be left!";
                 }
                 else
                 {
@@ -637,78 +638,87 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                 bool testCaptcha = Captcha1.validate();
 
+
+
                 if (testCaptcha)
                 {
-                    if (optionsRadio1.Checked && myNodeStaff == null)
+                    if (myNodeMember == null & myNodeAgent == null && myNodeStaff == null)
                     {
+                        if (optionsRadio1.Checked && myNodeStaff == null)
+                        {
 
-                        XmlElement Credentials = docStaff.CreateElement("Credentials");
-                        Credentials.SetAttribute("UserType", "Staff");
-                        XmlElement Username = docStaff.CreateElement("Username");
-                        Username.InnerText = txtbxUsername1.Value;
-                        XmlElement Password = docStaff.CreateElement("Password");
-                        Password.InnerText = EncryptPassword(Password1.Value);
+                            XmlElement Credentials = docStaff.CreateElement("Credentials");
+                            Credentials.SetAttribute("UserType", "Staff");
+                            XmlElement Username = docStaff.CreateElement("Username");
+                            Username.InnerText = txtbxUsername1.Value;
+                            XmlElement Password = docStaff.CreateElement("Password");
+                            Password.InnerText = EncryptPassword(Password1.Value);
 
-                        Credentials.AppendChild(Username);
-                        Credentials.AppendChild(Password);
+                            Credentials.AppendChild(Username);
+                            Credentials.AppendChild(Password);
 
-                        rootStaff.AppendChild(Credentials);
+                            rootStaff.AppendChild(Credentials);
 
-                        docStaff.Save(pathStaff);
+                            docStaff.Save(pathStaff);
 
-                        lblCreateStatus.Text = "Staff Account: " + txtbxUsername1.Value + " created";
+                            lblCreateStatus.Text = "Staff Account: " + txtbxUsername1.Value + " created";
 
-                    }
-                    else if (optionsRadio2.Checked && myNodeAgent == null)
-                    {
-                        XmlElement Credentials = docAgent.CreateElement("Credentials");
-                        Credentials.SetAttribute("UserType", "Agent");
-                        XmlElement Username = docAgent.CreateElement("Username");
-                        Username.InnerText = txtbxUsername1.Value;
-                        XmlElement Password = docAgent.CreateElement("Password");
-                        Password.InnerText = EncryptPassword(Password1.Value);
+                        }
+                        else if (optionsRadio2.Checked && myNodeAgent == null)
+                        {
+                            XmlElement Credentials = docAgent.CreateElement("Credentials");
+                            Credentials.SetAttribute("UserType", "Agent");
+                            XmlElement Username = docAgent.CreateElement("Username");
+                            Username.InnerText = txtbxUsername1.Value;
+                            XmlElement Password = docAgent.CreateElement("Password");
+                            Password.InnerText = EncryptPassword(Password1.Value);
 
-                        Credentials.AppendChild(Username);
-                        Credentials.AppendChild(Password);
+                            Credentials.AppendChild(Username);
+                            Credentials.AppendChild(Password);
 
-                        rootAgent.AppendChild(Credentials);
+                            rootAgent.AppendChild(Credentials);
 
-                        docAgent.Save(pathAgent);
+                            docAgent.Save(pathAgent);
 
-                        lblCreateStatus.Text = "Agent Account: " + txtbxUsername1.Value + " created";
-                    }
-                    else if (optionsRadio3.Checked && myNodeMember == null)
-                    {
-                        XmlElement Credentials = docMember.CreateElement("Credentials");
-                        Credentials.SetAttribute("UserType", "Member");
-                        XmlElement Username = docMember.CreateElement("Username");
-                        Username.InnerText = txtbxUsername1.Value;
-                        XmlElement Password = docMember.CreateElement("Password");
-                        Password.InnerText = EncryptPassword(Password1.Value);
+                            lblCreateStatus.Text = "Agent Account: " + txtbxUsername1.Value + " created";
+                        }
+                        else if (optionsRadio3.Checked && myNodeMember == null)
+                        {
+                            XmlElement Credentials = docMember.CreateElement("Credentials");
+                            Credentials.SetAttribute("UserType", "Member");
+                            XmlElement Username = docMember.CreateElement("Username");
+                            Username.InnerText = txtbxUsername1.Value;
+                            XmlElement Password = docMember.CreateElement("Password");
+                            Password.InnerText = EncryptPassword(Password1.Value);
 
-                        Credentials.AppendChild(Username);
-                        Credentials.AppendChild(Password);
+                            Credentials.AppendChild(Username);
+                            Credentials.AppendChild(Password);
 
-                        rootMember.AppendChild(Credentials);
+                            rootMember.AppendChild(Credentials);
 
-                        docMember.Save(pathMember);
+                            docMember.Save(pathMember);
 
-                        lblCreateStatus.Text = "Member Account: " + txtbxUsername1.Value + " created";
+                            lblCreateStatus.Text = "Member Account: " + txtbxUsername1.Value + " created";
+                        }
+                        else
+                        {
+                            if (myNodeStaff != null)
+                            {
+                                lblCreateStatus.Text = "Error: Staff Account: " + txtbxUsername1.Value + " already exists";
+                            }
+                            else if (myNodeAgent != null)
+                            {
+                                lblCreateStatus.Text = "Error: Agent Account: " + txtbxUsername1.Value + " already exists";
+                            }
+                            else if (myNodeMember != null)
+                            {
+                                lblCreateStatus.Text = "Error: Member Account: " + txtbxUsername1.Value + " already exists";
+                            }
+                        }
                     }
                     else
                     {
-                        if (myNodeStaff != null)
-                        {
-                            lblCreateStatus.Text = "Staff Account: " + txtbxUsername1.Value + " already exists";
-                        }
-                        else if (myNodeAgent != null)
-                        {
-                            lblCreateStatus.Text = "Agent Account: " + txtbxUsername1.Value + " already exists";
-                        }
-                        else if (myNodeMember != null)
-                        {
-                            lblCreateStatus.Text = "Member Account: " + txtbxUsername1.Value + " already exists";
-                        }
+                        lblCreateStatus.Text = "Error: Account: " + txtbxUsername1.Value + " already exists";
                     }
 
                 }

@@ -140,25 +140,22 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected bool myAuthenticate(string username, string password)
         {
-            string fLocation = Path.Combine(Request.PhysicalApplicationPath, @"App_Data\Users.xml");
-            if (File.Exists(fLocation))
-            {
-                FileStream FS = new FileStream(fLocation, FileMode.Open);
-                XmlDocument xd = new XmlDocument();
-                xd.Load(FS);
-                XmlNode node = xd;
-                XmlNodeList children = node.ChildNodes;
-                foreach (XmlNode child in children)
-                {
-                    // use hash function if the credential is hashed
-                    // check if the username and password exist in the XML file;
-
-                }
-            }
 
 
-            //Todo get account type here
+            ///Chris to do
+            //Iterate over the xmls and get what type of account they are and check for authentication
+            // if account not found return false and don't let it run to the cookie and session state code
+            //See my create account for how I iterated over each XML file
+
+            //Chris set the accountype here account type here, it will be used later in the function
             string accountType = "Staff";
+
+
+
+
+
+
+
 
 
 
@@ -251,8 +248,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                 if (testCaptcha)
                 {
-                    //only can create member accounts
-                    if ( myNodeMember == null)
+                    if ( myNodeMember == null & myNodeAgent == null && myNodeStaff == null)
                     {
                         XmlElement Credentials = docMember.CreateElement("Credentials");
                         Credentials.SetAttribute("UserType", "Member");
