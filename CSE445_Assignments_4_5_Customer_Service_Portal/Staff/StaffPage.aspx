@@ -24,14 +24,14 @@
                     <a class="nav-link" id="btnDefault" runat="server" onserverclick="btnDefault_Click">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " id="btnMemberLogin" runat="server" onserverclick="btnLoginMember_Click">Member</a>
+                    <a class="nav-link " id="btnMemberLogin" visible="false" runat="server" onserverclick="btnLoginMember_Click">Member</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " id="btnLoginAgent" runat="server" onserverclick="btnLoginAgent_Click">Agent</a>
+                    <a class="nav-link " id="btnLoginAgent" visible="false" runat="server" onserverclick="btnLoginAgent_Click">Agent</a>
                     <span class="visually-hidden">(current)</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" id="btnLoginStaff" runat="server" onserverclick="btnLoginStaff_Click">Staff</a>
+                    <a class="nav-link active" id="btnLoginStaff" visible="false" runat="server" onserverclick="btnLoginStaff_Click">Staff</a>
                     <span class="visually-hidden">(current)</span>
                 </li>
                 <li class="nav-item">
@@ -91,16 +91,16 @@
         <asp:Button ID="btnNewPass" runat="server" OnClick="btnNewPass_Click" Text="Set" />
         <br />
         <br />
-        New Account Type<br />
-        <asp:Button ID="btnlToStaff" runat="server" OnClick="btnlToStaff_Click" Text="Staff" />
-&nbsp;<asp:Button ID="btnToAgent" runat="server" OnClick="btnToAgent_Click" Text="Agent" />
+            New Account Type<br />&nbsp;<asp:Button ID="btnlToStaff" runat="server" OnClick="btnlToStaff_Click" Text="Staff" />
+            &nbsp;<asp:Button ID="btnToAgent" runat="server" OnClick="btnToAgent_Click" Text="Agent" />
 &nbsp;<asp:Button ID="btnToMember" runat="server" OnClick="btnToMember_Click" Text="Member" />
         <br />
         <br />
         Delete Account<br />
         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
         <br />
-        <br />
+            <br />
+            *Note, deleting or changing account type will log you out upon completion due to security purposes.<br />
                 <hr />
         <asp:Panel ID="Panel1" runat="server">
             <h2><strong>Create an Account</strong></h2>

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CredentialsDatabase>
-  <Credentials UserType="Member">
+  <Credentials UserType="Agent">
     <Username>Chromechris</Username>
     <Password>RRKtEYjML3BDPDsD9YsAdQ==</Password>
   </Credentials>
-  <Credentials UserType="Staff">
+  <Credentials UserType="Agent">
     <Username>Keeks</Username>
     <Password>pkheO58sgno716FnlU9JeQ==</Password>
   </Credentials>
-  <Credentials UserType="Staff">
+  <Credentials UserType="Agent">
     <Username>Craig653</Username>
     <Password>ma8WObsiB5RU8K/kh98M9A==</Password>
   </Credentials>

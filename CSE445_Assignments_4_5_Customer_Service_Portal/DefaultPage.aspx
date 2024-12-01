@@ -24,13 +24,13 @@
                     <a class="nav-link active" id="btnDefault" runat="server" onserverclick="btnDefault_Click">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="btnMemberLogin" runat="server" onserverclick="btnLoginMember_Click">Member</a>
+                  <a class="nav-link" id="btnMemberLogin" runat="server" visible="false" onserverclick="btnLoginMember_Click">Member</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="btnLoginAgent" runat="server" onserverclick="btnLoginAgent_Click">Agent</a>
+                  <a class="nav-link" id="btnLoginAgent" runat="server"  visible="false" onserverclick="btnLoginAgent_Click">Agent</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="btnLoginStaff" runat="server" onserverclick="btnLoginStaff_Click">Staff</a>
+                  <a class="nav-link" id="btnLoginStaff" runat="server"  visible="false" onserverclick="btnLoginStaff_Click">Staff</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" id="btnTryIt" runat="server" onserverclick="btnTryIt_Click">TryIt Page</a>
@@ -66,16 +66,22 @@
         <ol>
             <li>
                 <p>
-                    Member Page:</p>
+                    Member Page: </p>
                 <ul>
                     <li>Users submit tickets that include a problem description and images of the issue</li>
                     <li>Users can see their ticket status</li>
+                    <li>
+                        <asp:Button ID="btnToMember" runat="server" OnClick="btnToMember_Click" Text="To Member Page" />
+                    </li>
                 </ul>
             </li>
             <li>Agent Page:<ul>
                 <li>Agents can view tickets in the database via a ticket tool</li>
                 <li>Agents an change the status&#39;s of tickets </li>
                 <li>A Dashboard will show all ticket types</li>
+                <li>
+                    <asp:Button ID="btnToAgentPage" runat="server" OnClick="btnToAgentPage_Click" Text="To Agent Page" />
+                </li>
                 </ul>
             </li>
             <li>
@@ -83,6 +89,9 @@
                     Staff Page:</p>
                 <ul>
                     <li>Can delete usernames and passwords (To be added in Assignment6)</li>
+                    <li>
+                        <asp:Button ID="btnToStaffPage" runat="server" OnClick="btnToStaffPage_Click" Text="To Staff Page" />
+                    </li>
                 </ul>
             </li>
             <li>Try it page<ul>

@@ -16,18 +16,35 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //Only show buttons users have access to
+            if (Session["AccountType"] != null)
+            {
+                if (Session["AccountType"] == "Staff")
+                {
+                    btnLoginStaff.Visible = true;
+                }
+                else if (Session["AccountType"] == "Agent")
+                {
+                    btnLoginAgent.Visible = true;
+                }
+                else if (Session["AccountType"] == "Member")
+                {
+                    btnMemberLogin.Visible = true;
+                }
+            }
+
             //Check session state to set login button
             if (Session["AccountType"] != "Staff")
             {
                 ValidationLabel.Visible = true;
-                ValidationLabel.Text = "User account:" + Session["Username"] + "(" + Session["AccountType"] + ")" + " does not have access to the Staff page";
+                ValidationLabel.Text = "User account:" + Session["Username"] + "(" + Session["AccountType"] + ")" + " has been signed out for security purposes. Please sign back in";
             }
             else
             {
                 //make panel invisible so you can't see page if you don't have correct account type
                 Panel2.Visible = true;
             }
-
 
             //Set inital states and load the dashboard info
             loadStaffAccounts();
@@ -52,13 +69,13 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         protected void btnLoginMember_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("MemberPage.aspx");
+            Response.Redirect("../Member/MemberPage.aspx");
         }
 
         protected void btnLoginAgent_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("AgentPage.aspx");
+            Response.Redirect("../Agent/AgentPage.aspx");
         }
 
         protected void btnTryIt_Click(object sender, EventArgs e)
@@ -74,7 +91,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         {
             Response.Redirect("../ComponentTable.aspx");
         }
-        protected void btnLogout_Click(object sender, EventArgs e)
+
+        private void userLogout()
         {
             //Craig's Get username cookie on Load
 
@@ -98,6 +116,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 FormsAuthentication.SignOut();
                 Server.Transfer("../DefaultPage.aspx");
             }
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            userLogout();
         }
 
 
@@ -199,7 +222,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
                 var myNodeMember = docMember.SelectSingleNode(xpath3);
 
-                if(myNodeStaff != null)
+
+                if (myNodeStaff != null)
                 {
                     lblAccount.Text = myNodeStaff.FirstChild.InnerText;
                     lblType.Text = myNodeStaff.ParentNode.Attributes[0].InnerText;
@@ -268,6 +292,30 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
             var myNodeMember = docMember.SelectSingleNode(xpath3);
 
+            string xpath4 = "/configuration/system.web/authorization";
+            string xpath5 = "/configuration/system.web/authorization/deny";
+            string xpath6 = "/configuration/system.web/authorization/allow[@users=\"" + TextBox1.Text + "\"" + "]";
+
+            XmlDocument docMemberWeb = new XmlDocument();
+            string pathMemberWeb = Server.MapPath("~/Member/web.config");
+            docMemberWeb.Load(pathMemberWeb);
+            var myNodeMemberWeb = docMemberWeb.SelectSingleNode(xpath4);
+            var myNodeMemberWebRef = docMemberWeb.SelectSingleNode(xpath5);
+            var myNodeMemberRem = docMemberWeb.SelectSingleNode(xpath6);
+
+            XmlDocument docAgentWeb = new XmlDocument();
+            string pathAgentWeb = Server.MapPath("~/Agent/web.config");
+            docAgentWeb.Load(pathAgentWeb);
+            var myNodeAgentWeb = docAgentWeb.SelectSingleNode(xpath4);
+            var myNodeAgentWebRef = docAgentWeb.SelectSingleNode(xpath5);
+            var myNodeAgentRem = docAgentWeb.SelectSingleNode(xpath6);
+
+            XmlDocument docStaffWeb = new XmlDocument();
+            string pathStaffWeb = Server.MapPath("~/Staff/web.config");
+            docStaffWeb.Load(pathStaffWeb);
+            var myNodeStaffWeb = docStaffWeb.SelectSingleNode(xpath4);
+            var myNodeStaffWebRef = docStaffWeb.SelectSingleNode(xpath5);
+            var myNodeStaffRem = docStaffWeb.SelectSingleNode(xpath6);
 
             //Check if it is an agent account
             if (myNodeAgent != null)
@@ -295,11 +343,22 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                     docStaff.Save(pathStaff);
 
+                    //update Staff webconfig to allow user as a Staff
+                    XmlElement WebUser = docStaffWeb.CreateElement("allow");
+                    WebUser.SetAttribute("users", TextBox1.Text);
+                    myNodeStaffWeb.PrependChild(WebUser);
+                    docStaffWeb.Save(pathStaffWeb);
+
+                    //Remove from Agetn web.config
+                    docAgentWeb.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeAgentRem);
+                    docAgentWeb.Save(pathAgentWeb);
 
                     //remove from agent 
                     rootAgent.RemoveChild(myNodeAgent.ParentNode);
                     docAgent.Save(pathAgent);
                     this.Page_Load(null, null);
+
+
                 }
 
             }
@@ -322,18 +381,30 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                 docStaff.Save(pathStaff);
 
+                //update Staff webconfig to allow user as a Staff
+                XmlElement WebUser = docStaffWeb.CreateElement("allow");
+                WebUser.SetAttribute("users", TextBox1.Text);
+                myNodeStaffWeb.PrependChild(WebUser);
+                docStaffWeb.Save(pathStaffWeb);
+
+                //Remove from Member web.config
+                docMemberWeb.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeMemberRem);
+                docMemberWeb.Save(pathMemberWeb);
+
 
                 //remove from member
                 rootMember.RemoveChild(myNodeMember.ParentNode);
                 docMember.Save(pathMember);
                 this.Page_Load(null, null);
+
             }
             else
             {
                 lblModifyStatus.Text = "Well this is awkward.... Logout and try again";
 
             }
-            
+
+            userLogout();
         }
 
         //set selected account to agent
@@ -361,6 +432,30 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
             var myNodeMember = docMember.SelectSingleNode(xpath3);
 
+            string xpath4 = "/configuration/system.web/authorization";
+            string xpath5 = "/configuration/system.web/authorization/deny";
+            string xpath6 = "/configuration/system.web/authorization/allow[@users=\"" + TextBox1.Text + "\"" + "]";
+
+            XmlDocument docMemberWeb = new XmlDocument();
+            string pathMemberWeb = Server.MapPath("~/Member/web.config");
+            docMemberWeb.Load(pathMemberWeb);
+            var myNodeMemberWeb = docMemberWeb.SelectSingleNode(xpath4);
+            var myNodeMemberWebRef = docMemberWeb.SelectSingleNode(xpath5);
+            var myNodeMemberRem = docMemberWeb.SelectSingleNode(xpath6);
+
+            XmlDocument docAgentWeb = new XmlDocument();
+            string pathAgentWeb = Server.MapPath("~/Agent/web.config");
+            docAgentWeb.Load(pathAgentWeb);
+            var myNodeAgentWeb = docAgentWeb.SelectSingleNode(xpath4);
+            var myNodeAgentWebRef = docAgentWeb.SelectSingleNode(xpath5);
+            var myNodeAgentRem = docAgentWeb.SelectSingleNode(xpath6);
+
+            XmlDocument docStaffWeb = new XmlDocument();
+            string pathStaffWeb = Server.MapPath("~/Staff/web.config");
+            docStaffWeb.Load(pathStaffWeb);
+            var myNodeStaffWeb = docStaffWeb.SelectSingleNode(xpath4);
+            var myNodeStaffWebRef = docStaffWeb.SelectSingleNode(xpath5);
+            var myNodeStaffRem = docStaffWeb.SelectSingleNode(xpath6);
 
             //check if staff
             if (myNodeStaff != null)
@@ -387,6 +482,16 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     rootAgent.AppendChild(Credentials);
 
                     docAgent.Save(pathAgent);
+
+                    //update webconfig to allow user as a Agent
+                    XmlElement WebUser = docAgentWeb.CreateElement("allow");
+                    WebUser.SetAttribute("users", TextBox1.Text);
+                    myNodeAgentWeb.PrependChild(WebUser);
+                    docAgentWeb.Save(pathAgentWeb);
+
+                    //Remove from Staff web.config
+                    docStaffWeb.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeStaffRem);
+                    docStaffWeb.Save(pathStaffWeb);
 
                     //remove from staff
                     rootStaff.RemoveChild(myNodeStaff.ParentNode);
@@ -415,6 +520,16 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                 docAgent.Save(pathAgent);
 
+                //update webconfig to allow user as a Agent
+                XmlElement WebUser = docAgentWeb.CreateElement("allow");
+                WebUser.SetAttribute("users", TextBox1.Text);
+                myNodeAgentWeb.PrependChild(WebUser);
+                docAgentWeb.Save(pathAgentWeb);
+
+                //Remove from Member web.config
+                myNodeMemberRem.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeMemberRem);
+                docMemberWeb.Save(pathMemberWeb);
+
 
                 //Remove from member
                 rootMember.RemoveChild(myNodeMember.ParentNode);
@@ -426,6 +541,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblModifyStatus.Text = "Well this is awkward.... Logout and try again";
 
             }
+            userLogout();
         }
 
         //set selected acount to member
@@ -453,9 +569,33 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
             var myNodeMember = docMember.SelectSingleNode(xpath3);
 
+            string xpath4 = "/configuration/system.web/authorization";
+            string xpath5 = "/configuration/system.web/authorization/deny";
+            string xpath6 = "/configuration/system.web/authorization/allow[@users=\"" + TextBox1.Text + "\"" + "]";
+
+            XmlDocument docMemberWeb = new XmlDocument();
+            string pathMemberWeb = Server.MapPath("~/Member/web.config");
+            docMemberWeb.Load(pathMemberWeb);
+            var myNodeMemberWeb = docMemberWeb.SelectSingleNode(xpath4);
+            var myNodeMemberWebRef = docMemberWeb.SelectSingleNode(xpath5);
+            var myNodeMemberRem = docMemberWeb.SelectSingleNode(xpath6);
+
+            XmlDocument docAgentWeb = new XmlDocument();
+            string pathAgentWeb = Server.MapPath("~/Agent/web.config");
+            docAgentWeb.Load(pathAgentWeb);
+            var myNodeAgentWeb = docAgentWeb.SelectSingleNode(xpath4);
+            var myNodeAgentWebRef = docAgentWeb.SelectSingleNode(xpath5);
+            var myNodeAgentRem = docAgentWeb.SelectSingleNode(xpath6);
+
+            XmlDocument docStaffWeb = new XmlDocument();
+            string pathStaffWeb = Server.MapPath("~/Staff/web.config");
+            docStaffWeb.Load(pathStaffWeb);
+            var myNodeStaffWeb = docStaffWeb.SelectSingleNode(xpath4);
+            var myNodeStaffWebRef = docStaffWeb.SelectSingleNode(xpath5);
+            var myNodeStaffRem = docStaffWeb.SelectSingleNode(xpath6);
 
             //is it staff
-            if (myNodeStaff == null)
+            if (myNodeStaff != null)
                 {
                 //don't let you delete only staff member
                 if (myNodeStaff.ParentNode.NextSibling == null && myNodeStaff.ParentNode.PreviousSibling == null)
@@ -478,6 +618,16 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     rootMember.AppendChild(Credentials);
 
                     docMember.Save(pathMember);
+
+                    //update webconfig to allow user as a member
+                    XmlElement WebUser = docMemberWeb.CreateElement("allow");
+                    WebUser.SetAttribute("users", TextBox1.Text);
+                    myNodeMemberWeb.PrependChild(WebUser);
+                    docMemberWeb.Save(pathMemberWeb);
+
+                    //Remove from Staff web.config
+                    docStaffWeb.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeStaffRem);
+                    docStaffWeb.Save(pathStaffWeb);
 
                     //remove from staff
                     rootStaff.RemoveChild(myNodeStaff.ParentNode);
@@ -506,6 +656,16 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                     rootMember.AppendChild(Credentials);
 
+                    //update webconfig to allow user as a member
+                    XmlElement WebUser = docMemberWeb.CreateElement("allow");
+                    WebUser.SetAttribute("users", TextBox1.Text);
+                    myNodeMemberWeb.PrependChild(WebUser);
+                    docMemberWeb.Save(pathMemberWeb);
+
+                    //Remove from Member web.config
+                    docAgentWeb.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeAgentRem);
+                    docAgentWeb.Save(pathMemberWeb);
+
                     docMember.Save(pathMember);
                     //remove from agent
                     rootAgent.RemoveChild(myNodeAgent.ParentNode);
@@ -518,6 +678,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblModifyStatus.Text = "Well this is awkward.... Logout and try again";
 
             }
+
+            userLogout();
         }
 
 
@@ -547,6 +709,31 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + TextBox1.Text + "\"" + "]";
             var myNodeMember = docMember.SelectSingleNode(xpath3);
 
+            string xpath4 = "/configuration/system.web/authorization";
+            string xpath5 = "/configuration/system.web/authorization/deny";
+            string xpath6 = "/configuration/system.web/authorization/allow[@users=\"" + TextBox1.Text + "\"" + "]";
+
+            XmlDocument docMemberWeb = new XmlDocument();
+            string pathMemberWeb = Server.MapPath("~/Member/web.config");
+            docMemberWeb.Load(pathMemberWeb);
+            var myNodeMemberWeb = docMemberWeb.SelectSingleNode(xpath4);
+            var myNodeMemberWebRef = docMemberWeb.SelectSingleNode(xpath5);
+            var myNodeMemberRem = docMemberWeb.SelectSingleNode(xpath6);
+
+            XmlDocument docAgentWeb = new XmlDocument();
+            string pathAgentWeb = Server.MapPath("~/Agent/web.config");
+            docAgentWeb.Load(pathAgentWeb);
+            var myNodeAgentWeb = docAgentWeb.SelectSingleNode(xpath4);
+            var myNodeAgentWebRef = docAgentWeb.SelectSingleNode(xpath5);
+            var myNodeAgentRem = docAgentWeb.SelectSingleNode(xpath6);
+
+            XmlDocument docStaffWeb = new XmlDocument();
+            string pathStaffWeb = Server.MapPath("~/Staff/web.config");
+            docStaffWeb.Load(pathStaffWeb);
+            var myNodeStaffWeb = docStaffWeb.SelectSingleNode(xpath4);
+            var myNodeStaffWebRef = docStaffWeb.SelectSingleNode(xpath5);
+            var myNodeStaffRem = docStaffWeb.SelectSingleNode(xpath6);
+
             //Check if you can acctually delete accounts, if youc an remove them from the appropriate file
             if (myNodeStaff != null)
             {
@@ -556,6 +743,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 }
                 else
                 {
+
+                    //Remove from Staff web.config
+                    docStaffWeb.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeStaffRem);
+                    docStaffWeb.Save(pathStaffWeb);
+
+                    //Remove from staff list
                     rootStaff.RemoveChild(myNodeStaff.ParentNode);
                     docStaff.Save(pathStaff);
                     this.Page_Load(null, null);
@@ -569,6 +762,10 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 }
                 else
                 {
+                    //Remove from Agent web.config
+                    docAgentWeb.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeAgentRem);
+                    docAgentWeb.Save(pathAgentWeb);
+
                     rootAgent.RemoveChild(myNodeAgent.ParentNode);
                     docAgent.Save(pathAgent);
                     this.Page_Load(null, null);
@@ -576,11 +773,16 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
             else if (myNodeMember != null)
             {
+                //Remove from Member web.config
+                docMemberWeb.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeMemberRem);
+                docMemberWeb.Save(pathMemberWeb);
 
                 rootMember.RemoveChild(myNodeMember.ParentNode);
                 docMember.Save(pathMember);
                 this.Page_Load(null, null);
             }
+
+            userLogout();
         }
 
         //Set new password
@@ -686,6 +888,31 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + txtbxUsername1.Value + "\"" + "]";
                 var myNodeMember = docMember.SelectSingleNode(xpath3);
 
+                string xpath4 = "/configuration/system.web/authorization";
+                string xpath5 = "/configuration/system.web/authorization/deny";
+                string xpath6 = "/configuration/system.web/authorization/allow[@users=\"" + txtbxUsername1.Value + "\"" + "]";
+
+                XmlDocument docMemberWeb = new XmlDocument();
+                string pathMemberWeb = Server.MapPath("~/Member/web.config");
+                docMemberWeb.Load(pathMemberWeb);
+                var myNodeMemberWeb = docMemberWeb.SelectSingleNode(xpath4);
+                var myNodeMemberWebRef = docMemberWeb.SelectSingleNode(xpath5);
+                var myNodeMemberRem = docMemberWeb.SelectSingleNode(xpath6);
+
+                XmlDocument docAgentWeb = new XmlDocument();
+                string pathAgentWeb = Server.MapPath("~/Agent/web.config");
+                docAgentWeb.Load(pathAgentWeb);
+                var myNodeAgentWeb = docAgentWeb.SelectSingleNode(xpath4);
+                var myNodeAgentWebRef = docAgentWeb.SelectSingleNode(xpath5);
+                var myNodeAgentRem = docAgentWeb.SelectSingleNode(xpath6);
+
+                XmlDocument docStaffWeb = new XmlDocument();
+                string pathStaffWeb = Server.MapPath("~/Staff/web.config");
+                docStaffWeb.Load(pathStaffWeb);
+                var myNodeStaffWeb = docStaffWeb.SelectSingleNode(xpath4);
+                var myNodeStaffWebRef = docStaffWeb.SelectSingleNode(xpath5);
+                var myNodeStaffRem = docStaffWeb.SelectSingleNode(xpath6);
+
                 bool testCaptcha = Captcha1.validate();
 
 
@@ -713,6 +940,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                             docStaff.Save(pathStaff);
 
+                            //update webconfig to allow user as a Staff
+                            XmlElement WebUser = docStaffWeb.CreateElement("allow");
+                            WebUser.SetAttribute("users", txtbxUsername1.Value);
+                            myNodeStaffWeb.PrependChild(WebUser);
+                            docStaffWeb.Save(pathStaffWeb);
+
                             lblCreateStatus.Text = "Staff Account: " + txtbxUsername1.Value + " created";
 
                         }
@@ -732,6 +965,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                             docAgent.Save(pathAgent);
 
+                            //update webconfig to allow user as a Agent
+                            XmlElement WebUser = docAgentWeb.CreateElement("allow");
+                            WebUser.SetAttribute("users", txtbxUsername1.Value);
+                            myNodeAgentWeb.PrependChild(WebUser);
+                            docAgentWeb.Save(pathAgentWeb);
+
                             lblCreateStatus.Text = "Agent Account: " + txtbxUsername1.Value + " created";
                         }
                         else if (optionsRadio3.Checked && myNodeMember == null)
@@ -749,6 +988,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                             rootMember.AppendChild(Credentials);
 
                             docMember.Save(pathMember);
+
+                            //update webconfig to allow user as a member
+                            XmlElement WebUser = docMemberWeb.CreateElement("allow");
+                            WebUser.SetAttribute("users", txtbxUsername1.Value);
+                            myNodeMemberWeb.PrependChild(WebUser);
+                            docMemberWeb.Save(pathMemberWeb);
 
                             lblCreateStatus.Text = "Member Account: " + txtbxUsername1.Value + " created";
                         }
@@ -775,6 +1020,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     }
 
                 }
+
+                userLogout();
             }
         }
     }

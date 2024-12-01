@@ -24,14 +24,14 @@
                 <a class="nav-link" id="btnDefault" runat="server" onserverclick="btnDefault_Click">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " id="btnMemberLogin" runat="server" onserverclick="btnLoginMember_Click">Member</a>
+                <a class="nav-link " id="btnMemberLogin" visible="false" runat="server" onserverclick="btnLoginMember_Click">Member</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " id="btnLoginAgent" runat="server" onserverclick="btnLoginAgent_Click">Agent</a>
+                <a class="nav-link " id="btnLoginAgent"  visible="false" runat="server" onserverclick="btnLoginAgent_Click">Agent</a>
                 <span class="visually-hidden">(current)</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="btnLoginStaff" runat="server" onserverclick="btnLoginStaff_Click">Staff</a>
+                <a class="nav-link" id="btnLoginStaff" visible="false"  runat="server" onserverclick="btnLoginStaff_Click">Staff</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" id="btnTryIt" runat="server" onserverclick="btnTryIt_Click">TryIt Page</a>
@@ -43,7 +43,7 @@
                 <div class="pull-right">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a class="nav-link" id="Login" runat="server" onserverclick="btnLogout_Click">Logout</a>
+                            <a class="nav-link" id="Login" runat="server" onserverclick="btnLoginOut_Click">Logout</a>
                         </li>
                     </ul>     
                 </div> 

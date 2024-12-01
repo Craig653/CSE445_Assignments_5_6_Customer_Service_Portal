@@ -19,6 +19,25 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //Only show buttons users have access to
+            if (Session["AccountType"] != null)
+            {
+                if (Session["AccountType"] == "Staff")
+                {
+                    btnLoginStaff.Visible = true;
+                }
+                else if (Session["AccountType"] == "Agent")
+                {
+                    btnLoginAgent.Visible = true;
+                }
+                else if (Session["AccountType"] == "Member")
+                {
+                    btnMemberLogin.Visible = true;
+                }
+            }
+
+            userLogout();
             //don't show create account unless they ask for it
             if (!Panel1.Visible)
             {
@@ -29,17 +48,17 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         //Page redirect functions
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Protected/StaffPage.aspx");
+            Response.Redirect("Staff/StaffPage.aspx");
         }
 
         protected void btnLoginMember_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Protected/MemberPage.aspx");
+            Response.Redirect("Member/MemberPage.aspx");
         }
 
         protected void btnLoginAgent_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Protected/AgentPage.aspx");
+            Response.Redirect("Agent/AgentPage.aspx");
         }
 
         protected void btnTryIt_Click(object sender, EventArgs e)
@@ -57,6 +76,30 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             Panel1.Visible = true;
         }
 
+        private void userLogout()
+        {
+            //logout clean up session and cookies
+
+            HttpCookie userCookie = Request.Cookies["Username"];
+            if ((userCookie != null))
+            {
+                Session["Username"] = null;
+                Session["AccountType"] = null;
+                HttpCookie delCookie = new HttpCookie("Username");
+                delCookie.Expires = DateTime.Now.AddMonths(-10);
+                delCookie.Value = null;
+                Response.Cookies.Add(delCookie);
+                HttpContext.Current.Request.Cookies.Clear();
+
+                delCookie = new HttpCookie("Type");
+                delCookie.Expires = DateTime.Now.AddMonths(-10);
+                delCookie.Value = null;
+                Response.Cookies.Add(delCookie);
+                HttpContext.Current.Request.Cookies.Clear();
+
+                FormsAuthentication.SignOut();
+            }
+        }
 
         //login clicking function, will authenticate and check if you typed everhting
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -73,12 +116,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 lblAuthentication.Text = "Please enter a password";
             }
+            //if you've typed everything log in
             else
             {
                 if (myAuthenticate(txtbxUsername.Value, txtbxPassword.Value))
                 {
                     FormsAuthentication.RedirectFromLoginPage(txtbxUsername.Value, true);
-
                 }
                 else
                 {
@@ -106,12 +149,6 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
             //Chris set the accountype here account type here, it will be used later in the function
             string accountType = "Staff";
-
-
-
-
-
-
 
 
 
@@ -164,6 +201,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             return encryptor.EncryptString(password);
         }
 
+
+        //Create new account
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             if (Password1.Value == "" && txtbxUsername1.Value == "")
@@ -180,6 +219,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
             else
             {
+                //load all XMLS needed
                 XmlDocument docStaff = new XmlDocument();
                 string pathStaff = Server.MapPath("~/App_Data/Staff.xml");
                 docStaff.Load(pathStaff);
@@ -201,10 +241,23 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + txtbxUsername1.Value + "\"" + "]";
                 var myNodeMember = docMember.SelectSingleNode(xpath3);
 
+                XmlDocument docMemberWeb = new XmlDocument();
+                string pathMemberWeb = Server.MapPath("~/Member/web.config");
+                docMemberWeb.Load(pathMemberWeb);
+                string xpath4 = "/configuration/system.web/authorization";
+                string xpath5 = "/configuration/system.web/authorization/deny";
+                var myNodeMemberWeb = docMemberWeb.SelectSingleNode(xpath4);
+                var myNodeMemberWebRef = docMemberWeb.SelectSingleNode(xpath5);
+
+
                 bool testCaptcha = Captcha1.validate();
 
+
+                //Check captacha
                 if (testCaptcha)
                 {
+
+                    //Check if account already exists
                     if ( myNodeMember == null & myNodeAgent == null && myNodeStaff == null)
                     {
                         XmlElement Credentials = docMember.CreateElement("Credentials");
@@ -219,10 +272,18 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                         rootMember.AppendChild(Credentials);
 
+                        //Same new member account
                         docMember.Save(pathMember);
+
+                        //update webconfig to allow user as a member
+                        XmlElement WebUser = docMemberWeb.CreateElement("allow");
+                        WebUser.SetAttribute("users", txtbxUsername1.Value);
+                        myNodeMemberWeb.PrependChild(WebUser);
+                        docMemberWeb.Save(pathMemberWeb);
 
                         lblCreateStatus.Text = "Member Account: " + txtbxUsername1.Value + " created";
                     }
+                   
                     else
                     {
                         if (myNodeStaff != null)

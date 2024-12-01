@@ -13,6 +13,22 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Only show buttons users have access to
+            if (Session["AccountType"] != null)
+            {
+                if(Session["AccountType"] == "Staff")
+                {
+                    btnLoginStaff.Visible = true;
+                }
+                else if(Session["AccountType"] == "Agent")
+                {
+                    btnLoginAgent.Visible = true;
+                }
+                else if(Session["AccountType"] == "Member")
+                {
+                    btnMemberLogin.Visible = true;
+                }
+            }
 
             //Check session state to set login button
             if (Session["Username"] != null)
@@ -28,17 +44,17 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         //page redirect functions
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Protected/StaffPage.aspx");
+            Response.Redirect("Staff/StaffPage.aspx");
         }
 
         protected void btnLoginMember_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Protected/MemberPage.aspx");
+            Response.Redirect("Member/MemberPage.aspx");
         }
 
         protected void btnLoginAgent_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Protected/AgentPage.aspx");
+            Response.Redirect("Agent/AgentPage.aspx");
         }
 
         protected void btnTryIt_Click(object sender, EventArgs e)
@@ -85,6 +101,19 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+        protected void btnToMember_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Member/MemberPage.aspx");
+        }
 
+        protected void btnToAgentPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Agent/AgentPage.aspx");
+        }
+
+        protected void btnToStaffPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Staff/StaffPage.aspx");
+        }
     }
 }

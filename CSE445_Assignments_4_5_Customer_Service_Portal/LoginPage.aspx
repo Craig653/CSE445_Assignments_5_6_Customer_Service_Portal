@@ -25,13 +25,13 @@
                 <a class="nav-link " id="btnDefault" runat="server" onserverclick="btnDefault_Click">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="btnMemberLogin" runat="server" onserverclick="btnLoginMember_Click">Member</a>
+                <a class="nav-link" id="btnMemberLogin" visible="false" runat="server" onserverclick="btnLoginMember_Click">Member</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="btnLoginAgent" runat="server" onserverclick="btnLoginAgent_Click">Agent</a>
+                <a class="nav-link" id="btnLoginAgent" visible="false" runat="server" onserverclick="btnLoginAgent_Click">Agent</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="btnLoginStaff" runat="server" onserverclick="btnLoginStaff_Click">Staff</a>
+                <a class="nav-link" id="btnLoginStaff" visible="false"  runat="server" onserverclick="btnLoginStaff_Click">Staff</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="btnTryIt" runat="server" onserverclick="btnTryIt_Click">TryIt Page</a>
@@ -77,7 +77,7 @@
         <hr />
 
         <asp:Panel ID="Panel1" runat="server" Visible="False">
-            <h2><strong>Create an Account</strong></h2>
+            <h2><strong>Create a Member Account</strong></h2>
             <p>
                 <asp:Label ID="lblCreateStatus" runat="server" style="color: #FF3300"></asp:Label>
             </p>
@@ -97,6 +97,10 @@
             <br />
 
             <button type="button" class="btn btn-primary" id="btnCreate" runat="server" onserverclick="btnCreate_Click" >Create Account</button>
+
+            <br />
+            <br />
+            * Note to create an Agent or Staff account, or promote an existing account please login with a Staff User<br />
 
             <hr />
 
