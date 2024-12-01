@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Staff>
+  <Credentials UserType="Staff">
+    <Username>John</Username>
+    <Password>p4Tz39H2uBGyXyjymwgqWQ==</Password>
+  </Credentials>
+  <Credentials UserType="Staff">
+    <Username>Eddie</Username>
+    <Password>+KL2rzLLgwF3Qb29Nighqw==</Password>
+  </Credentials>
+  <Credentials UserType="Staff">
+    <Username>Rick</Username>
+    <Password>tndhI4v59Hojqb82T2vC0g==</Password>
+  </Credentials>
+  <Credentials UserType="Staff">
+    <Username>Cassandra</Username>
+    <Password>3g5UucDNYFaJb+0Z6mp5qw==</Password>
+  </Credentials>
+</Staff>

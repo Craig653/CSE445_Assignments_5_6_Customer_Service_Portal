@@ -16,6 +16,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
+            Session["buttonID"] = "btnLoginStaff"; // to be able to tell which button was clicked
             Response.Redirect("Protected/StaffPage.aspx");
         }
 
@@ -23,6 +24,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         {
             //check login cookies and database
             //Server.Transfer("LoginPage.aspx");
+            Session["buttonID"] = "btnLoginMember"; // to be able to tell which button was clicked
             Response.Redirect("Protected/MemberPage.aspx");
         }
 
@@ -30,6 +32,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         {
             //check login cookies and database
             //Server.Transfer("LoginPage.aspx");
+            Session["buttonID"] = "btnLoginAgent"; // to be able to tell which button was clicked
             Response.Redirect("Protected/AgentPage.aspx");
         }
 

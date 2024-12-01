@@ -8,4 +8,8 @@
     <!-- Set the C# language version to 10.0 -->
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="4.1.0" />
+  </ItemGroup>
+
 </Project>

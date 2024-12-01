@@ -14,9 +14,28 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
+        // start up that page engine ;)
         protected void Page_Load(object sender, EventArgs e)
         {
+            string username = "";
+            HttpCookie userCookie = Request.Cookies["Username"]; // get username cookie
+            if (userCookie != null) // if cookie exists
+            {
+                username = userCookie.Value.ToString(); // get the username string
+                if (username.Contains('=')) // if cookie contains "="
+                {
+                    username = username.Split('=')[1];
+                }
+                else // no galletita
+                {
+                    // Handle the case where the username does not contain '='
+                    username = ""; // Or set to a default value or handle the error appropriately
+                }
+            }
+            string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"" + username + "\"]]"; // get the tickets for the user
+            XmlDataSource1.XPath = xpath; // set the xml data source
 
+            /*
             //Craig's Get username cookie on Load
             string username = "";
             HttpCookie userCookie = Request.Cookies["Username"];
@@ -28,6 +47,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             string xpath = "//Tickets/Ticket[RequestingUsername[text()=\"" + username + "\"]]";
 
             XmlDataSource1.XPath = xpath;
+            */
         }
 
 
@@ -139,7 +159,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 Status.InnerText = "Open";
 
                 Ticket.AppendChild(TicketNumber);
-                Ticket.SetAttribute("Category","Updates");   //To do make this smart with chris's code
+                Ticket.SetAttribute("Category","Updates");   //To do make this smart with chris's code (lol)
                 Ticket.AppendChild(Requester);
                 Ticket.AppendChild(Text);
                 Ticket.AppendChild(Image);
@@ -156,10 +176,40 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
         }
 
+        // Member logout session handling
         protected void lblLogout_Click(object sender, EventArgs e)
         {
+            if (Request.Cookies["Username"] != null) // clear authentication cookies
+            {
+                HttpCookie userCookie = new HttpCookie("Username"); // create new cookie after logout
+                userCookie.Expires = DateTime.Now.AddDays(-1); // set ookie expiration date
+                Response.Cookies.Add(userCookie); // add cookie to response
+            }
+
+            Session.Clear(); // clear session data
+            Session.Abandon(); // abandon session
+
+            System.Web.Security.FormsAuthentication.SignOut(); // clear authentication ticket if using forms authentication
+
+            Response.Redirect("../DefaultPage.aspx"); // redirect to the login page or default page
+
+            // previous Craig's code
+            /*
+            // Clear authentication cookies
+            if (Request.Cookies["Username"] != null)
+            {
+                HttpCookie userCookie = new HttpCookie("Username");
+                userCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(userCookie);
+            }
+
+            // Clear session data
+            Session.Clear();
+            Session.Abandon();
+
             //Todo Add logic to logout here
             Response.Redirect("../DefaultPage.aspx");
+            */
         }
     }
 }
