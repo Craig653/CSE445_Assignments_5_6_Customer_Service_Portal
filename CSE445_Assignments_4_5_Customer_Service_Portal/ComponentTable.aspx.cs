@@ -80,6 +80,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 Session["Username"] = null;
                 Session["AccountType"] = null;
+                Session["buttonID"] = null;
                 HttpCookie delCookie = new HttpCookie("Username");
                 delCookie.Expires = DateTime.Now.AddMonths(-10);
                 delCookie.Value = null;

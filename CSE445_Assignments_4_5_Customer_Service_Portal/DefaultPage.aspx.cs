@@ -44,16 +44,19 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         //page redirect functions
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
+            Session["buttonID"] = "btnLoginStaff";
             Response.Redirect("Staff/StaffPage.aspx");
         }
 
         protected void btnLoginMember_Click(object sender, EventArgs e)
         {
+            Session["buttonID"] = "btnLoginMember";
             Response.Redirect("Member/MemberPage.aspx");
         }
 
         protected void btnLoginAgent_Click(object sender, EventArgs e)
         {
+            Session["buttonID"] = "btnLoginAgent";
             Response.Redirect("Agent/AgentPage.aspx");
         }
 
@@ -80,6 +83,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 Session["Username"] = null;
                 Session["AccountType"] = null;
+                Session["buttonID"] = null;
                 HttpCookie delCookie = new HttpCookie("Username");
                 delCookie.Expires = DateTime.Now.AddMonths(-10);
                 delCookie.Value = null;
@@ -103,16 +107,19 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
         protected void btnToMember_Click(object sender, EventArgs e)
         {
+            Session["buttonID"] = "btnLoginMember";
             Response.Redirect("Member/MemberPage.aspx");
         }
 
         protected void btnToAgentPage_Click(object sender, EventArgs e)
         {
+            Session["buttonID"] = "btnLoginAgent";
             Response.Redirect("Agent/AgentPage.aspx");
         }
 
         protected void btnToStaffPage_Click(object sender, EventArgs e)
         {
+            Session["buttonID"] = "btnLoginStaff";
             Response.Redirect("Staff/StaffPage.aspx");
         }
     }

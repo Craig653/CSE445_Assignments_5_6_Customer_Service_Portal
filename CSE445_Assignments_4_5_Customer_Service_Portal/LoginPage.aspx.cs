@@ -12,6 +12,7 @@ using LocalHash;
 using System.Runtime.Remoting.Lifetime;
 using System.ServiceModel.Channels;
 using System.Web.SessionState;
+using System.Diagnostics;
 
 namespace CSE445_Assignments_4_5_Customer_Service_Portal
 {
@@ -48,16 +49,19 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         //Page redirect functions
         protected void btnLoginStaff_Click(object sender, EventArgs e)
         {
+            Session["buttonID"] = "btnLoginStaff";
             Response.Redirect("Staff/StaffPage.aspx");
         }
 
         protected void btnLoginMember_Click(object sender, EventArgs e)
         {
+            Session["buttonID"] = "btnLoginMember";
             Response.Redirect("Member/MemberPage.aspx");
         }
 
         protected void btnLoginAgent_Click(object sender, EventArgs e)
         {
+            Session["buttonID"] = "btnLoginAgent";
             Response.Redirect("Agent/AgentPage.aspx");
         }
 
@@ -85,6 +89,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 Session["Username"] = null;
                 Session["AccountType"] = null;
+                Session["buttonID"] = null;
                 HttpCookie delCookie = new HttpCookie("Username");
                 delCookie.Expires = DateTime.Now.AddMonths(-10);
                 delCookie.Value = null;
@@ -138,21 +143,228 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         }
 
 
+        private string getButtonType()
+        {
+            string buttonID = "";
+            string userType = "";
+            if (Session["buttonID"] != null)
+            {
+                buttonID = Session["buttonID"].ToString();
+                if (!string.IsNullOrEmpty(buttonID)) // if buttonID exists (which means button was clicked)
+                {
+                    Debug.WriteLine("Button clicked: " + buttonID); // for debugging purposes
+                    if (buttonID.Equals("btnLoginMember")) // if the button clicked was the Member login button
+                    {
+                        userType = "Member";
+                        Debug.WriteLine(userType + " Login Detected");
+                    }
+                    else if (buttonID.Equals("btnLoginAgent")) // if the button clicked was the Agent login button
+                    {
+                        userType = "Agent";
+                        Debug.WriteLine(userType + " Login Detected");
+                    }
+                    else if (buttonID.Equals("btnLoginStaff")) // if the button clicked was the Staff login button
+                    {
+                        userType = "Staff";
+                        Debug.WriteLine(userType + " Login Detected");
+                    }
+                    else
+                    {
+                        userType = "Unknown"; // no good [no login button was clicked :( ]
+                    }
+                }
+            }
+            else
+            {
+                userType = "Unknown";
+            }
+
+
+            return userType;
+        }
+
         protected bool myAuthenticate(string username, string password)
         {
 
+            string accountType = getButtonType();
 
-            ///Chris to do
-            //Iterate over the xmls and get what type of account they are and check for authentication
-            // if account not found return false and don't let it run to the cookie and session state code
-            //See my create account for how I iterated over each XML file
+            //Chris's Authenticate
+            Debug.WriteLine("Authentication Starting"); // for debugging purposes
 
-            //Chris set the accountype here account type here, it will be used later in the function
-            string accountType = "Staff";
+            string memberFile = Path.Combine(Request.PhysicalApplicationPath, @"App_Data\Member.xml"); // Member xml file path
+            string staffFile = Path.Combine(Request.PhysicalApplicationPath, @"App_Data\Staff.xml");  // Staff xml file path
+            string adminFile = Path.Combine(Request.PhysicalApplicationPath, @"App_Data\Agent.xml"); // Admin xml file path
+
+            if (File.Exists(memberFile) && File.Exists(staffFile) && File.Exists(adminFile)) // verify all xml credential files exist
+            {
+                Debug.WriteLine("All XML Credentials File Found"); // for debugging purposes
+
+                if (accountType.Equals("Member")) // if the user type is Member
+                {
+                    using (FileStream FS = new FileStream(memberFile, FileMode.Open, FileAccess.Read, FileShare.Read)) // open xml file
+                    {
+                        Debug.WriteLine("FileStream for XML Opened"); // for debugging purposes
+                        XmlDocument xd = new XmlDocument(); // create a new XmlDocument object
+                        xd.Load(FS); // load the xml file
+                        XmlNodeList users = xd.SelectNodes("/CredentialsDatabase/Credentials"); // select the Member credentials
+
+                        foreach (XmlNode user in users) // iterate through the users in the xml file
+                        {
+                            string xmlUsername = user["Username"].InnerText; // get the username from the xml file
+                            string xmlPassword = user["Password"].InnerText; // get the password from the xml file
+                            string xmlUserType = user.Attributes["UserType"].Value; // get the user type from the xml file
+
+                            Debug.WriteLine("XML UserType: " + xmlUserType); // for debugging purposes
+                            Debug.WriteLine("XML Username: " + xmlUsername); // for debugging purposes
+                            Debug.WriteLine("XML Password: " + xmlPassword); // for debugging purposes
+
+                            // if user-provided username and password match the xml username and password
+                            // password is necrypted in the xml file and user-given password is encrypted before comparison
+                            if (xmlUsername.Equals(username) && xmlUserType.Equals(accountType))
+                            {
+                                Debug.WriteLine("Username and UserType Matched"); // for debugging purposes
+                                string encryptedPassword = EncryptPassword(password);
+                                Debug.WriteLine("Encrypted Given Password: " + encryptedPassword);
+                                if (xmlPassword.Equals(encryptedPassword))
+                                {
+                                    Debug.WriteLine("Password Matched");
+                                    setCookies();
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (accountType.Equals("Staff"))
+                {
+                    using (FileStream FS = new FileStream(staffFile, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        Debug.WriteLine("FileStream for XML Opened");
+                        XmlDocument xd = new XmlDocument();
+                        xd.Load(FS);
+                        XmlNodeList users = xd.SelectNodes("/CredentialsDatabase/Credentials");
+
+                        foreach (XmlNode user in users)
+                        {
+                            string xmlUsername = user["Username"].InnerText;
+                            string xmlPassword = user["Password"].InnerText;
+                            string xmlUserType = user.Attributes["UserType"].Value;
+
+                            Debug.WriteLine("XML UserType: " + xmlUserType);
+                            Debug.WriteLine("XML Username: " + xmlUsername);
+                            Debug.WriteLine("XML Password: " + xmlPassword);
+
+                            if (xmlUsername.Equals(username) && xmlUserType.Equals(accountType))
+                            {
+                                Debug.WriteLine("Username and UserType Matched");
+                                string encryptedPassword = EncryptPassword(password);
+                                Debug.WriteLine("Encrypted Given Password: " + encryptedPassword);
+                                if (xmlPassword.Equals(encryptedPassword))
+                                {
+                                    Debug.WriteLine("Password Matched");
+                                    setCookies();
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (accountType.Equals("Agent"))
+                {
+                    using (FileStream FS = new FileStream(adminFile, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        Debug.WriteLine("FileStream for XML Opened");
+                        XmlDocument xd = new XmlDocument();
+                        xd.Load(FS);
+                        XmlNodeList users = xd.SelectNodes("/CredentialsDatabase/Credentials");
+
+                        foreach (XmlNode user in users)
+                        {
+                            string xmlUsername = user["Username"].InnerText;
+                            string xmlPassword = user["Password"].InnerText;
+                            string xmlUserType = user.Attributes["UserType"].Value;
+
+                            Debug.WriteLine("XML UserType: " + xmlUserType);
+                            Debug.WriteLine("XML Username: " + xmlUsername);
+                            Debug.WriteLine("XML Password: " + xmlPassword);
+
+                            if (xmlUsername.Equals(username) && xmlUserType.Equals(accountType))
+                            {
+                                Debug.WriteLine("Username and UserType Matched");
+                                string encryptedPassword = EncryptPassword(password);
+                                Debug.WriteLine("Encrypted Given Password: " + encryptedPassword);
+                                if (xmlPassword.Equals(encryptedPassword))
+                                {
+                                    Debug.WriteLine("Password Matched");
+                                    setCookies();
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    //scrap xmls for Accoutn type for generic login
+                    XmlDocument docStaff = new XmlDocument();
+                    string path = Server.MapPath("~/App_Data/Staff.xml");
+                    docStaff.Load(path);
+                    string xpath1 = "/CredentialsDatabase/Credentials/Username[text()=\"" + txtbxUsername.Value + "\"" + "]";
+                    var myNodeStaff = docStaff.SelectSingleNode(xpath1);
+
+                    XmlDocument docAgent = new XmlDocument(); ;
+                    string path2 = Server.MapPath("~/App_Data/Agent.xml");
+                    docAgent.Load(path2);
+                    string xpath2 = "/CredentialsDatabase/Credentials/Username[text()=\"" + txtbxUsername.Value + "\"" + "]";
+                    var myNodeAgent = docAgent.SelectSingleNode(xpath2);
+
+                    XmlDocument docMember = new XmlDocument();
+                    string path3 = Server.MapPath("~/App_Data/Member.xml");
+                    docMember.Load(path3);
+                    string xpath3 = "/CredentialsDatabase/Credentials/Username[text()=\"" + txtbxUsername.Value + "\"" + "]";
+                    var myNodeMember = docMember.SelectSingleNode(xpath3);
+
+                    if (myNodeStaff != null)
+                    {
+                        Session["buttonID"] = "btnLoginStaff";
+                        return myAuthenticate(username, password);
+                    }
+                    else if (myNodeAgent != null)
+                    {
+                        Session["buttonID"] = "btnLoginAgent";
+                        return myAuthenticate(username, password);
+                    }
+                    else if (myNodeMember != null)
+                    {
+                        Session["buttonID"] = "btnLoginMember";
+                        return myAuthenticate(username, password);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
 
 
+        private void setCookies()
+        {
 
-
+            string accountType = getButtonType();
             //Need session state and cookies to be setup for other functions
             HttpCookie mycookies = Request.Cookies["Username"];
             HttpCookie mycookiesType = Request.Cookies["Type"];
@@ -190,9 +402,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 Session["Username"] = txtbxUsername.Value;
                 Session["AccountType"] = accountType;
             }
-
-            return true;
         }
+
 
         //Chris's DLL encryption
         private string EncryptPassword(string password)

@@ -23,7 +23,7 @@
                 <a class="nav-link" id="btnDefault" runat="server" onserverclick="btnDefault_Click">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="btnMemberLogin" s runat="server" onserverclick="btnLoginMember_Click">Member</a>
+                <a class="nav-link" id="btnMemberLogin" visible="false" runat="server" onserverclick="btnLoginMember_Click">Member</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" id="btnLoginAgent" visible="false" runat="server" onserverclick="btnLoginAgent_Click">Agent</a>
