@@ -20,6 +20,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            userLogout();
 
             //Only show buttons users have access to
             if (Session["AccountType"] != null)
@@ -38,7 +39,6 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 }
             }
 
-            userLogout();
             //don't show create account unless they ask for it
             if (!Panel1.Visible)
             {
