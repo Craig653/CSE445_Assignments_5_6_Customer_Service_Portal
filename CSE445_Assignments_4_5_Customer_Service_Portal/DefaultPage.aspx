@@ -54,6 +54,11 @@
         <h2 ><strong>Welcome to the Customer Service App</strong></h2>
 
         <p>
+            <strong>Application Start Time:</strong> <asp:Label ID="lblAppStartTime" runat="server"></asp:Label><br />
+            <strong>Application End Time (Last Run):</strong> <asp:Label ID="lblAppEndTime" runat="server"></asp:Label><br />
+            <strong>Session Start Time:</strong> <asp:Label ID="lblSessionStartTime" runat="server"></asp:Label><br /><br />
+        </p>
+        <p>
             <strong>Summary</strong></p>
         <p>
             This web application was designed to facititate customers having issues. Customers will be able to log into the member page and submit a ticket and a picture explaining their problem.</p>
