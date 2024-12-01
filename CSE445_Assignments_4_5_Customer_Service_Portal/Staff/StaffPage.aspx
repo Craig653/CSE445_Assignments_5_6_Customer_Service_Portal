@@ -53,9 +53,10 @@
         </div>
     </nav>
 
+
     <form id="form1" runat="server" style="margin: 20px;">
         <asp:Label ID="ValidationLabel" runat="server" Visible ="False" style="color: #FF0000"></asp:Label>
-        <asp:Panel ID="Panel2" runat="server" Visible="False">
+        <asp:Panel ID="panel2" runat="server" Visible="False">
         <asp:Table ID="Table1" runat="server" class="table">
             <asp:TableHeaderRow>
                 <asp:TableHeaderCell>Staff Accounts</asp:TableHeaderCell>
@@ -93,14 +94,14 @@
         <br />
             New Account Type<br />&nbsp;<asp:Button ID="btnlToStaff" runat="server" OnClick="btnlToStaff_Click" Text="Staff" />
             &nbsp;<asp:Button ID="btnToAgent" runat="server" OnClick="btnToAgent_Click" Text="Agent" />
-&nbsp;<asp:Button ID="btnToMember" runat="server" OnClick="btnToMember_Click" Text="Member" />
-        <br />
-        <br />
-        Delete Account<br />
+            &nbsp;<asp:Button ID="btnToMember" runat="server" OnClick="btnToMember_Click" Text="Member" />
+            <br />
+            <br />
+            Delete Account<br />
         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
         <br />
             <br />
-            *Note, deleting or changing account type will log you out upon completion due to security purposes.<br />
+            *Note, deleting or changing Staff account types will log you out upon completion due to security purposes.<br />
                 <hr />
         <asp:Panel ID="Panel1" runat="server">
             <h2><strong>Create an Account</strong></h2>

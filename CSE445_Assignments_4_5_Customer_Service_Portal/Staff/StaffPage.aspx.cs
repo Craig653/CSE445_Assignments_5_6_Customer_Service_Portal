@@ -38,12 +38,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             if (Session["AccountType"] != "Staff")
             {
                 ValidationLabel.Visible = true;
-                ValidationLabel.Text = "User account:" + Session["Username"] + "(" + Session["AccountType"] + ")" + " has been signed out for security purposes. Please sign back in";
+                ValidationLabel.Text = "User account:" + Session["Username"] + "(" + Session["AccountType"] + ")" + " does not have access to the Staff page";
             }
             else
             {
                 //make panel invisible so you can't see page if you don't have correct account type
-                Panel2.Visible = true;
+                panel2.Visible = true;
             }
 
             //Set inital states and load the dashboard info
@@ -356,8 +356,6 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     //remove from agent 
                     rootAgent.RemoveChild(myNodeAgent.ParentNode);
                     docAgent.Save(pathAgent);
-                    this.Page_Load(null, null);
-
 
                 }
 
@@ -403,7 +401,6 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblModifyStatus.Text = "Well this is awkward.... Logout and try again";
 
             }
-
             userLogout();
         }
 
@@ -496,9 +493,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     //remove from staff
                     rootStaff.RemoveChild(myNodeStaff.ParentNode);
                     docStaff.Save(pathStaff);
-                    this.Page_Load(null, null);
 
                 }
+                userLogout();
 
             }
             //check if member
@@ -527,21 +524,20 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 docAgentWeb.Save(pathAgentWeb);
 
                 //Remove from Member web.config
-                myNodeMemberRem.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeMemberRem);
+                docMemberWeb.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeMemberRem);
                 docMemberWeb.Save(pathMemberWeb);
 
 
                 //Remove from member
                 rootMember.RemoveChild(myNodeMember.ParentNode);
                 docMember.Save(pathMember);
-                this.Page_Load(null, null);
             }
             else
             {
                 lblModifyStatus.Text = "Well this is awkward.... Logout and try again";
 
             }
-            userLogout();
+            this.Page_Load(null, null);
         }
 
         //set selected acount to member
@@ -632,8 +628,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     //remove from staff
                     rootStaff.RemoveChild(myNodeStaff.ParentNode);
                     docStaff.Save(pathStaff);
-                    this.Page_Load(null, null);
                 }
+                userLogout();
             }
             else if (myNodeAgent != null)
             {
@@ -664,13 +660,12 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                     //Remove from Member web.config
                     docAgentWeb.ChildNodes[1].ChildNodes[0].ChildNodes[0].RemoveChild(myNodeAgentRem);
-                    docAgentWeb.Save(pathMemberWeb);
+                    docAgentWeb.Save(pathAgentWeb);
 
                     docMember.Save(pathMember);
                     //remove from agent
                     rootAgent.RemoveChild(myNodeAgent.ParentNode);
                     docAgent.Save(pathAgent);
-                    this.Page_Load(null, null);
                 }
             }
             else
@@ -678,8 +673,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblModifyStatus.Text = "Well this is awkward.... Logout and try again";
 
             }
+            this.Page_Load(null, null);
 
-            userLogout();
         }
 
 
@@ -751,7 +746,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     //Remove from staff list
                     rootStaff.RemoveChild(myNodeStaff.ParentNode);
                     docStaff.Save(pathStaff);
-                    this.Page_Load(null, null);
+                    userLogout();
                 }
             }
             else if (myNodeAgent != null)
@@ -768,8 +763,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                     rootAgent.RemoveChild(myNodeAgent.ParentNode);
                     docAgent.Save(pathAgent);
-                    this.Page_Load(null, null);
                 }
+                this.Page_Load(null, null);
             }
             else if (myNodeMember != null)
             {
@@ -779,10 +774,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                 rootMember.RemoveChild(myNodeMember.ParentNode);
                 docMember.Save(pathMember);
-                this.Page_Load(null, null);
             }
+            this.Page_Load(null, null);
 
-            userLogout();
         }
 
         //Set new password
@@ -837,7 +831,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 lblPassword.Text = "Please enter a Value";
             }
 
-
+            this.Page_Load(null, null);
 
         }
 
@@ -948,6 +942,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                             lblCreateStatus.Text = "Staff Account: " + txtbxUsername1.Value + " created";
 
+                            userLogout();
+
                         }
                         else if (optionsRadio2.Checked && myNodeAgent == null)
                         {
@@ -972,6 +968,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                             docAgentWeb.Save(pathAgentWeb);
 
                             lblCreateStatus.Text = "Agent Account: " + txtbxUsername1.Value + " created";
+
                         }
                         else if (optionsRadio3.Checked && myNodeMember == null)
                         {
@@ -1018,10 +1015,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                     {
                         lblCreateStatus.Text = "Error: Account: " + txtbxUsername1.Value + " already exists";
                     }
-
+                    this.Page_Load(null, null);
                 }
 
-                userLogout();
             }
         }
     }
