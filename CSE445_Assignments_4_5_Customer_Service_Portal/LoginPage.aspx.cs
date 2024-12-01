@@ -109,15 +109,15 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         //login clicking function, will authenticate and check if you typed everhting
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if(txtbxUsername.Value == "" && txtbxPassword.Value == "")
+            if (txtbxUsername.Value == "" && txtbxPassword.Value == "")
             {
                 lblAuthentication.Text = "Please enter your username and password";
             }
-            else if(txtbxUsername.Value == "")
+            else if (txtbxUsername.Value == "")
             {
                 lblAuthentication.Text = "Please enter a username";
             }
-            else if ( txtbxPassword.Value == "")
+            else if (txtbxPassword.Value == "")
             {
                 lblAuthentication.Text = "Please enter a password";
             }
@@ -402,6 +402,19 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 Session["Username"] = txtbxUsername.Value;
                 Session["AccountType"] = accountType;
             }
+
+
+            string username = txtbxUsername.Value;
+            string password = txtbxPassword.Value;
+
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            {
+                // Automatically populate the username and password fields
+                lblType.Text = username;
+                txtbxPassword.Attributes["value"] = password; // Populate the password field
+
+            }
+
         }
 
 
@@ -469,7 +482,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 {
 
                     //Check if account already exists
-                    if ( myNodeMember == null & myNodeAgent == null && myNodeStaff == null)
+                    if (myNodeMember == null & myNodeAgent == null && myNodeStaff == null)
                     {
                         XmlElement Credentials = docMember.CreateElement("Credentials");
                         Credentials.SetAttribute("UserType", "Member");
@@ -494,7 +507,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                         lblCreateStatus.Text = "Member Account: " + txtbxUsername1.Value + " created";
                     }
-                   
+
                     else
                     {
                         if (myNodeStaff != null)
