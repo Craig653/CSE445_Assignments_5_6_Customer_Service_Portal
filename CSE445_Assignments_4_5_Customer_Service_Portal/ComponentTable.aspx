@@ -4,6 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+                    <meta charset="utf-8">
+                    <meta charset="utf-8">
     <title></title>
     <meta name="viewport" content="width=device-width, intial-scale=1, shrink-to-fit= no" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
@@ -123,7 +125,9 @@
             </tr>
             <tr>
                 <td>Kiera Walker</td>
-                <td>Cookies- Automatic Login System, Used in TryIt Page </td>
+                <td>Cookies- Automatic Login System, Used in TryIt Page 
+                    <br />
+                    Used in Login page as a button</td>
                 <td>
                     Enables users to create an account, which then automatically logs them in if their credentials are stored in a cookie. 
                     If credentials aren't stored, it prompts users to enter their username and password.
@@ -220,6 +224,8 @@
                         <br>
                         <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
                             <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Use on the Try it page</span></p>
+                        <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                            Used on account creation</p>
                         </b>
                         <br class="Apple-interchange-newline">
                     </td>
@@ -320,6 +326,122 @@
                         <br>
                         </b></td>
                 </tr>
+                <tr>
+            <td>Craig Saunders</td>
+            <td>
+                <meta charset="utf-8">
+                <b id="docs-internal-guid-a510091a-7fff-0b8a-6bc6-a994218e40f3" style="font-weight:normal;">
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    &nbsp;</p>
+                Staff Page and Supporting Tools</b><br class="Apple-interchange-newline">
+            </td>
+            <td>
+                <meta charset="utf-8">
+                <b id="docs-internal-guid-954f63d6-7fff-ed54-6cea-1391da7f6ee2" style="font-weight:normal;">
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    Access for staff account to manipulate created accounts<span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><br>
+                    <br>
+                    </span><span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Inputs for Staff page</span></p>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    Staff acount to access</p>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    Username to manuplate (See table on staff page for current users)</p>
+                <br>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Output:</span></p>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">XML database in App_Data is updated</span></p>
+                </b>
+                <br class="Apple-interchange-newline">
+            </td>
+            <td>
+                <meta charset="utf-8">
+                <b id="docs-internal-guid-f6fb5ec0-7fff-540a-16d6-6fa517838df0" style="font-weight:normal;">
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Access to the XML database.</span></p>
+                <br>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Will Load the XML database into memory and display in table format for easy viewing</span></p>
+                <br>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Then I can use XPath to find the correct user and display its corresponding values</span></p>
+                <br>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    Allow Staff to modify account types, set passwords and delete accounts</p>
+                <br>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">XML data will then be manipulated and saved using XmlDocument functions</span></p>
+                <br>
+                </b></td>
+        </tr>
+                        <tr>
+            <td>Craig Saunders</td>
+            <td>
+                <meta charset="utf-8">
+                <b id="docs-internal-guid-a510091a-7fff-0b8a-6bc6-a994218e40f3" style="font-weight:normal;">
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    Create Account Tools</p>
+                </b>
+                <br class="Apple-interchange-newline">
+            </td>
+            <td>
+                <meta charset="utf-8">
+                <b id="docs-internal-guid-954f63d6-7fff-ed54-6cea-1391da7f6ee2" style="font-weight:normal;">
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Used for creating new accounts</span></p>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    Located on login page and on staff page(mor<span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">e privileges<br>
+                    <br>
+                    </span><span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Inputs for Creator:</span></p>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    Strring user </p>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    String password</p>
+                <br>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Output:</span></p>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Correct XML database in App_Data is updated</span></p>
+                </b>
+                <br class="Apple-interchange-newline">
+            </td>
+            <td>
+                <meta charset="utf-8">
+                <b id="docs-internal-guid-f6fb5ec0-7fff-540a-16d6-6fa517838df0" style="font-weight:normal;">
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Access to the XML database.</span></p>
+                <br>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Will Load the XML database into memory.</span></p>
+                <br>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Then I can use XPath to verify no duplicate users </span></p>
+                <br>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    Create new entry in web config and <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">correct xml database&nbsp;</span></p>
+                <br>
+                <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                    <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">XML data will then be manipulated and saved using XmlDocument functions</span></p>
+                <br>
+                </b></td>
+        </tr>
+                <tr>
+                <td>Christopher Angulo</td>
+                <td>Login Authorization</td>
+                <td><b id="docs-internal-guid-52ebc648-7fff-3c7b-df0f-f86fff4b7226" style="font-weight:normal;">
+                    <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                        This component verifies the login credentials from the xml databases</p>
+                    <br>
+                    <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                        <span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Input</span><span style="font-size:11pt;font-family:'Times New Roman',serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">: Usernames and passwords</span></p>
+                    </b><br>
+                    <br>
+                    <strong>Output:</strong> returns true or false based on current authorization</td>
+                <td>Reads the XML Databases using XDocument, Descendants, Element<br />
+                    <br>
+                    Will determine if the user has access to specific pages and then either deny or let them log in</td>
+            </tr>
+
                 <tr>
                     <td>Christopher Angulo</td>
                     <td>Ticket Issue Categorization based on Issue Summary<br>
