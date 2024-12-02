@@ -7,9 +7,9 @@
 <head runat="server">
     <title></title>
     <meta name="viewport" content="width=device-width, intial-scale=1, shrink-to-fit= no" />
-    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="../Scripts/bootstrap.bundle.min.js"></script>
-    <script src="../Scripts/bootstrap.min.js"></script>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
