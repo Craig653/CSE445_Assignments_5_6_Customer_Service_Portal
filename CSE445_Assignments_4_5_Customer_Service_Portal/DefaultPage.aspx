@@ -51,8 +51,15 @@
           </div>
         </nav>
         <form id="form1" runat="server" style="margin: 20px;">
-        <h2 ><strong>Welcome to the Customer Service App</strong></h2>
+        <h2 ><strong>Welcome
+            <asp:Label ID="lblUser" runat="server" Visible="False"></asp:Label>
+&nbsp;to the Customer Service App</strong></h2>
 
+        <p>
+            <strong>Application Start Time:</strong> <asp:Label ID="lblAppStartTime" runat="server"></asp:Label><br />
+            <strong>Application End Time (Last Run):</strong> <asp:Label ID="lblAppEndTime" runat="server"></asp:Label><br />
+            <strong>Session Start Time:</strong> <asp:Label ID="lblSessionStartTime" runat="server"></asp:Label><br /><br />
+        </p>
         <p>
             <strong>Summary</strong></p>
         <p>

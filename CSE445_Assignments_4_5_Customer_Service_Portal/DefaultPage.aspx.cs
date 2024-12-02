@@ -16,17 +16,20 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             //Only show buttons users have access to
             if (Session["AccountType"] != null)
             {
-                if(Session["AccountType"] == "Staff")
+                if (Session["AccountType"] == "Staff")
                 {
                     btnLoginStaff.Visible = true;
+                    lblUser.Visible = true;
                 }
-                else if(Session["AccountType"] == "Agent")
+                else if (Session["AccountType"] == "Agent")
                 {
                     btnLoginAgent.Visible = true;
+                    lblUser.Visible = true;
                 }
-                else if(Session["AccountType"] == "Member")
+                else if (Session["AccountType"] == "Member")
                 {
                     btnMemberLogin.Visible = true;
+                    lblUser.Visible = true;
                 }
             }
 
@@ -34,10 +37,45 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             if (Session["Username"] != null)
             {
                 Login.InnerText = "Logout";
+                lblUser.Text = Session["Username"].ToString();
             }
             else
             {
                 Login.InnerText = "Login";
+            }
+
+            // Kiera's Local Componment 1 - Global.asax event handlers 
+            if (!IsPostBack)
+            {
+                // Display Application Start Time
+                if (Application["AppStartTime"] != null)
+                {
+                    lblAppStartTime.Text = $"Application Start Time: {Application["AppStartTime"]}";
+                }
+                else
+                {
+                    lblAppStartTime.Text = "Not Available";
+                }
+
+                // Display Application End Time (from the previous shutdown)
+                if (Application["AppEndTime"] != null)
+                {
+                    lblAppEndTime.Text = $"Application End Time (Last Run): {Application["AppEndTime"]}";
+                }
+                else
+                {
+                    lblAppEndTime.Text = " Not Available";
+                }
+
+                // Display Session Start Time
+                if (Session["SessionStartTime"] != null)
+                {
+                    lblSessionStartTime.Text = $"Session Start Time: {Session["SessionStartTime"]}";
+                }
+                else
+                {
+                    lblSessionStartTime.Text = " Available";
+                }
             }
         }
 

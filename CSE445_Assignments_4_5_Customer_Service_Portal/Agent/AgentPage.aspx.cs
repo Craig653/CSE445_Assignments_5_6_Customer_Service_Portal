@@ -81,6 +81,9 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
             xpath = "/Tickets/Ticket";
             XmlDataSource1.XPath = xpath;
+
+            getMostCommonCat();
+
         }
 
         //page redirect functions
@@ -370,6 +373,28 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
         {
             //Todo add logic to logout here
             Response.Redirect("../DefaultPage.aspx");
+        }
+
+         protected void getMostCommonCat()
+        {
+            try
+            {
+                // Create an instance of the WCF service client
+                ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+
+                // Call the WCF service method to get the most common ticket category
+                string mostCommonCategory = client.GetMostCommonCategory();
+
+                // Display the result
+                lblCommonCat.Text = $"{mostCommonCategory}";
+
+                // Close the client connection
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+                lblCommonCat.Text = $"Error: {ex.Message}"; //Debug log
+            }
         }
 
     }

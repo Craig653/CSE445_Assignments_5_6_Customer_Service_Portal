@@ -60,7 +60,7 @@
 
         <div>
           <label for="txtbxUsername" class="form-label mt-4 w-25">Username</label>
-          <input type="text" class="form-control w-25" id="txtbxUsername" aria-describedby="txtbxUsername" placeholder="Enter Username" runat="server"/>
+          <input type="text" class="form-control w-25" id="txtbxUsername" aria-describedby="txtbxUsername" placeholder="Enter Username" runat="server" />
         </div>
         <div>
           <label for="txtbxPassword" class="form-label mt-4 w-25">Password</label>
@@ -71,6 +71,9 @@
         <button type="button" class="btn btn-primary" id="btnLogin" runat="server" onserverclick="btnLogin_Click">Login</button>
         &nbsp;
         <button type="button" class="btn btn-primary" id="btnShowCreate" runat="server" onserverclick="btnShowCreate_Click">Create New Account</button>
+        &nbsp;
+        <button type="button" class="btn btn-primary" id="btnCookieLogin" runat="server" value="false" onserverclick="btnLogin_cookies_Click">Login with Cookies</button>
+        &nbsp;
         <br />
         <asp:Label ID="lblAuthentication" runat="server" style="color: #FF3300"></asp:Label>
         <br />
