@@ -60,7 +60,9 @@
         <p>
             Agents will then be able to log in and see how many open tickets, closed tickets, inprogress tickets there are. They will also be able to work with AI to analyze the issue and images. Along with updating the ticket status and seeing a tree view of all tickets</p>
         <p>
-            Staff or Admin will be able to log into the Staff page and delete or create accounts (comming in assignment 6)</p>
+            Staff or Admin will be able to log into the Staff page and delete or create accounts</p>
+            <p>
+                Note that if you are currently logged in, when you use any login buttons to attempt a new login, you will be logged out of your current user for security purposes</p>
         <p>
             <strong>Main Pages</strong></p>
         <ol>

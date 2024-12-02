@@ -251,10 +251,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
 
                 doc.Save(path);
 
+                ServiceReference2.Service1Client proxy2 = new ServiceReference2.Service1Client(); // Chris's issue summary service reference
+                proxy2.MostCommon(); // trigger the issue summary service
 
                 lblSubmitStatus.Visible = true;
                 lblSubmitStatus.Text = "Submitted Successfully";
-
 
             }
             else
