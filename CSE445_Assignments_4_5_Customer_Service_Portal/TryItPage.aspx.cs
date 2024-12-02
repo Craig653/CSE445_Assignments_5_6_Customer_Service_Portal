@@ -192,8 +192,8 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 string text = txtbxGroq.Text;
                 byte[] abc;
-                Uri baseUri = new Uri("http://localhost:63092/Service1.svc");
-                //Uri baseUri = new Uri("http://webstrar10.fulton.asu.edu/page1/Service1.svc");
+                //Uri baseUri = new Uri("http://localhost:63092/Service1.svc");
+                Uri baseUri = new Uri("http://webstrar10.fulton.asu.edu/page1/Service1.svc");
                 UriTemplate myTempalte = new UriTemplate("AskGroq/{text}");
                 Uri completeUri = myTempalte.BindByPosition(baseUri, text);
                 WebClient channel = new WebClient();
