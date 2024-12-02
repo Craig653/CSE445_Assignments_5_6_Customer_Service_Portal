@@ -19,14 +19,17 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
                 if (Session["AccountType"] == "Staff")
                 {
                     btnLoginStaff.Visible = true;
+                    lblUser.Visible = true;
                 }
                 else if (Session["AccountType"] == "Agent")
                 {
                     btnLoginAgent.Visible = true;
+                    lblUser.Visible = true;
                 }
                 else if (Session["AccountType"] == "Member")
                 {
                     btnMemberLogin.Visible = true;
+                    lblUser.Visible = true;
                 }
             }
 
@@ -34,6 +37,7 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             if (Session["Username"] != null)
             {
                 Login.InnerText = "Logout";
+                lblUser.Text = Session["Username"].ToString();
             }
             else
             {

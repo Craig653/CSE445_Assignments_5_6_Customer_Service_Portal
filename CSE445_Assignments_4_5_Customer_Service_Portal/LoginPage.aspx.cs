@@ -44,6 +44,41 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             {
                 Panel1.Visible = false;
             }
+
+            HttpCookie lastUsername = Request.Cookies["LastUsername"];
+            HttpCookie lastPassword = Request.Cookies["LastPassword"];
+
+            if (lastUsername != null && lastPassword != null)
+            {
+
+                btnCookieLogin.Visible = true;
+                btnCookieLogin.InnerText = "Login with Cookies (" + lastUsername["LastUsername"].ToString() + ")";
+            }
+            else
+            {
+                btnCookieLogin.Visible = false;
+            }
+        }
+
+        protected void btnLogin_cookies_Click(object sender, EventArgs e)
+        {
+            HttpCookie lastUsername = Request.Cookies["LastUsername"];
+            HttpCookie lastPassword = Request.Cookies["LastPassword"];
+
+            if (lastUsername != null && lastPassword != null)
+            {
+                string username = lastUsername["LastUsername"];
+                string password = lastPassword["LastPassword"];
+
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                {
+                    // Automatically populate the username and password fields
+                    txtbxUsername.Value = username;
+                    txtbxPassword.Value = password; // Populate the password field
+                }
+            }
+
+            btnLogin_Click(null, null);
         }
 
         //Page redirect functions
@@ -404,17 +439,34 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             }
 
 
-            string username = txtbxUsername.Value;
-            string password = txtbxPassword.Value;
+            HttpCookie lastUsername = Request.Cookies["LastUsername"];
+            HttpCookie lastPassword = Request.Cookies["LastPassword"];
 
-            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            if(lastUsername == null)
             {
-                // Automatically populate the username and password fields
-                lblType.Text = username;
-                txtbxPassword.Attributes["value"] = password; // Populate the password field
-
+                HttpCookie lastUsernames = new HttpCookie("LastUsername");
+                lastUsernames["LastUsername"] = txtbxUsername.Value;
+                lastUsernames.Expires = DateTime.Now.AddMonths(6);
+                Response.Cookies.Add(lastUsernames);
+            }
+            else
+            {
+                lastUsername["LastUsername"] = txtbxUsername.Value;
+                Response.Cookies.Add(lastUsername);
             }
 
+            if (lastPassword == null)
+            {
+                HttpCookie lastPasswords = new HttpCookie("LastPassword");
+                lastPasswords["LastPassword"] = txtbxPassword.Value;
+                lastPasswords.Expires = DateTime.Now.AddMonths(6);
+                Response.Cookies.Add(lastPasswords);
+            }
+            else
+            {
+                lastPassword["LastPassword"] = txtbxPassword.Value;
+                Response.Cookies.Add(lastPassword);
+            }
         }
 
 
