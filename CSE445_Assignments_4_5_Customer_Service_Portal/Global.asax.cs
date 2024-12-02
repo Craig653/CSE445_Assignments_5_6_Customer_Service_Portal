@@ -20,9 +20,11 @@ namespace CSE445_Assignments_4_5_Customer_Service_Portal
             Application["AppStartTime"] = DateTime.Now; // Store the application start time
             Trace.WriteLine("Application_Start: " + DateTime.Now);
 
-            PreCreateMemberHashes(); // pre-create the Member password hashes
-            PreCreateStaffHashes(); // pre-create the Staff password hashes
-            PreCreateAgentHashes(); // pre-create the Admin password hashes
+            // use this to pre-generate new users at the very beginning of app run
+            // WARNING: this can duplicate users, so only run this as a very new app, as of now, this is NOT necessary
+            //PreCreateMemberHashes(); // pre-create the Member password hashes
+            //PreCreateStaffHashes(); // pre-create the Staff password hashes
+            //PreCreateAgentHashes(); // pre-create the Admin password hashes
         }
 
         // pre-create Member password hashes
